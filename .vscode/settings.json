@@ -2,4 +2,5 @@
     "code-runner.executorMap": {
         "cpp": "g++ $fileName && ./a.exe"
     },
+    "editor.tabSize": 2,
 }
