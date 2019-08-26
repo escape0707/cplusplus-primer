@@ -1,0 +1,1 @@
+// then thr program will count each cluster starting from random undefine value
