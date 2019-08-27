@@ -13,6 +13,12 @@ using std::strlen, std::strcmp, std::strcat, std::strcpy;
 using std::vector;
 
 int main() {
+  const char ca[] = {'h', 'e', 'l', 'l', 'o'}; // disaster: not null-terminated
+  const char *cp = ca;
+  while (*cp) {
+    cout << *cp << endl;
+    ++cp;
+  }
 
   return 0;
 }

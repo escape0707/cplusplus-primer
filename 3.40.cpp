@@ -13,6 +13,10 @@ using std::strlen, std::strcmp, std::strcat, std::strcpy;
 using std::vector;
 
 int main() {
+  char ca1[] = "Hello", ca2[] = "world!", ca3[sizeof(ca1) + sizeof(ca2)];
+  strcpy(ca3, ca1);
+  strcat(ca3, ca2);
+  cout << ca3 << endl;
 
   return 0;
 }

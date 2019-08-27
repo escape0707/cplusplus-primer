@@ -13,6 +13,11 @@ using std::strlen, std::strcmp, std::strcat, std::strcpy;
 using std::vector;
 
 int main() {
+  char ca1[] = "Hello", ca2[] = "world!";
+  string str1 = ca1, str2 = ca2;
+
+  cout << str1.compare(str2) << endl;
+  cout << strcmp(ca1, ca2) << endl;
 
   return 0;
 }
