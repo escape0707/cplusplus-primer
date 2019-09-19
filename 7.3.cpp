@@ -20,7 +20,8 @@ int main() {
         total = trans;               // process the next book
       }
     }
-  } else {                        //  there was no input
+    print(cout, total) << endl;   // print the last transaction
+  } else {                        // there was no input
     cerr << "No data?!" << endl;  // notify the user
   }
 }
