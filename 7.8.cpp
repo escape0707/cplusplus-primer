@@ -1,0 +1,1 @@
+// because read modifies its parameter while print doesn't
