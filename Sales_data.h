@@ -4,32 +4,33 @@
 #include <iostream>
 #include <string>
 
-struct Sales_data;
+class Sales_data;
 
 // nonmember Sales_data interface functions
 Sales_data add(const Sales_data &, const Sales_data &);
 std::ostream &print(std::ostream &, const Sales_data &);
 std::istream &read(std::istream &, Sales_data &);
 
-struct Sales_data {
+class Sales_data {
+ public:  // access specifier added
   // constructors added
-  Sales_data() {
-    bookNo = "";
-    units_sold = 0;
-    revenue = 0.0;
-  }
+  Sales_data() = default;
+  // Sales_data() {
+  //   bookNo = "";
+  //   units_sold = 0;
+  //   revenue = 0.0;
+  // }
   Sales_data(const std::string &s) : bookNo(s) {}
   Sales_data(const std::string &s, unsigned n, double p)
       : bookNo(s), units_sold(n), revenue(p * n) {}
-  Sales_data(std::istream &is) {
-    read(is, *this);  // read will read a transaction from is into this object
-  }
+  Sales_data(std::istream &is);
 
   // new members: operations on Sales_data objects
   std::string isbn() const { return bookNo; }
   Sales_data &combine(const Sales_data &);
-  double avg_price() const;
 
+ private:  // access specifier added
+  double avg_price() const;
   // data members are unchanged from 2.6.1
   std::string bookNo;
   unsigned units_sold = 0;
@@ -68,6 +69,10 @@ Sales_data add(const Sales_data &lhs, const Sales_data &rhs) {
   Sales_data sum = lhs;  // copy data memebers from lhs into sum
   sum.combine(rhs);      // add data memebers from rhs into sum
   return sum;
+}
+
+Sales_data::Sales_data(std::istream &is) {
+  read(is, *this);  // read will read a transaction from is into this object
 }
 
 #endif

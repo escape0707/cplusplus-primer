@@ -4,9 +4,12 @@
 #include <iostream>
 #include <string>
 
-struct Person {
+class Person {
+ public:
   Person(const std::string &n = "", const std::string &a = "")
       : name(n), address(a) {}
+
+ private:
   std::string name, address;
 };
 
