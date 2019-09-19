@@ -5,6 +5,8 @@
 #include <string>
 
 struct Person {
+  Person(const std::string &n = "", const std::string &a = "")
+      : name(n), address(a) {}
   std::string name, address;
 };
 
