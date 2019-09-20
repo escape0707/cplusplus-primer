@@ -1,0 +1,1 @@
+// yes, pos type and string type can be copied properly
