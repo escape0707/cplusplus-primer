@@ -15,15 +15,15 @@ class Screen {
   char get() const { return contents[cursor]; }
   char get(pos ht, pos wd) const;
   void some_member() const;
-  Screen &move(pos r, pos c);
-  Screen &set(char);
-  Screen &set(pos, pos, char);
+  Screen move(pos r, pos c);
+  Screen set(char);
+  Screen set(pos, pos, char);
   // display overloaded on whether the object is const or not
-  Screen &display(std::ostream &os) {
+  Screen display(std::ostream &os) {
     do_display(os);
     return *this;
   }
-  const Screen &display(std::ostream &os) const {
+  const Screen display(std::ostream &os) const {
     do_display(os);
     return *this;
   }
@@ -38,7 +38,7 @@ class Screen {
 };
 
 // we can specify inline on the definition
-inline Screen &Screen::move(pos r, pos c) {
+inline Screen Screen::move(pos r, pos c) {
   pos row = r * width;  // compute the row location
   cursor = row + c;     // move cursor to the column within that row
   return *this;         // return this object as an lvalue
@@ -54,12 +54,12 @@ void Screen::some_member() const {
   // whatever other work this member needs to do
 }
 
-inline Screen &Screen::set(char c) {
+inline Screen Screen::set(char c) {
   contents[cursor] = c;  // set the new value at the current cursor location
   return *this;          // return this object as an lvalue
 }
 
-inline Screen &Screen::set(pos r, pos col, char ch) {
+inline Screen Screen::set(pos r, pos col, char ch) {
   contents[r * width + col] = ch;  // set specified location to given value
   return *this;                    // return this object as an lvalue
 }
