@@ -8,22 +8,25 @@ class Sales_data;
 
 // nonmember Sales_data interface functions
 Sales_data add(const Sales_data &, const Sales_data &);
-std::ostream &print(std::ostream &, const Sales_data &);
 std::istream &read(std::istream &, Sales_data &);
+std::ostream &print(std::ostream &, const Sales_data &);
 
 class Sales_data {
+  // friend declarations for nonmember Sales_data operations added
+  friend Sales_data add(const Sales_data &, const Sales_data &);
+  friend std::istream &read(std::istream &, Sales_data &);
+  friend std::ostream &print(std::ostream &, const Sales_data &);
+
+  // other members and access specifiers as before
+
  public:  // access specifier added
   // constructors added
   Sales_data() = default;
-  // Sales_data() {
-  //   bookNo = "";
-  //   units_sold = 0;
-  //   revenue = 0.0;
-  // }
   Sales_data(const std::string &s) : bookNo(s) {}
   Sales_data(const std::string &s, unsigned n, double p)
       : bookNo(s), units_sold(n), revenue(p * n) {}
-  Sales_data(std::istream &is);
+  // read will read a transaction from is into this object
+  Sales_data(std::istream &is) { read(is, *this); }
 
   // new members: operations on Sales_data objects
   std::string isbn() const { return bookNo; }
@@ -69,10 +72,6 @@ Sales_data add(const Sales_data &lhs, const Sales_data &rhs) {
   Sales_data sum = lhs;  // copy data memebers from lhs into sum
   sum.combine(rhs);      // add data memebers from rhs into sum
   return sum;
-}
-
-Sales_data::Sales_data(std::istream &is) {
-  read(is, *this);  // read will read a transaction from is into this object
 }
 
 #endif

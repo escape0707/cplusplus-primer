@@ -5,6 +5,9 @@
 #include <string>
 
 class Person {
+  friend std::istream &read(std::istream is, Person &person);
+  friend std::ostream &print(std::ostream os, const Person &person);
+
  public:
   Person(const std::string &n = "", const std::string &a = "")
       : name(n), address(a) {}
