@@ -31,6 +31,7 @@ class Screen {
     do_display(os);
     return *this;
   }
+  pos size() const;
 
  private:
   // function to do the work of displaying a Screen
