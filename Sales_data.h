@@ -21,11 +21,12 @@ class Sales_data {
 
  public:  // access specifier added
   // constructors added
-  Sales_data(const std::string &s = "") : bookNo(s) {}
+  Sales_data() = default;
   Sales_data(const std::string &s, unsigned n, double p)
       : bookNo(s), units_sold(n), revenue(p * n) {}
+  explicit Sales_data(const std::string &s) : bookNo(s) {}
   // read will read a transaction from is into this object
-  Sales_data(std::istream &is) { read(is, *this); }
+  explicit Sales_data(std::istream &is) { read(is, *this); }
 
   // new members: operations on Sales_data objects
   std::string isbn() const { return bookNo; }
