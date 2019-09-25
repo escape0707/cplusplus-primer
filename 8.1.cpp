@@ -9,7 +9,7 @@ using std::vector;
 
 istream &process_input(istream &is) {
   string buf;
-  while (cin >> buf) {
+  while (is >> buf) {
     cout << buf;
   }
   return is;
