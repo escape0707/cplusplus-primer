@@ -8,7 +8,8 @@
 // members are public by default
 struct PersonInfo {
   std::string name;
-  std::vector<std::string> phones;
+  using number_type = std::string;
+  std::vector<number_type> phones;
 };
 
 std::ostream &operator<<(std::ostream &os, const PersonInfo &info) {
@@ -17,6 +18,14 @@ std::ostream &operator<<(std::ostream &os, const PersonInfo &info) {
     os << ' ' << number;
   }
   return os;
+}
+
+bool valid(const PersonInfo::number_type &number) {
+  return true;
+}
+
+const PersonInfo::number_type &format(const PersonInfo::number_type &number) {
+  return number;
 }
 
 #endif
