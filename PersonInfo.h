@@ -1,9 +1,9 @@
 #ifndef PERSONINFO_H
 #define PERSONINFO_H
 
-#include <vector>
-#include <string>
 #include <ostream>
+#include <string>
+#include <vector>
 
 // members are public by default
 struct PersonInfo {
