@@ -2,10 +2,13 @@
 
 using std::vector;
 
-bool include(vector<int>::const_iterator begin,
+bool find(vector<int>::const_iterator begin,
              const vector<int>::const_iterator &end,
              const int &val) {
-  while (begin != end && *begin++ != val)
-    ;
-  return (begin != end && *begin == val);
+  for (; begin != end; ++begin) {
+    if (*begin == val) {
+      return true;
+    }
+  }
+  return false;
 }
