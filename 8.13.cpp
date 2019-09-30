@@ -1,13 +1,17 @@
+#include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <iterator>
 #include <sstream>
 #include <string>
 #include <vector>
 #include "PersonInfo.h"
 
 using std::cin, std::cout, std::cerr, std::endl;
+using std::copy;
 using std::getline;
 using std::ifstream, std::ofstream;
+using std::istream_iterator, std::back_inserter;
 using std::istringstream, std::ostringstream;
 using std::string;
 using std::vector;
@@ -21,10 +25,9 @@ int main() {
     istringstream record(line);
     PersonInfo info;
     record >> info.name;
-    PersonInfo::number_type word;
-    while (record >> word) {
-      info.phones.push_back(word);
-    }
+    copy(istream_iterator<PersonInfo::number_type>(record),
+         istream_iterator<PersonInfo::number_type>(),
+         back_inserter(info.phones));
     people.push_back(info);
   }
   for (const PersonInfo &info : people) {

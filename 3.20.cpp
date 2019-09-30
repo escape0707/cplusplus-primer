@@ -1,17 +1,15 @@
 #include <iostream>
 #include <string>
+#include <iterator>
 #include <vector>
 
 using std::cin, std::cout, std::endl;
+using std::istream_iterator;
 using std::string;
 using std::vector;
 
 int main() {
-  vector<int> ivec;
-  int number;
-  while (cin >> number) {
-    ivec.push_back(number);
-  }
+  vector<int> ivec((istream_iterator<int>(cin)), istream_iterator<int>());
 
   for (decltype(ivec.size()) ix = 1; ix < ivec.size(); ix += 2) {
     cout << ivec[ix - 1] + ivec[ix] << ' ';
@@ -23,5 +21,5 @@ int main() {
   }
   cout << endl;
 
-  return 0;
+
 }

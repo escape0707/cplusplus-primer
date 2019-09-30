@@ -1,17 +1,16 @@
 #include <iostream>
+#include <iterator>
 #include <string>
 #include <vector>
 
 using std::cin, std::cout, std::endl;
+using std::istream_iterator;
 using std::string;
 using std::vector;
 
 int main() {
-  vector<string> words;
-  string word;
-  while (cin >> word) {
-    words.push_back(word);
-  }
+  vector<string> words(istream_iterator<string>(cin),
+                       istream_iterator<string>());
 
   unsigned printed = 0;  // holds count of words printed in current line
   for (auto &word : words) {
@@ -26,5 +25,5 @@ int main() {
   }
   cout << endl;
 
-  return 0;
+
 }

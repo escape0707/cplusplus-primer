@@ -1,12 +1,15 @@
+#include <algorithm>
 #include <exception>
 #include <fstream>
 #include <iostream>
+#include <iterator>
 #include <string>
 #include <vector>
 
 using std::cin, std::cout, std::endl;
 using std::getline;
 using std::ifstream, std::ofstream;
+using std::istream_iterator;
 using std::string;
 using std::vector;
 
@@ -16,11 +19,8 @@ vector<string> func(const string &ifile_name) {
     throw std::invalid_argument("Can't open input file.");
   }
 
-  vector<string> svec;
-  string word;
-  while (ifile >> word) {
-    svec.push_back(word);
-  }
+  vector<string> svec((istream_iterator<string>(ifile)),
+                      istream_iterator<string>());
 
   return svec;
 }

@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <utility>
 #include <vector>
 
 using std::cin, std::cout, std::endl;
@@ -17,9 +18,12 @@ vector<string> func(const string &ifile_name) {
   }
 
   vector<string> svec;
-  string line;
-  while (getline(ifile, line)) {
-    svec.push_back(line);
+  while (true) {
+    string line;
+    if (!getline(ifile, line)) {
+      break;
+    }
+    svec.push_back(std::move(line));
   }
 
   return svec;

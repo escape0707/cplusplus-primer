@@ -1,17 +1,13 @@
 #include <iostream>
+#include <iterator>
 #include <string>
 #include <vector>
 
 using std::cin, std::cout, std::endl;
+using std::istream_iterator;
 using std::string;
 using std::vector;
 
 int main() {
-  string str;
-  vector<string> v;  // empty vector
-  while (cin >> str) {
-    v.push_back(str);  // append word to text
-  }
-
-  return 0;
+  vector<string> v(istream_iterator<string>(cin), istream_iterator<string>());
 }
