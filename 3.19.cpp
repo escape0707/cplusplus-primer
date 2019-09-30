@@ -11,7 +11,7 @@ int main() {
   vector<int> v2{42, 42, 42, 42, 42, 42, 42, 42, 42, 42};
   vector<int> v3;
   for (decltype(v3.size()) ix = 0; ix != 10; ++ix) {
-    v3.emplace_back(42);
+    v3.push_back(42);
   }
 
 }
