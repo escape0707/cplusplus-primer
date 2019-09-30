@@ -20,5 +20,5 @@ int main() {
   for (int ix = 0; ix != sz; ++ix, ++sz) { // ix will never equals to sz
   }
 
-    return 0;
+
 }

@@ -42,5 +42,5 @@ int main() {
        << "Number of vowel o: \t" << oCnt << '\n'
        << "NUmber of vowel u: \t" << uCnt << endl;
 
-  return 0;
+
 }

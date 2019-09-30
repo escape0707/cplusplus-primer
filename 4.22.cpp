@@ -28,5 +28,5 @@ int main() {
     cout << finalgrade << endl;
   }
 
-  return 0;
+
 }

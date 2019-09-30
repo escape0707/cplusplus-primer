@@ -25,5 +25,5 @@ int main() {
 
   cout << test(v1, v2) << endl;
 
-  return 0;
+
 }

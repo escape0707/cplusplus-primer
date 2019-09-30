@@ -20,5 +20,5 @@ int main() {
   (sizeof(a)) < b;
   cout << sizeof(f()) << endl;
 
-  return 0;
+
 }

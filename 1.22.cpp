@@ -10,5 +10,4 @@ int main() {
     }
     std::cout << book << std::endl;
   }
-  return 0;
 }

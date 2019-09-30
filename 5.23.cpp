@@ -24,5 +24,5 @@ int main() {
     std::cerr << err.what() << endl;
   }
 
-  return 0;
+
 }

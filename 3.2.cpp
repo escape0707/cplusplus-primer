@@ -9,5 +9,5 @@ int main() {
   }
   while (cin >> str) {
   }
-  return 0;
+
 }

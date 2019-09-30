@@ -12,5 +12,4 @@ int main() {
   std::cout << "The second is:";
   std::cout << v2;
   std::cout << std::endl;
-  return 0;
 }

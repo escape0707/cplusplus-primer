@@ -12,5 +12,5 @@ bool is_empty(const string &s) {
 
 int main() {
 
-  return 0;
+
 }

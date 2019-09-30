@@ -6,5 +6,4 @@ int main() {
     std::cout << val-- << " ";
   }
   std::cout << std::endl;
-  return 0;
 }

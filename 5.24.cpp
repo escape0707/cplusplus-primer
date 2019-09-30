@@ -16,5 +16,5 @@ int main() {
   }
   cout << v1 / v2 << endl;
 
-  return 0;
+
 }

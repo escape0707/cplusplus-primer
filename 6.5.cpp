@@ -17,5 +17,5 @@ int main() {
     cout << abs(val) << endl;
   }
 
-  return 0;
+
 }

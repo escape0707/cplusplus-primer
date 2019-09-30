@@ -15,5 +15,5 @@ int main(int argc, char **argv) {
   }
   cout << result << endl;
 
-  return 0;
+
 }

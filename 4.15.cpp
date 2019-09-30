@@ -16,5 +16,5 @@ int main() {
   dval = ival = 0;
   pi = nullptr;
 
-  return 0;
+
 }

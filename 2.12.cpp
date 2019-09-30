@@ -7,5 +7,4 @@ double Double = 3.14;
 int main() {
   // defines four different int variables
   int somename, someName, SomeName, SOMENAME;
-  return 0;
 }

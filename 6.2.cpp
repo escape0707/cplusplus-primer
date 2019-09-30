@@ -20,5 +20,5 @@ double square(double x) return x * x;
 
 int main() {
 
-  return 0;
+
 }

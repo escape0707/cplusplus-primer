@@ -10,5 +10,4 @@ int main() {
     v1 += step;
   }
   std::cout << v2 << std::endl;
-  return 0;
 }

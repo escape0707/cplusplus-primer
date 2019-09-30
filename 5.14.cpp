@@ -38,5 +38,5 @@ int main() {
     cout << "No input." << endl;
   }
 
-  return 0;
+
 }

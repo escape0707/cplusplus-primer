@@ -4,5 +4,4 @@
  * as is the rest of the program
  */
 int main() {
-  return 0;
 }

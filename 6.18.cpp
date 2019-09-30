@@ -13,5 +13,5 @@ bool compare(const matrix &, const matrix &);
 vector<int>::iterator change_val(const int &, const vector<int>::iterator);
 
 int main() {
-  return 0;
+
 }

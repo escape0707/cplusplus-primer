@@ -10,5 +10,5 @@ int main() {
     // c is const char&
   }
 
-  return 0;
+
 }

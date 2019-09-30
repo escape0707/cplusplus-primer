@@ -4,5 +4,5 @@ int main() {
     ;
   if (*p) // check the int addressed by p == 0
     ;
-  return 0;
+
 }

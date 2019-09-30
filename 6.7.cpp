@@ -16,5 +16,5 @@ int main() {
 		cout << count_calls() << endl;
 	}
 
-	return 0;
+
 }

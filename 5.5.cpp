@@ -31,5 +31,5 @@ int main() {
     cout << lettergrade << endl;
   }
 
-  return 0;
+
 }

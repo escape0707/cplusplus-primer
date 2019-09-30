@@ -31,5 +31,5 @@ int main() {
 
   cout << std::boolalpha << test(v1, v2) << endl;
 
-  return 0;
+
 }

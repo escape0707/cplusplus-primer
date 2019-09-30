@@ -20,5 +20,5 @@ int main() {
     ++cp;
   }
 
-  return 0;
+
 }

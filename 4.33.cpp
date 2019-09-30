@@ -17,5 +17,5 @@ int main() {
   (someValue ? (++x), (++y) : (--x)), (--y);
   cout << x << ' ' << y << endl;
 
-  return 0;
+
 }

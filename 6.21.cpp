@@ -16,5 +16,5 @@ int main() {
 
   cout << max(i, ip) << endl;
 
-  return 0;
+
 }

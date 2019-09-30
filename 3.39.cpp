@@ -19,5 +19,5 @@ int main() {
   cout << str1.compare(str2) << endl;
   cout << strcmp(ca1, ca2) << endl;
 
-  return 0;
+
 }

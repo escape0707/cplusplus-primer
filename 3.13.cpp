@@ -31,5 +31,5 @@ int main() {
   print(v6);
   print(v7);
 
-  return 0;
+
 }

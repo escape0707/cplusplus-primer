@@ -16,5 +16,5 @@ int main() {
 		cout << fact(j) << endl;
 	}
 
-	return 0;
+
 }

@@ -7,5 +7,5 @@ int main() {
   cin >> i >> j >> k;
   cout << (i != j < k) << ' ' << (i != (j < k)) << endl;
 
-  return 0;
+
 }

@@ -18,5 +18,5 @@ int main() {
   strcat(ca3, ca2);
   cout << ca3 << endl;
 
-  return 0;
+
 }

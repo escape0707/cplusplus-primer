@@ -55,5 +55,5 @@ int main() {
        << "NUmber of tab: \t\t" << tCnt << '\n'
        << "NUmber of newline: \t" << nCnt << endl;
 
-  return 0;
+
 }

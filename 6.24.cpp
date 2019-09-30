@@ -14,5 +14,5 @@ void print(const int ia[10]) { // should be const int (&ia)[10]
 
 int main() {
 
-  return 0;
+
 }

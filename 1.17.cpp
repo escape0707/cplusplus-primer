@@ -16,6 +16,5 @@ int main() {
     }  // while loop ends here
     // remember to print the count for the last value in the file
     std::cout << currVal << " occurs " << cnt << " times " << std::endl;
-  } // outermost if statments ends here
-  return 0;
+  }  // outermost if statments ends here
 }

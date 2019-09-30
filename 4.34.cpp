@@ -25,5 +25,5 @@ int main() {
 
   dval + ival * cval; //  cval promoted to int, then the product is converted to double
 
-  return 0;
+
 }

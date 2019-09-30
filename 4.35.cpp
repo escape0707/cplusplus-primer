@@ -23,5 +23,5 @@ int main() {
          dval;  // ival is converted to float, then the sum is promoted to
                 // double, then they finally turned into a char;
 
-  return 0;
+
 }

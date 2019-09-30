@@ -8,5 +8,5 @@ int main() {
     cout << *cp << endl;
   }
 
-  return 0;
+
 }

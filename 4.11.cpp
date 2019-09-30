@@ -9,5 +9,5 @@ int main() {
     cout << "OK" << endl;
   }
 
-  return 0;
+
 }

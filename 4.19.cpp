@@ -21,5 +21,5 @@ int main() {
   cout << (vec[ival] <= vec[ival + 1]) << endl;
   ++ival;
 
-  return 0;
+
 }

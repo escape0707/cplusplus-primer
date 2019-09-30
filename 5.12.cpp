@@ -31,5 +31,5 @@ int main() {
        << "Number of fl: \t" << lCnt << '\n'
        << "Number of fi: \t" << iCnt << endl;
 
-  return 0;
+
 }

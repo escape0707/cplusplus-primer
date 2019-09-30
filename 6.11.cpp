@@ -16,5 +16,5 @@ int main() {
   reset(val);
   cout << val << endl;
 
-  return 0;
+
 }

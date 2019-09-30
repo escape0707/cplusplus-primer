@@ -15,5 +15,5 @@ int main() {
   ++*iter;
   iter++->empty();
 
-  return 0;
+
 }

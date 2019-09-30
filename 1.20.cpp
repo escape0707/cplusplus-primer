@@ -8,5 +8,4 @@ int main() {
     // write ISBN, number of copies sold, total revenue, and average price
     std::cout << book << std::endl;
   }
-  return 0;
 }

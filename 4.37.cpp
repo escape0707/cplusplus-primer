@@ -18,5 +18,5 @@ int main() {
   pv = static_cast<void *>(&d);
   pc = static_cast<char *>(pv);
 
-  return 0;
+
 }

@@ -17,5 +17,5 @@ int main() {
   // ivec has six elements; each is a copy of the corresponding element in int_arr
   vector<int> ivec(begin(int_arr), end(int_arr));
 
-  return 0;
+
 }

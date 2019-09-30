@@ -17,5 +17,5 @@ int a3[txt_size()];
 char st[11] = "fundamental";
 
 int main() {
-  return 0;
+
 }

@@ -17,5 +17,4 @@ int main() {
     }
     std::cout << item.isbn() << '\t' << cnt << std::endl;
   }
-  return 0;
 }

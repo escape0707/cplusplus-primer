@@ -7,5 +7,4 @@ int main() {
     ++val;       // add 1 to val
   }
   std::cout << "Sum of 50 to 100 inclusive is " << sum << std::endl;
-  return 0;
 }

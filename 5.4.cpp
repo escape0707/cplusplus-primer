@@ -15,6 +15,6 @@ int main() {
 	if (!status) { /* ... */
 	}              // out of scope
 
-	return 0;
+
 }
 

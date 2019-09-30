@@ -13,5 +13,5 @@ int main() {
   cout << sizeof(p) / sizeof(*p) << endl;  // 2 if 64-bit system, 1 if 32-bit
   cout << sizeof(p) << " / " << sizeof(*p) << endl;
 
-  return 0;
+
 }

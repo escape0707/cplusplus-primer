@@ -20,5 +20,5 @@ int main() {
   i = d = 3.5;
   print();  // 3 3.5
 
-  return 0;
+
 }

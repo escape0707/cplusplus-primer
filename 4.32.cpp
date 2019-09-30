@@ -13,5 +13,5 @@ int main() {
     /* ... */  // go through every element and every index
   }
 
-  return 0;
+
 }

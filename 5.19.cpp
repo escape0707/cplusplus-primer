@@ -15,5 +15,5 @@ int main() {
     }
   } while (cin);
 
-  return 0;
+
 }

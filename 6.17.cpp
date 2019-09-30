@@ -25,5 +25,5 @@ void to_lower(string &s) {
 
 int main() {
 
-  return 0;
+
 }

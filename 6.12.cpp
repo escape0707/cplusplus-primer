@@ -20,5 +20,5 @@ int main() {
 	swap(v1, v2);
 	cout << v1 << ' ' << v2 << endl;
 
-	return 0;
+
 }
