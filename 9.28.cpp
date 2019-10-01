@@ -34,7 +34,7 @@ void insert_after(forward_list<string> &sflist,
 
 ostream &operator<<(ostream &os, const forward_list<string> &text) {
   for (const auto &elem : text) {
-    cout << elem << ' ';
+    os << elem << ' ';
   }
   return os;
 }
