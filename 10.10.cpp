@@ -1,0 +1,1 @@
+// algorithms operate on iterators and not containers
