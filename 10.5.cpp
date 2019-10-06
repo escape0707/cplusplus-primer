@@ -1,0 +1,1 @@
+// the result will be comparing two char*, which is not intended
