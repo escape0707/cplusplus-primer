@@ -15,7 +15,7 @@ class Sales_data {
   // friend declarations for nonmember Sales_data operations added
   friend Sales_data add(const Sales_data &, const Sales_data &);
   friend std::istream &read(std::istream &, Sales_data &);
-  friend std::ostream &print(std::ostream &, const Sales_data &);
+  friend std::ostream &operator<<(std::ostream &, const Sales_data &);
 
   // other members and access specifiers as before
 
@@ -62,7 +62,7 @@ std::istream &read(std::istream &is, Sales_data &item) {
   return is;
 }
 
-std::ostream &print(std::ostream &os, const Sales_data &item) {
+std::ostream &operator<<(std::ostream &os, const Sales_data &item) {
   os << item.isbn() << ' ' << item.units_sold << ' ' << item.revenue << ' '
      << item.avg_price();
   return os;
