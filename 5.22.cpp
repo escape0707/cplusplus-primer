@@ -13,6 +13,4 @@ int get_size() {
 int main() {
   for (int sz = get_size(); sz <= 0;) {
   }
-
-
 }

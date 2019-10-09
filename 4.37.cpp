@@ -17,6 +17,4 @@ int main() {
   i = static_cast<int>(*pc);
   pv = static_cast<void *>(&d);
   pc = static_cast<char *>(pv);
-
-
 }

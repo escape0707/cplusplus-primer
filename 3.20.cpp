@@ -20,6 +20,4 @@ int main() {
     cout << ivec[i] + ivec[j] << ' ';
   }
   cout << endl;
-
-
 }

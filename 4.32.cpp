@@ -12,6 +12,4 @@ int main() {
   for (int *ptr = ia, ix = 0; ix != size && ptr != ia + size; ++ix, ++ptr) {
     /* ... */  // go through every element and every index
   }
-
-
 }

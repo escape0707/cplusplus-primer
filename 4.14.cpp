@@ -16,6 +16,4 @@ int main() {
   if (i = 42) { // 42 is always converted to true
     ;
   }
-
-
 }

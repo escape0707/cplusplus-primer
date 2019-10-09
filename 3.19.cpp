@@ -13,5 +13,4 @@ int main() {
   for (decltype(v3.size()) ix = 0; ix != 10; ++ix) {
     v3.push_back(42);
   }
-
 }

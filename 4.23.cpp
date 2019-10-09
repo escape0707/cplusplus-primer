@@ -12,6 +12,4 @@ int main() {
   // pl = s + s[s.size() - 1] == 's' ? "" : "s";
   // pl = ((s + s[s.size() - 1]) == 's') ? "" : "s";
   cout << pl << endl;
-
-
 }

@@ -54,6 +54,4 @@ int main() {
        << "NUmber of blank space: \t" << sCnt << '\n'
        << "NUmber of tab: \t\t" << tCnt << '\n'
        << "NUmber of newline: \t" << nCnt << endl;
-
-
 }

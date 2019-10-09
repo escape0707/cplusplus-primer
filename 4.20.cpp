@@ -14,6 +14,4 @@ int main() {
   iter->empty();
   ++*iter;
   iter++->empty();
-
-
 }

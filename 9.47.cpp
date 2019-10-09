@@ -32,9 +32,4 @@ int main() {
     cout << s[pos];
   }
   cout << endl;
-
-
-
-
-
 }

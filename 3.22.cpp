@@ -18,6 +18,4 @@ int main() {
   for (const auto &str : text) {
     cout << str << endl;
   }
-
-
 }

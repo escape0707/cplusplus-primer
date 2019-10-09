@@ -17,6 +17,4 @@ int main() {
   strcpy(ca3, ca1);
   strcat(ca3, ca2);
   cout << ca3 << endl;
-
-
 }

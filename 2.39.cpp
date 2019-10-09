@@ -1,5 +1,4 @@
 struct foo {}
 
 int main() {
-
 }

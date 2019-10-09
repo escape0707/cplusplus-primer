@@ -20,6 +20,4 @@ int main() {
     cout << *beg + *end << ' ';
   }
   cout << endl;
-
-
 }

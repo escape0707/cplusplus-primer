@@ -20,6 +20,4 @@ int main() {
   // cout << (vec[ival++] <= vec[ival]) << endl; // undefined
   cout << (vec[ival] <= vec[ival + 1]) << endl;
   ++ival;
-
-
 }

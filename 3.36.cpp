@@ -31,6 +31,4 @@ int main() {
 
   cout << compare(a, b) << ' ' << compare(vb, va) << ' ' << compare(a, va)
        << ' ' << compare(b, va) << endl;
-
-
 }

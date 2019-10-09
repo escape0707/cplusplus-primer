@@ -21,6 +21,4 @@ int main() {
     }
   }
   throw invalid_argument("Not valid input");
-
-
 }

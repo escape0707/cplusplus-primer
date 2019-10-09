@@ -23,6 +23,4 @@ int main() {
   } catch (domain_error err) {
     std::cerr << err.what() << endl;
   }
-
-
 }

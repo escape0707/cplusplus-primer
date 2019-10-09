@@ -15,6 +15,4 @@ int main() {
   // pi = ival = dval = 0; // even this is an error, ival may not be 0 in runtime
   dval = ival = 0;
   pi = nullptr;
-
-
 }

@@ -34,6 +34,4 @@ int main() {
        << "Number of vowel i: \t" << iCnt << '\n'
        << "Number of vowel o: \t" << oCnt << '\n'
        << "NUmber of vowel u: \t" << uCnt << endl;
-
-
 }

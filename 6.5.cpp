@@ -16,6 +16,4 @@ int main() {
   while (cin >> val) {
     cout << abs(val) << endl;
   }
-
-
 }

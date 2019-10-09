@@ -14,7 +14,4 @@ int main() {
 	}
 	if (!status) { /* ... */
 	}              // out of scope
-
-
 }
-

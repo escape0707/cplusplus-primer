@@ -37,6 +37,4 @@ int main() {
   } else {  // no input!
     cout << "No input." << endl;
   }
-
-
 }

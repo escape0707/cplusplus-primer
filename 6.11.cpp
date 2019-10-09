@@ -15,6 +15,4 @@ int main() {
   cout << val << endl;
   reset(val);
   cout << val << endl;
-
-
 }

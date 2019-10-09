@@ -22,6 +22,4 @@ int main() {
   cval = ival + fval +
          dval;  // ival is converted to float, then the sum is promoted to
                 // double, then they finally turned into a char;
-
-
 }

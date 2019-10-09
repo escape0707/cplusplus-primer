@@ -8,6 +8,4 @@ int main() {
   if (a < b && b < c && c < d) {
     cout << "OK" << endl;
   }
-
-
 }

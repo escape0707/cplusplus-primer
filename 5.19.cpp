@@ -14,6 +14,4 @@ int main() {
       cout << "s1 is " << (s1 < s2 ? "less" : "more") << " than s2.\n" << endl;
     }
   } while (cin);
-
-
 }

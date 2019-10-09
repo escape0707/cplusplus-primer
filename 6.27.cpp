@@ -18,6 +18,4 @@ int sum(initializer_list<int> il) {
 
 int main() {
   cout << sum({0, 1, 2, 3, 4, 5, 6, 7, 8, 9}) << endl;
-
-
 }

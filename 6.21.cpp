@@ -15,6 +15,4 @@ int main() {
   int *ip = &j;
 
   cout << max(i, ip) << endl;
-
-
 }

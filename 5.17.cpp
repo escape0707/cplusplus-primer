@@ -24,6 +24,4 @@ int main() {
   vector<int> v2 = {0, 1, 1, 2, 3, 5, 8};
 
   cout << test(v1, v2) << endl;
-
-
 }

@@ -19,6 +19,4 @@ int main() {
   sizeof((p->mem)[i]);
   (sizeof(a)) < b;
   cout << sizeof(f()) << endl;
-
-
 }

@@ -24,6 +24,4 @@ int main() {
   dval = fval + ival; // ival converted to float, then the sum is promoted to double
 
   dval + ival * cval; //  cval promoted to int, then the product is converted to double
-
-
 }

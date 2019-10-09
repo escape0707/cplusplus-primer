@@ -14,6 +14,4 @@ int main(int argc, char **argv) {
     result += *sp;
   }
   cout << result << endl;
-
-
 }

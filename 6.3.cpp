@@ -22,6 +22,4 @@ int main() {
     cout << "The factorial of " << j << " is " << std::flush;
     cout << fact(j) << endl;
   }
-
-
 }

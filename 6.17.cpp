@@ -24,6 +24,4 @@ void to_lower(string &s) {
 }
 
 int main() {
-
-
 }

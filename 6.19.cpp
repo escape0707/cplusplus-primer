@@ -16,5 +16,4 @@ int main() {
   count("abcda", 'a');
   calc(66);
   sum(vec.begin(), vec.end(), 3.8);
-
 }

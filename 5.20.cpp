@@ -23,6 +23,4 @@ int main() {
       cout << "No word was repeated." << endl;
     }
   }
-
-
 }

@@ -16,6 +16,4 @@ int main() {
   x = 0, y = 1;
   (someValue ? (++x), (++y) : (--x)), (--y);
   cout << x << ' ' << y << endl;
-
-
 }

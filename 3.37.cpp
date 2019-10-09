@@ -19,6 +19,4 @@ int main() {
     cout << *cp << endl;
     ++cp;
   }
-
-
 }

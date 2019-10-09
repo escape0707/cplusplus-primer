@@ -27,6 +27,4 @@ int main() {
     }
     cout << finalgrade << endl;
   }
-
-
 }

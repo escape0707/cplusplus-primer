@@ -9,6 +9,4 @@ int main() {
   for (auto &c : s) {
     // c is const char&
   }
-
-
 }

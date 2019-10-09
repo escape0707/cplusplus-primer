@@ -19,6 +19,4 @@ int calc(int v1, int v1) { /* ... */ }
 double square(double x) return x * x;
 
 int main() {
-
-
 }

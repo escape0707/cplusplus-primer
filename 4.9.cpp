@@ -7,6 +7,4 @@ int main() {
   if (cp && *cp) { // if cp is not nullptr and *cp is not '\0'
     cout << *cp << endl;
   }
-
-
 }

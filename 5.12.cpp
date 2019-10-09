@@ -30,6 +30,4 @@ int main() {
   cout << "Number of ff: \t" << fCnt << '\n'
        << "Number of fl: \t" << lCnt << '\n'
        << "Number of fi: \t" << iCnt << endl;
-
-
 }

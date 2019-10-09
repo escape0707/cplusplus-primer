@@ -22,6 +22,4 @@ int main() {
 
   cout << i << ' ' << j << endl;
   cout << *p1 << ' ' << *p2 << endl;
-
-
 }

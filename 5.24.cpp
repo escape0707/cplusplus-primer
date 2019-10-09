@@ -15,6 +15,4 @@ int main() {
     throw domain_error("Division by 0");
   }
   cout << v1 / v2 << endl;
-
-
 }

@@ -13,6 +13,4 @@ using std::vector;
 int main() {
   int *p1, *p2;
   p1 += p2 - p1;
-
-
 }
