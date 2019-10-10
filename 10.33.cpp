@@ -17,5 +17,5 @@ int main() {
   istream_iterator<int> int_it(fin), eof;
   ostream_iterator<int> fodd_it(fodd, " "), feven_it(feven, "\n");
   for_each(int_it, eof,
-           [&](const int &i) { (i & 1) ? *fodd_it++ = i : *feven_it++ = i; });
+           [&](const int &i) { (i & 1 ? *fodd_it++ : *feven_it++) = i; });
 }
