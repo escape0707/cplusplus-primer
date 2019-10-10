@@ -11,8 +11,7 @@ int main() {
   while (cin >> grade) {
     string finalgrade =
         grade > 90 ? "high pass"
-                   : grade > 75 ? "pass"
-                                : grade < 60 ? "fail" : "low pass";
+                   : grade > 75 ? "pass" : grade < 60 ? "fail" : "low pass";
 
     cout << finalgrade << endl;
 

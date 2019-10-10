@@ -16,7 +16,7 @@ vector<string> v7{10, "hi"};
 template <typename T>
 void print(const vector<T> &v) {
   cout << v.size() << ": ";
-  for (const auto &i : v) {
+  for (const T &i : v) {
     cout << i << ' ';
   }
   cout << endl;

@@ -36,7 +36,7 @@ int main() {
 
   for (const PersonInfo &entry : people) {
     ostringstream formatted, badNums;
-    for (const auto &number : entry.phones) {
+    for (const string &number : entry.phones) {
       if (!valid(number)) {
         badNums << ' ' << number;
       } else {

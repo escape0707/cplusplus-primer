@@ -6,10 +6,10 @@ using std::cin, std::cout, std::endl;
 using std::string;
 using std::vector;
 
-template <typename T>
-void print(const T &array) {
-  cout << sizeof(array) / sizeof(array[0]) << ": ";
-  for (const auto &element : array) {
+template <typename T, size_t N>
+void print(const T (&arr)[N]) {
+  cout << N << ": ";
+  for (const T &element : arr) {
     cout << element << ", ";
   }
   cout << endl;

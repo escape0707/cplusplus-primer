@@ -14,7 +14,7 @@ int main() {
     ivec[ix] = cnt;
   }
 
-  for (const auto &i : ivec) {
+  for (const int &i : ivec) {
     cout << i << ' ';
   }
   cout << endl;
@@ -24,7 +24,7 @@ int main() {
     ivec[ix] = cnt;
   }
 
-  for (const auto &i : ivec) {
+  for (const int &i : ivec) {
     cout << i << ' ';
   }
   cout << endl;

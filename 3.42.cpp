@@ -16,11 +16,11 @@ int main() {
   vector<int> ivec = {0, 1, 2, 3, 4, 5};
   int arr[ivec.size()];
   int *p = arr;
-  for (const auto &i : ivec) {
+  for (const int &i : ivec) {
     *p++ = i;
   }
 
-  for (const auto &i : arr) {
+  for (const int &i : arr) {
     cout << i << ' ';
   }
   cout << endl;

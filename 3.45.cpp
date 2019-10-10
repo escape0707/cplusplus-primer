@@ -15,8 +15,8 @@ using std::vector;
 int main() {
   int ia[3][4];
 
-  for (const auto &row : ia) {
-    for (const auto &element : row) {
+  for (const int (&row)[4] : ia) {
+    for (const int &element : row) {
       cout << element << ' ';
     }
     cout << endl;
@@ -31,8 +31,8 @@ int main() {
   }
   cout << endl;
 
-  for (const auto *p = ia; p < ia + 3; ++p) {
-    for (const auto *q = *p; q < *p + 4; ++q) {
+  for (const int (*p)[4] = ia; p < ia + 3; ++p) {
+    for (const int *q = *p; q < *p + 4; ++q) {
       cout << *q << ' ';
     }
     cout << endl;

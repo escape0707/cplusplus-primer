@@ -13,7 +13,7 @@ string (&func())[10] {
 }
 
 using strArr = string[10];
-strArr(&funcA()) {
+strArr &funcA() {
   return text;
 }
 
@@ -26,22 +26,22 @@ decltype(text) &funcC() {
 }
 
 int main() {
-  for (const auto &elem : func()) {
+  for (const string &elem : func()) {
     cout << elem;
   }
   cout << endl;
 
-  for (const auto &elem : funcA()) {
+  for (const string &elem : funcA()) {
     cout << elem;
   }
   cout << endl;
 
-  for (const auto &elem : funcB()) {
+  for (const string &elem : funcB()) {
     cout << elem;
   }
   cout << endl;
 
-  for (const auto &elem : funcC()) {
+  for (const string &elem : funcC()) {
     cout << elem;
   }
   cout << endl;

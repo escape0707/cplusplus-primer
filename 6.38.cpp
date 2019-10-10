@@ -14,12 +14,12 @@ decltype(odd) &arrPtr(int i) {
 }
 
 int main() {
-  for (const auto &elem : arrPtr(0)) {
+  for (const int &elem : arrPtr(0)) {
     cout << elem << ' ';
   }
   cout << endl;
 
-  for (const auto &elem : arrPtr(1)) {
+  for (const int &elem : arrPtr(1)) {
     cout << elem << ' ';
   }
   cout << endl;

@@ -13,7 +13,7 @@ bool str_subrange(const string &str1, const string &str2) {
     return str1 == str2;  // ok: == returns bool;
   }
   // find the size of the smaller string; conditional operator
-  auto size = (str1.size() < str2.size()) ? str1.size() : str2.size();
+  string::size_type size = (str1.size() < str2.size()) ? str1.size() : str2.size();
   // look at each element up to the size of the smaller string
   for (decltype(size) i = 0; i != size; ++i) {
     if (str1[i] != str2[i]) {

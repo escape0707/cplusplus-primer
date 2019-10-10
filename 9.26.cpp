@@ -13,7 +13,7 @@ int main() {
   vector<int> ivec(ia, std::end(ia));
   list<int> ilist(ia, std::end(ia));
 
-  for (auto it = ilist.cbegin(); it != ilist.cend();) {
+  for (list<int>::const_iterator it = ilist.cbegin(); it != ilist.cend();) {
     if (*it & 1) {
       it = ilist.erase(it);
     } else {
@@ -21,7 +21,7 @@ int main() {
     }
   }
 
-  for (auto it = ivec.cbegin(); it != ivec.cend();) {
+  for (vector<int>::const_iterator it = ivec.cbegin(); it != ivec.cend();) {
     if (*it & 1) {
       ++it;
     } else {
@@ -30,11 +30,11 @@ int main() {
   }
 
   cout << "ilist: ";
-  for (const auto &elem : ilist) {
+  for (const int &elem : ilist) {
     cout << elem << ' ';
   }
   cout << "\nivec: ";
-  for (const auto &elem : ivec) {
+  for (const int &elem : ivec) {
     cout << elem << ' ';
   }
   cout << endl;

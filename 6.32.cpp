@@ -13,7 +13,7 @@ int &get(int *arry, int index) {
 int main() {
 	int ia[10];
 
-	for (const auto &elem : ia) {
+	for (const int &elem: ia) {
 		cout << elem << ' ';
 	}
 	cout << endl;
@@ -22,7 +22,7 @@ int main() {
 		get(ia, i) = i;
 	}
 
-	for (const auto &elem : ia) {
+	for (const int &elem : ia) {
 		cout << elem << ' ';
 	}
 	cout << endl;

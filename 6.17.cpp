@@ -9,7 +9,7 @@ using std::string;
 using std::vector;
 
 bool has_capital(const string &s) {
-  for (const auto &c : s) {
+  for (const char &c : s) {
     if (isupper(c)) {
       return true;
     }
@@ -18,7 +18,7 @@ bool has_capital(const string &s) {
 }
 
 void to_lower(string &s) {
-  for (auto &c : s) {
+  for (char &c : s) {
     c = tolower(c);
   }
 }

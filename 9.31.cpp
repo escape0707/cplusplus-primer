@@ -9,7 +9,7 @@ using std::ostream;
 
 template <typename T>
 ostream &operator<<(ostream &os, const forward_list<T> &c) {
-  for (const auto &elem : c) {
+  for (const T &elem : c) {
     os << elem << ' ';
   }
   return os;
@@ -17,7 +17,7 @@ ostream &operator<<(ostream &os, const forward_list<T> &c) {
 
 template <typename T>
 ostream &operator<<(ostream &os, const list<T> &c) {
-  for (const auto &elem : c) {
+  for (const T &elem : c) {
     os << elem << ' ';
   }
   return os;
@@ -25,7 +25,7 @@ ostream &operator<<(ostream &os, const list<T> &c) {
 
 int main() {
   list<int> ilist{0, 1, 2, 3, 4, 5};
-  for (auto iter = ilist.cbegin(); iter != ilist.cend();) {
+  for (list<int>::const_iterator iter = ilist.cbegin(); iter != ilist.cend();) {
     if (*iter & 1) {
       ilist.insert(iter, *iter);  // list::insert won't invalidate any iterator
       ++iter;
@@ -36,7 +36,8 @@ int main() {
   cout << ilist << endl;
 
   forward_list<int> iflist{1, 2, 3, 4, 5, 6, 7};
-  for (auto prev = iflist.cbefore_begin(), curr = iflist.cbegin();
+  for (forward_list<int>::const_iterator prev = iflist.cbefore_begin(),
+                                         curr = iflist.cbegin();
        curr != iflist.cend();) {
     if (*curr & 1) {
       prev = curr = iflist.insert_after(curr, *curr);

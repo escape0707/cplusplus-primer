@@ -13,7 +13,7 @@ string (&func())[10] {
 }
 
 int main() {
-  for (const auto &elem : func()) {
+  for (const string &elem : func()) {
     cout << elem;
   }
   cout << endl;

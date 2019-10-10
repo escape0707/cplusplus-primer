@@ -9,13 +9,14 @@ using std::vector;
 int main() {
   vector<string> text{"Hello, ", "world!", "", "Hi, ", "you!"};
   // print each line in text up to the first blank line
-  for (auto it = text.begin(); it != text.end() && !it->empty(); ++it) {
-    for (auto &c : *it) {
+  for (vector<string>::iterator it = text.begin();
+       it != text.end() && !it->empty(); ++it) {
+    for (char &c : *it) {
       c = toupper(c);
     }
   }
 
-  for (const auto &str : text) {
+  for (const string &str : text) {
     cout << str << endl;
   }
 }

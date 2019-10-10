@@ -9,16 +9,16 @@ using std::string;
 using std::vector;
 
 int main() {
-  vector<string> words(istream_iterator<string>(cin),
+  vector<string> words((istream_iterator<string>(cin)),
                        istream_iterator<string>());
 
-  unsigned printed = 0;  // holds count of words printed in current line
-  for (auto &word : words) {
+  unsigned printed = 0;  // Count of words printed in current line.
+  for (string &word : words) {
     if (printed++ == 8) {
       cout << endl;
       printed = 1;  // simplification of printed %= 8
     }
-    for (auto &c : word) {
+    for (char &c : word) {
       c = toupper(c);
     }
     cout << word << ' ';

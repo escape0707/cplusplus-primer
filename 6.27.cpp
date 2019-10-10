@@ -10,7 +10,7 @@ using std::vector;
 
 int sum(initializer_list<int> il) {
   int ret = 0;
-  for (const auto &elem : il) {
+  for (const int &elem : il) {
     ret += elem;
   }
   return ret;

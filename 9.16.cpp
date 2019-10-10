@@ -8,14 +8,15 @@ using std::list;
 using std::string;
 using std::vector;
 
-template <typename T, typename U>
-bool test(const T &a, const U &b) {
+template <typename C1, typename C2>
+bool test(const C1 &a, const C2 &b) {
   if (a.size() != b.size()) {
     return false;
   }
 
-  auto beg1 = a.cbegin(), beg2 = b.cbegin();
-  auto end1 = a.cend();
+  typename C1::const_iterator beg1 = a.cbegin();
+  const typename C1::const_iterator &end1 = a.cend();
+  typename C2::const_iterator beg2 = b.cbegin();
 
   while (beg1 != end1 && *beg1 == *beg2) {
     ++beg1;

@@ -18,16 +18,16 @@ int main() {
     arr2[i] = arr[i];
   }
 
-    for (const int &i : arr2) {
-      cout << i << ' ';
-    }
+  for (const int &i : arr2) {
+    cout << i << ' ';
+  }
   cout << endl;
 
   vector<int> ivec(10);
-  for (size_t i = 0; i < ivec.size(); ++i) {
+  for (vector<int>::size_type i = 0; i < ivec.size(); ++i) {
     ivec[i] = i;
   }
-  for (const auto &i: ivec) {
+  for (const int &i : ivec) {
     cout << i << ' ';
   }
   cout << endl;

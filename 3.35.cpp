@@ -16,7 +16,7 @@ int main() {
     *p = 0;
   }
 
-  for (auto i : arr) {
+  for (int i : arr) {
     cout << i << ' ';
   }
   cout << endl;

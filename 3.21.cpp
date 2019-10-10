@@ -8,12 +8,13 @@ using std::vector;
 
 int main() {
   vector<string> text{"Hello, ", "world!", "", "Hi, ", "you!"};
-  // print each line in text up to the first blank line
-  for (auto it = text.cbegin(); it != text.cend() && !it->empty(); ++it) {
+  // print each line in text until the first blank line
+  for (vector<string>::const_iterator it = text.cbegin();
+       it != text.cend() && !it->empty(); ++it) {
     cout << *it << endl;
   }
 
-  for (const auto &str : text) {
+  for (const string &str : text) {
     if (str.empty()) {
       break;
     }

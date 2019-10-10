@@ -14,7 +14,7 @@ int main() {
     ia[ix] = ix;
     // ia[ix - 1] = ix;  // or change to this
   }
-  for (const auto &i : ia) {
+  for (const int &i : ia) {
     cout << i << ' ';
   }
   cout << endl;

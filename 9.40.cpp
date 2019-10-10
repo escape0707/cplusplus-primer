@@ -20,9 +20,9 @@ using std::vector;
 
 ifstream fin("a.in");
 
-template <typename Container>
-void print_info(const Container &c) {
-  cout << "Container size: " << c.size() << "\tcapacity: " << c.capacity()
+template <typename C>
+void print_info(const C &c) {
+  cout << "C size: " << c.size() << "\tcapacity: " << c.capacity()
        << endl;
 }
 

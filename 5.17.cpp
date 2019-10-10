@@ -6,10 +6,12 @@ using std::cin, std::cout, std::endl;
 using std::string;
 using std::vector;
 
-template <typename T, typename U>
-bool test(const T &a, const U &b) {
-  auto beg1 = a.cbegin(), beg2 = b.cbegin();
-  auto end1 = a.cend(), end2 = b.cend();
+template <typename C1, typename C2>
+bool test(const C1 &a, const C2 &b) {
+  auto beg1 = std::cbegin(a);
+  const auto &end1 = std::cend(a);
+  auto beg2 = std::cbegin(b);
+  const auto &end2 = std::cend(b);
 
   while (beg1 != end1 && beg2 != end2 && *beg1 == *beg2) {
     ++beg1;

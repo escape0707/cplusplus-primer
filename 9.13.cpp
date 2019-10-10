@@ -10,7 +10,8 @@ using std::vector;
 template <typename T>
 ostream &operator<<(ostream &os, const vector<T> &vec) {
   if (!vec.empty()) {
-    auto begin = vec.cbegin(), end = vec.cend();
+    typename vector<T>::const_iterator begin = vec.cbegin();
+    const typename vector<T>::const_iterator &end = vec.cend();
     os << *begin++;
     while (begin != end) {
       os << ' ' << *begin++;

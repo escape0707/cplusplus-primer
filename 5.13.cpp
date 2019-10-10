@@ -16,11 +16,11 @@ int get_value() {
 
 int get_num() {
   static vector<int> numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-  static auto iter = numbers.begin();
+  static vector<int>::const_iterator iter = numbers.cbegin();
   if (iter != numbers.end()) {
     return *iter++;
   }
-  return *(iter = numbers.begin());
+  return *(iter = numbers.cbegin());
 }
 
 unsigned get_bufCnt() {

@@ -9,8 +9,9 @@ using std::string;
 
 forward_list<string>::const_iterator find(const forward_list<string> &sflist,
                                           const string &str) {
-  auto prev = sflist.cbefore_begin();
-  for (auto curr = sflist.cbegin(); curr != sflist.cend(); prev = curr++) {
+  forward_list<string>::const_iterator prev = sflist.cbefore_begin();
+  for (forward_list<string>::const_iterator curr = sflist.cbegin();
+       curr != sflist.cend(); prev = curr++) {
     if (*curr == str) {
       return curr;
     }
@@ -33,7 +34,7 @@ void insert_after(forward_list<string> &sflist,
 }
 
 ostream &operator<<(ostream &os, const forward_list<string> &text) {
-  for (const auto &elem : text) {
+  for (const string &elem : text) {
     os << elem << ' ';
   }
   return os;

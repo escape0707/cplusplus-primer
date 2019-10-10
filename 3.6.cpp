@@ -7,7 +7,7 @@ using std::string;
 int main() {
   string str = "Hello, world!";
 
-  for (auto &c : str) {
+  for (char &c : str) {
     c = 'X';
   }
 
