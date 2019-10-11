@@ -1,0 +1,1 @@
+// same as ++word_count[word]
