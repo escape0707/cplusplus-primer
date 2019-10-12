@@ -39,7 +39,7 @@ int main() {
     }
   }
 
-  for (const pair<string, list<int>> p : ln_num) {
+  for (const pair<const string, list<int>> p : ln_num) {
     cout << p.first << " appears on line: ";
     for (const int &ln : p.second) {
       cout << ln << ' ';

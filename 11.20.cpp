@@ -17,7 +17,7 @@ int main() {
     }
   }
 
-  for (const pair<string, size_t> &p : word_count) {
+  for (const pair<const string, size_t> &p : word_count) {
     cout << p.first << " occurs " << p.second
          << (p.second > 1 ? " times" : " time") << endl;
   };
