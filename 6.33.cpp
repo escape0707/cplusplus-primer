@@ -1,29 +1,36 @@
 #include <iostream>
 #include <string>
+#include <utility>
 #include <vector>
 
-using std::cin, std::cout, std::endl;
+using std::cout, std::endl, std::ostream;
 using std::string;
 using std::vector;
 
-// TODO: use iterator way to implement base_print
-template <typename T>
-void base_print(const vector<T> &vec, typename vector<T>::size_type idx) {
-  if (idx == vec.size()) {
-    return;
+template <typename RandomIt>
+ostream &print(ostream &os, RandomIt &&first, const RandomIt &second) {
+  if (first >= second) {
+    return os;
   }
-  cout << vec[idx] << ' ';
-  base_print(vec, idx + 1);
+  os << *first;
+  if (++first < second) {
+    os << ' ';
+  }
+  return print(os, std::move(first), second);
+}
+
+template <typename RandomIt>
+ostream &print(ostream &os, const RandomIt &first, const RandomIt &second) {
+  RandomIt f = first;
+  return print(os, std::move(f), second);
 }
 
 template <typename T>
-void print(const vector<T> &vec) {
-  base_print(vec, 0);
-  cout << endl;
+ostream &operator<<(ostream &os, const vector<T> &vec) {
+  return print(os, vec.cbegin(), vec.cend());
 }
 
 int main() {
   vector<int> vec = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-
-  print(vec);
+  cout << vec << endl;
 }

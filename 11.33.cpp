@@ -1,6 +1,5 @@
 #include <fstream>
 #include <iostream>
-#include <istream>
 #include <iterator>
 #include <map>
 #include <sstream>
@@ -16,7 +15,6 @@ using std::istream_iterator;
 using std::istringstream;
 using std::map;
 using std::runtime_error;
-using std::ws;
 
 // Build a map<string, string> from info given by ifstream is.
 map<string, string> buildMap(ifstream &is) {

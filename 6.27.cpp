@@ -1,12 +1,9 @@
-#include <initializer_list>
 #include <iostream>
 #include <string>
 #include <vector>
 
-using std::cin, std::cout, std::endl;
-using std::initializer_list;
-using std::string;
-using std::vector;
+using std::cout, std::endl;
+using std::initializer_list, std::vector;
 
 int sum(initializer_list<int> il) {
   int ret = 0;
