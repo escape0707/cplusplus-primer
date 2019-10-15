@@ -1,0 +1,1 @@
+// no, const StrBlob means we don't want to change it through it.
