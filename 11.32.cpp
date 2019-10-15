@@ -38,14 +38,14 @@ int main() {
       sort(works.begin(), works.end());
       cout << author << ": " << works << endl;
     };
-    for (const pair<const string, string> &p : authors) {
+    for (pair<const string, string> &p : authors) {
       // if run into a new author's data, print and reset author and works cache
       if (author != p.first) {
         print();
         author = p.first;
         works.clear();
       }
-      works.push_back(p.second);  // push the new work info
+      works.push_back(std::move(p.second));  // push the new work info
     }
     print();  // print the last author-works data
   }

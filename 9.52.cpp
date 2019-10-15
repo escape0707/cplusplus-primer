@@ -12,11 +12,11 @@ using std::string;
 
 int main() {
   // Parenthesized expression.
-  const string s("This is (Some (awesome)((((wooooooooo))))) and (ocxs) over");
+  string s("This is (Some (awesome)((((wooooooooo))))) and (ocxs) over");
   stack<char> stk;     // Stack to hold process result.
   unsigned count = 0;  // Counter for '('.
 
-  for (const char &c : s) {
+  for (char &c : s) {
     if (c == ')' && count) {
       --count;
       while (stk.top() != '(') {
@@ -28,7 +28,7 @@ int main() {
       if (c == '(') {
         ++count;
       }
-      stk.push(c);
+      stk.push(std::move(c));
     }
   }
 

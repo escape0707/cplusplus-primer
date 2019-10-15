@@ -14,7 +14,7 @@ int main() {
     string s;
     int i;
     while (cin >> s >> i) {
-      pvec.emplace_back(s, i);
+      pvec.emplace_back(std::move(s), std::move(i));
       // pvec.push_back({s, i});
       // pvec.push_back(make_pair(s, i));
     }

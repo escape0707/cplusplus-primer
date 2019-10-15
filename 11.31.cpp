@@ -12,12 +12,13 @@ template <typename Key, typename T, typename K>
 typename multimap<Key, T>::iterator find_erase(multimap<Key, T> &m,
                                                const K &value) {
   typename multimap<Key, T>::iterator pos = m.find(value);
-  if (pos == m.cend()) {
+  if (pos == m.end()) {
     return pos;
   }
   return m.erase(pos);
 }
 
+// Todo: to eliminate the const casting overhead, is a rewrite neccesary?
 template <typename Key, typename T, typename K>
 typename multimap<Key, T>::const_iterator find_erase(const multimap<Key, T> &m,
                                                      const K &value) {
@@ -25,14 +26,18 @@ typename multimap<Key, T>::const_iterator find_erase(const multimap<Key, T> &m,
 }
 
 template <typename T1, typename T2>
-ostream &operator<<(ostream &os, pair<T1, T2> p) {
+ostream &operator<<(ostream &os, const pair<T1, T2> &p) {
   return os << p.first << ": " << p.second;
 }
 
 template <typename Key, typename T>
-ostream &operator<<(ostream &os, multimap<Key, T> m) {
-  for (const pair<const Key, T> p : m) {
-    os << p << endl;
+ostream &operator<<(ostream &os, const multimap<Key, T> &m) {
+  typename multimap<Key, T>::const_iterator beg = m.cbegin(), end = m.cend();
+  if (beg != end) {
+    os << *beg;
+  }
+  while (++beg != end) {
+    os << '\n' << *beg;
   }
   return os;
 }

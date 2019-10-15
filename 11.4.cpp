@@ -21,7 +21,7 @@ int main() {
   for (istream_iterator<string> it(cin), eof; it != eof; ++it) {
     string s;
     s.reserve(it->length());
-    for (unsigned char &&c : *it) {
+    for (const char &c : *it) {
       if (!ispunct(c)) {
         s.push_back(tolower(c));
       }

@@ -17,7 +17,7 @@ int main() {
   families["Simpson"].push_back("Bart");
   families["Simpson"].insert(families["Simpson"].end(), {"Lisa", "Maggie"});
 
-  for (const pair<string, vector<string>> &family : families) {
+  for (const pair<const string, vector<string>> &family : families) {
     cout << "The " << family.first << "s: ";
     for (const string &name : family.second) {
       cout << name << ' ';
