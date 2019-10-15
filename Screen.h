@@ -2,6 +2,8 @@
 #define SCREEN_H
 
 #include <string>
+#include <utility>
+
 #include "Window_mgr.h"
 
 class Screen {
@@ -24,18 +26,16 @@ class Screen {
   Screen &set(pos, pos, char);
   // display overloaded on whether the object is const or not
   Screen &display(std::ostream &os) {
-    do_display(os);
+    std::as_const(*this).display(os);
     return *this;
   }
   const Screen &display(std::ostream &os) const {
-    do_display(os);
+    os << contents;
     return *this;
   }
   pos size() const;
 
  private:
-  // function to do the work of displaying a Screen
-  void do_display(std::ostream &os) const { os << contents; }
   mutable size_t access_ctr;  // may change even in a const object
   pos cursor = 0;
   pos height = 0, width = 0;
