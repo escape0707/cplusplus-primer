@@ -26,10 +26,9 @@ int main() {
 
   map<string, list<int>> ln_num;
   {
-    string s;
     istringstream iss;
     int ln = 1;  // Current line number.
-    while (getline(fin, s)) {
+    for (string s; getline(fin, s);) {
       iss.str(s);
       iss.clear();
       while (iss >> s) {

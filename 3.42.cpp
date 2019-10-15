@@ -16,8 +16,8 @@ int main() {
   vector<int> ivec = {0, 1, 2, 3, 4, 5};
   int arr[ivec.size()];
   int *p = arr;
-  for (const int &i : ivec) {
-    *p++ = i;
+  for (int &i : ivec) {
+    *p++ = std::move(i);
   }
 
   for (const int &i : arr) {

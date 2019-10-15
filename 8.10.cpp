@@ -21,11 +21,7 @@ int main() {
   ifstream fin("a.in");
   vector<string> text;
 
-  while (true) {
-    string line;
-    if (!getline(fin, line)) {
-      break;
-    }
+  for (string line; getline(fin, line);) {
     text.push_back(std::move(line));
   }
 

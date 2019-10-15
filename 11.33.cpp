@@ -21,13 +21,18 @@ using std::ws;
 // Build a map<string, string> from info given by ifstream is.
 map<string, string> buildMap(ifstream &is) {
   map<string, string> ret;
-  for (string key, value; is >> key >> ws && getline(is, value);) {
-    ret[std::move(key)] = std::move(value);  // add the mapping
+  for (string key, value; is >> key;) {
+    if (is.get() == ' ' && getline(is, value)) {
+      // starting from C++17, use try_emplace()
+      ret.emplace(std::move(key), std::move(value));  // add the mapping
+    } else {
+      throw runtime_error("No rule for " + key);
+    }
   }
   return ret;  // NRVO: Named Return Value Optimization allowed here
 }
 
-// Transform string s according to map m.
+// Transform s according to m.
 const string &transform(const string &s, const map<string, string> &m) {
   map<string, string>::const_iterator map_it = m.find(s);  // find s in m
   if (map_it == m.cend()) {                                // if not found
@@ -45,14 +50,12 @@ void word_transform(ifstream &input, ifstream &map_file) {
   for (string line; getline(input, line);) {  // process line by line
     iss.str(line);
     iss.clear();
-    // print the first word in the line
-    istream_iterator<string> it(iss), eof;
-    if (it != eof) {
-      cout << transform(*it++, trans_map);
+    istream_iterator<string> s_it(iss), eof;
+    if (s_it != eof) {
+      cout << transform(*s_it, trans_map);
     }
-    // print others separated by space
-    while (it != eof) {
-      cout << ' ' << transform(*it++, trans_map);
+    while (++s_it != eof) {
+      cout << ' ' << transform(*s_it, trans_map);
     }
     cout << endl;
   }

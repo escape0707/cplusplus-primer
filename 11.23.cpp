@@ -14,18 +14,24 @@ int main() {
   multimap<string, string> families;
 
   families.insert({{"Simpson", "Homer"}, {"Simpson", "Marge"}});
-  families.emplace("Simpson", "Bart");
+  families.insert({{"Tom", "Alice"}, {"Tom", "Bob"}});
   families.insert({{"Simpson", "Lisa"}, {"Simpson", "Maggie"}});
+  families.emplace("Tom", "Catte");
+  families.insert({{"Tom", "Dog"}, {"Tom", "Emma"}});
+  families.emplace("Simpson", "Bart");
 
   {
     string family_name;
-    for (multimap<string, string>::const_iterator beg = families.cbegin(),
-                                                  end = families.cend();
-         beg != end; ++beg) {
-      if (beg->first != family_name) {
-        cout << "\nThe " << (family_name = beg->first) << "s: ";
+    multimap<string, string>::const_iterator beg = families.cbegin(),
+                                             end = families.cend();
+    if (beg != end) {
+      cout << "The " << (family_name = beg->first) << "s: " << beg->second;
+    }
+    while (++beg != end) {
+      if (family_name != beg->first) {
+        cout << "\nThe " << (family_name = beg->first) << "s:";
       }
-      cout << beg->second << ' ';
+      cout << ' ' << beg->second;
     }
     cout << endl;
   }

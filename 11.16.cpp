@@ -10,7 +10,7 @@ int main() {
   map<int, int> m = {{42, 0}};
   map<int, int>::iterator it = m.begin();
   it->second = 42;
-  for (const pair<int, int> &p : m) {
+  for (const pair<const int, int> &p : m) {
     cout << p.first << ": " << p.second << endl;
   }
 }

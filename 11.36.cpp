@@ -1,2 +1,1 @@
-// throw runtime_error("no rule for " + key)
-// my version requires the input file to be formatted correctly
+// both version will treat that map as from the key to empty value, noexcept

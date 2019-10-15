@@ -18,7 +18,8 @@ int main() {
   families["Simpson"].insert(families["Simpson"].end(),
                              {{"Lisa", "1900-1-1"}, {"Maggie", "1900-1-1"}});
 
-  for (const pair<string, vector<pair<string, string>>> &family : families) {
+  for (const pair<const string, vector<pair<string, string>>> &family :
+       families) {
     cout << "The " << family.first << "s:\n";
     for (const pair<string, string> &child : family.second) {
       cout << child.first << " born at " << child.second << endl;
