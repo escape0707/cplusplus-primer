@@ -44,11 +44,3 @@ void StrBlob::pop_back() {
   check(0, "pop_back on empty StrBlob");
   data->pop_back();
 }
-string &StrBlob::back() {
-  check(0, "back on empty StrBlob");
-  return data->back();
-}
-void StrBlob::pop_back() {
-  check(0, "pop_back on empty StrBlob");
-  data->pop_back();
-}
