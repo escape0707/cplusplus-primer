@@ -7,7 +7,7 @@
 #include <string>
 #include <utility>
 
-using std::as_const, std::move;
+using std::as_const;
 using std::cout, std::endl;
 using std::getline, std::string;
 using std::ifstream;
