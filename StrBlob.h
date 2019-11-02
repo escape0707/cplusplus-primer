@@ -1,22 +1,42 @@
+#ifndef STRBLOB_H
+#define STRBLOB_H
+
 #include <memory>
 #include <string>
 #include <vector>
 
+class StrBlobPtr;
+class ConstStrBlobPtr;
+
 class StrBlob {
+  friend class StrBlobPtr;
+  friend class ConstStrBlobPtr;
+
  public:
-  using size_type = std::vector<std::string>::size_type;
+  // define types, see also std::stack
+  using container_type = std::vector<std::string>;
+  using value_type = container_type::value_type;
+  using size_type = container_type::size_type;
+  using reference = container_type::reference;
+  using const_reference = container_type::const_reference;
   StrBlob();
-  StrBlob(std::initializer_list<std::string> il);
-  size_type size() const { return data->size(); }
-  bool empty() const { return data->empty(); }
-  void push_back(const std::string &t) { data->push_back(t); }
+  StrBlob(std::initializer_list<value_type> il);
+  size_type size() const;
+  bool empty() const;
+  void push_back(const_reference value);
   void pop_back();
-  const std::string &StrBlob::front() const;
-  std::string &front();
-  const std::string &StrBlob::back() const;
-  std::string &back();
+  const_reference front() const;
+  reference front();
+  const_reference back() const;
+  reference back();
+  StrBlobPtr begin();
+  ConstStrBlobPtr cbegin() const;
+  StrBlobPtr end();
+  ConstStrBlobPtr cend() const;
 
  private:
-  std::shared_ptr<std::vector<std::string>> data;
+  std::shared_ptr<container_type> data;
   void check(size_type i, const std::string &msg) const;
 };
+
+#endif
