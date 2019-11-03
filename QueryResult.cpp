@@ -1,8 +1,11 @@
 #include <ostream>
 
 #include "QueryResult.h"
+#include "StrBlobPtr.h"
 
 using std::endl, std::ostream;
+
+using iterator = QueryResult::iterator;
 
 // generate a result with "nullptr" if k is not found
 QueryResult::QueryResult(key_type k) : sought(k) {}
@@ -25,4 +28,16 @@ ostream &QueryResult::print(ostream &os) {
     os << "\t(line " << ln << ") " << file.index(ln - 1) << '\n';
   }
   return os << endl;
+}
+
+iterator QueryResult::begin() {
+  return lines->begin();
+}
+
+iterator QueryResult::end() {
+  return lines->end();
+}
+
+StrBlobPtr QueryResult::get_file() {
+  return StrBlobPtr(file);
 }
