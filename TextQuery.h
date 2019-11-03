@@ -20,8 +20,8 @@ class TextQuery {
 
  private:
   // pointer to shared container of text in fin
-  shared_container_ptr text_ptr;
-  map_type index;  // map from word to shared container of corresponding ln
+  shared_container_ptr file;
+  map_type wm;  // map from word to shared container of corresponding ln
 };
 
 #include "QueryResult.h"

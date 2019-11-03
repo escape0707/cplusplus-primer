@@ -21,9 +21,9 @@ class QueryResult {
   std::ostream &print(std::ostream &os = std::cout);
 
  private:
-  key_type keyword;
-  shared_lns_ptr lns_ptr = nullptr;
-  shared_container_ptr text_ptr = nullptr;
+  key_type sought;
+  shared_lns_ptr lines;
+  shared_container_ptr file;
 };
 
 #endif
