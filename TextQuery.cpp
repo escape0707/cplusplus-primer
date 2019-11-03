@@ -14,7 +14,7 @@ using std::istringstream;
 
 // constructor from ifstream
 TextQuery::TextQuery(ifstream &fin)
-    : file(new shared_container_ptr::element_type) {
+    : file(shared_container_type()) {
   istringstream iss;
   string s;
   // process lines from fin one by one, and track line number
@@ -32,7 +32,7 @@ TextQuery::TextQuery(ifstream &fin)
       }
     }
     // move append current line to shared container
-    file->push_back(std::move(s));
+    file.push_back(std::move(s));
   }
 }
 

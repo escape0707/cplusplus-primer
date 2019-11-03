@@ -63,6 +63,14 @@ void StrBlob::pop_back() {
   data->pop_back();
 }
 
+const_reference StrBlob::index(size_type i) const {
+  return (*data)[i];
+}
+
+reference StrBlob::index(size_type i) {
+  return const_cast<reference>(as_const(*this).index(i));
+}
+
 StrBlobPtr StrBlob::begin() {
   return StrBlobPtr(*this);
 }

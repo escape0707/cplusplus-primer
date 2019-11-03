@@ -29,6 +29,8 @@ class StrBlob {
   reference front();
   const_reference back() const;
   reference back();
+  const_reference index(size_type i) const;
+  reference index(size_type i);
   StrBlobPtr begin();
   ConstStrBlobPtr cbegin() const;
   StrBlobPtr end();
@@ -38,5 +40,8 @@ class StrBlob {
   std::shared_ptr<container_type> data;
   void check(size_type i, const std::string &msg) const;
 };
+
+#include "StrBlobPtr.h"
+#include "ConstStrBlobPtr.h"
 
 #endif
