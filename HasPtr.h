@@ -7,6 +7,7 @@ class HasPtr {
  public:
   HasPtr(const std::string &s = std::string());
   HasPtr(const HasPtr &other);
+  HasPtr &operator=(const HasPtr &rhs);
 
  private:
   std::string *ps;
