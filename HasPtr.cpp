@@ -13,3 +13,7 @@ HasPtr &HasPtr::operator=(const HasPtr &rhs) {
   i = rhs.i;
   return *this;
 }
+
+HasPtr::~HasPtr() {
+  delete ps;
+}
