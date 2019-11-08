@@ -5,14 +5,19 @@
 
 class HasPtr {
  public:
-  HasPtr(const std::string &s = std::string());
-  HasPtr(const HasPtr &other);
-  HasPtr &operator=(const HasPtr &rhs);
-  ~HasPtr();
+  HasPtr() = default;
+  HasPtr(const std::string &s) : ps(new std::string(s)) {}
+  HasPtr(const HasPtr &other) : ps(new std::string(*other.ps)), i(other.i) {}
+  HasPtr &operator=(const HasPtr &rhs) {
+    *ps = *rhs.ps;
+    i = rhs.i;
+    return *this;
+  }
+  ~HasPtr() { delete ps; }
 
  private:
-  std::string *ps;
-  int i;
+  std::string *ps = new std::string();
+  int i = 0;
 };
 
 #endif
