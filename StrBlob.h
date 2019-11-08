@@ -21,6 +21,8 @@ class StrBlob {
   using const_reference = container_type::const_reference;
   StrBlob();
   StrBlob(std::initializer_list<value_type> il);
+  StrBlob(const StrBlob &other);
+  StrBlob &operator=(const StrBlob &rhs);
   size_type size() const;
   bool empty() const;
   void push_back(const_reference value);
@@ -41,7 +43,7 @@ class StrBlob {
   void check(size_type i, const std::string &msg) const;
 };
 
-#include "StrBlobPtr.h"
 #include "ConstStrBlobPtr.h"
+#include "StrBlobPtr.h"
 
 #endif

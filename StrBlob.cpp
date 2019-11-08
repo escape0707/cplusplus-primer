@@ -1,4 +1,3 @@
-#include <memory>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -9,7 +8,6 @@
 
 using std::as_const;
 using std::initializer_list, std::string;
-using std::make_shared;
 using std::out_of_range;
 
 using value_type = StrBlob::value_type;
@@ -17,10 +15,18 @@ using size_type = StrBlob::size_type;
 using reference = StrBlob::reference;
 using const_reference = StrBlob::const_reference;
 
-StrBlob::StrBlob() : data(make_shared<container_type>()) {}
+StrBlob::StrBlob() : data(new container_type()) {}
 
 StrBlob::StrBlob(initializer_list<value_type> il)
-    : data(make_shared<container_type>(il)) {}
+    : data(new container_type(il)) {}
+
+StrBlob::StrBlob(const StrBlob &other)
+    : data(new container_type(*other.data)) {}
+
+StrBlob &StrBlob::operator=(const StrBlob &rhs) {
+  data.reset(new container_type(*rhs.data));
+  return *this;
+}
 
 size_type StrBlob::size() const {
   return data->size();
