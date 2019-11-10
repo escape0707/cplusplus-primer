@@ -19,7 +19,10 @@ class StrVec {
   StrVec &operator=(const StrVec &rhs);
   ~StrVec();
   void push_back(const_reference value);
+  void resize(size_type count);
+  void resize(size_type count, const_reference value);
   size_type size() const;
+  void reserve(size_type new_cap);
   size_type capacity() const;
   iterator begin() const;
   iterator end() const;

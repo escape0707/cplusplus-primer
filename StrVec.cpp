@@ -36,9 +36,15 @@ void StrVec::push_back(const_reference value) {
   Alloc_traits::construct(alloc, first_free++, value);
 }
 
+void StrVec::resize(size_type count);
+
+void StrVec::resize(size_type count, const_reference value);
+
 size_type StrVec::size() const {
   return first_free - elements;
 }
+
+void StrVec::reserve(size_type new_cap);
 
 size_type StrVec::capacity() const {
   return cap - elements;
