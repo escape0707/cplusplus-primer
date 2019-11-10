@@ -1,5 +1,4 @@
-#ifndef TEXTQUERY
-#define TEXTQUERY
+#pragma once
 
 #include <fstream>
 #include <map>
@@ -27,5 +26,3 @@ class TextQuery {
 };
 
 #include "QueryResult.h"
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef ACCOUNT_H
-#define ACCOUNT_H
+#pragma once
 
 #include <string>
 
@@ -18,5 +17,3 @@ class Account {
   double amount;
   double daily_tbl[period];
 };
-
-#endif

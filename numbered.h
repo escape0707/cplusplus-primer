@@ -1,5 +1,4 @@
-#ifndef NUMBERED_H
-#define NUMBERED_H
+#pragma once
 
 #include <cstddef>
 #include <memory>
@@ -13,5 +12,3 @@ class numbered {
  private:
   inline static std::size_t count = 0;
 };
-
-#endif

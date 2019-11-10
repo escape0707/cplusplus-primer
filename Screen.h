@@ -1,5 +1,4 @@
-#ifndef SCREEN_H
-#define SCREEN_H
+#pragma once
 
 #include <string>
 #include <utility>
@@ -41,5 +40,3 @@ class Screen {
   pos height = 0, width = 0;
   std::string contents;
 };
-
-#endif

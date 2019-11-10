@@ -1,5 +1,4 @@
-#ifndef SALES_DATA_H
-#define SALES_DATA_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -73,5 +72,3 @@ Sales_data add(const Sales_data &lhs, const Sales_data &rhs) {
   sum.combine(rhs);      // add data memebers from rhs into sum
   return sum;
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef FOLDER_H
-#define FOLDER_H
+#pragma once
 
 #include <set>
 
@@ -15,5 +14,3 @@ class Folder {
  private:
   std::set<Message *> messages;
 };
-
-#endif

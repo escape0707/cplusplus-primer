@@ -1,5 +1,4 @@
-#ifndef QUERYRESULT
-#define QUERYRESULT
+#pragma once
 
 #include <iostream>
 #include <memory>
@@ -30,5 +29,3 @@ class QueryResult {
   shared_lns_ptr lines;
   shared_container_type file;
 };
-
-#endif

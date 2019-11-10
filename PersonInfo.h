@@ -1,5 +1,4 @@
-#ifndef PERSONINFO_H
-#define PERSONINFO_H
+#pragma once
 
 #include <ostream>
 #include <string>
@@ -27,5 +26,3 @@ bool valid(const PersonInfo::number_type &number) {
 const PersonInfo::number_type &format(const PersonInfo::number_type &number) {
   return number;
 }
-
-#endif

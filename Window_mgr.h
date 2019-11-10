@@ -1,5 +1,4 @@
-#ifndef WINDOW_MGR_H
-#define WINDOW_MGR_H
+#pragma once
 
 #include <string>
 #include <vector>
@@ -23,5 +22,3 @@ class Window_mgr {
 };
 
 #include "Screen.h"
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef EMPLOYEE_H
-#define EMPLOYEE_H
+#pragma once
 
 #include <cstddef>
 #include <string>
@@ -14,5 +13,3 @@ class Employee {
   std::string name;
   std::size_t id;
 };
-
-#endif

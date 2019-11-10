@@ -1,7 +1,6 @@
 // Todo: maybe do some constexpr opimization?
 
-#ifndef X_H
-#define X_H
+#pragma once
 
 #include <cstddef>
 #include <iostream>
@@ -36,5 +35,3 @@ class X {
   const std::shared_ptr<count_type> pcount;
   const std::size_t no = 1;
 };
-
-#endif

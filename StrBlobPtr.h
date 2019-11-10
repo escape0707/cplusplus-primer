@@ -1,5 +1,4 @@
-#ifndef STRBLOBPTR_H
-#define STRBLOBPTR_H
+#pragma once
 
 #include <memory>
 #include <string>
@@ -23,5 +22,3 @@ class StrBlobPtr {
   std::weak_ptr<container_type> wptr;
   size_type curr;
 };
-
-#endif

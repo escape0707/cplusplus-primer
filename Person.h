@@ -1,5 +1,4 @@
-#ifndef PERSON_H
-#define PERSON_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -23,5 +22,3 @@ inline std::istream &read(std::istream &is, Person &person) {
 inline std::ostream &print(std::ostream &os, const Person &person) {
   return os << person.name << person.address;
 }
-
-#endif

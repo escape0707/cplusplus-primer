@@ -1,8 +1,5 @@
 // see also HasPtr.h
 
-#ifndef HASPTR_H
-#define HASPTR_H
-
 #include <iostream>
 #include <string>
 #include <utility>
@@ -85,8 +82,6 @@ class HasPtrP {
   int i = 0;
   std::size_t *use = new std::size_t(1);
 };
-
-#endif
 
 int main() {
   HasPtrP p1, p2;

@@ -1,5 +1,4 @@
-#ifndef DATE_H
-#define DATE_H
+#pragma once
 
 #include <array>
 #include <ostream>
@@ -24,5 +23,3 @@ class Date {
 
 // Print the date in format of M/D/Y
 std::ostream &operator<<(std::ostream &os, const Date &d);
-
-#endif

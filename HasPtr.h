@@ -1,5 +1,4 @@
-#ifndef HASPTR_H
-#define HASPTR_H
+#pragma once
 
 #include <cstddef>
 #include <iostream>
@@ -55,5 +54,3 @@ bool operator<(const HasPtr &lhs, const HasPtr &rhs) {
 std::ostream &operator<<(std::ostream &os, const HasPtr &rhs) {
   return os << *rhs.ps;
 }
-
-#endif

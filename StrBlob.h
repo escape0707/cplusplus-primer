@@ -1,5 +1,4 @@
-#ifndef STRBLOB_H
-#define STRBLOB_H
+#pragma once
 
 #include <memory>
 #include <string>
@@ -45,5 +44,3 @@ class StrBlob {
 
 #include "ConstStrBlobPtr.h"
 #include "StrBlobPtr.h"
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef MESSAGE_H
-#define MESSAGE_H
+#pragma once
 
 #include <set>
 #include <string>
@@ -27,5 +26,3 @@ class Message {
   void addFolder(Folder *folder);
   void rmFolder(Folder *folder);
 };
-
-#endif
