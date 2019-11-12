@@ -21,13 +21,25 @@ class StrVec {
   StrVec &operator=(const StrVec &rhs);
   ~StrVec();
   void push_back(const_reference value);
+  void pop_back();
   void resize(size_type count);
   void resize(size_type count, const_reference value);
+  bool empty() const;
   size_type size() const;
   void reserve(size_type new_cap);
   size_type capacity() const;
-  iterator begin() const;
-  iterator end() const;
+  reference operator[](size_type pos);
+  const_reference operator[](size_type pos) const;
+  reference front();
+  const_reference front() const;
+  reference back();
+  const_reference back() const;
+  iterator begin();
+  const_iterator begin() const;
+  const_iterator cbegin() const;
+  iterator end();
+  const_iterator end() const;
+  const_iterator cend() const;
 
  private:
   using Alloc_traits = std::allocator_traits<allocator_type>;

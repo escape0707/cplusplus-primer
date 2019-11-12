@@ -5,16 +5,19 @@
 
 #include "StrVec.h"
 
-using std::destroy;
+using std::as_const, std::pair;
+using std::destroy, std::destroy_at;
 using std::initializer_list;
-using std::pair;
 using std::uninitialized_copy;
 using std::uninitialized_fill_n;
 using std::uninitialized_move;
 using std::uninitialized_value_construct_n;
 
 using size_type = StrVec::size_type;
+using reference = StrVec::reference;
+using const_reference = StrVec::const_reference;
 using iterator = StrVec::iterator;
+using const_iterator = StrVec::const_iterator;
 
 StrVec::StrVec() = default;
 
@@ -50,6 +53,10 @@ void StrVec::push_back(const_reference value) {
   Alloc_traits::construct(alloc, first_free++, value);
 }
 
+void StrVec::pop_back() {
+  destroy_at(--first_free);
+}
+
 void StrVec::resize(size_type count) {
   difference_type diff = count - size();
   if (diff < 0) {
@@ -74,6 +81,10 @@ void StrVec::resize(size_type count, const_reference value) {
   }
 }
 
+bool StrVec::empty() const {
+  return elements == first_free;
+}
+
 size_type StrVec::size() const {
   return first_free - elements;
 }
@@ -88,11 +99,52 @@ size_type StrVec::capacity() const {
   return cap - elements;
 }
 
-iterator StrVec::begin() const {
+reference StrVec::operator[](size_type pos) {
+  return const_cast<reference>(as_const(*this)[pos]);
+}
+
+const_reference StrVec::operator[](size_type pos) const {
+  return *(elements + pos);
+}
+
+reference StrVec::front() {
+  return const_cast<reference>(as_const(*this).front());
+}
+
+const_reference StrVec::front() const {
+  return *elements;
+}
+
+reference StrVec::back() {
+  return const_cast<reference>(as_const(*this).back());
+}
+
+const_reference StrVec::back() const {
+  const_iterator tmp = first_free;
+  return *--tmp;
+}
+
+iterator StrVec::begin() {
+  return const_cast<iterator>(as_const(*this).begin());
+}
+
+const_iterator StrVec::begin() const {
+  return cbegin();
+}
+
+const_iterator StrVec::cbegin() const {
   return elements;
 }
 
-iterator StrVec::end() const {
+iterator StrVec::end() {
+  return const_cast<iterator>(as_const(*this).end());
+}
+
+const_iterator StrVec::end() const {
+  return cend();
+}
+
+const_iterator StrVec::cend() const {
   return first_free;
 }
 
@@ -117,7 +169,7 @@ pair<iterator, iterator> StrVec::alloc_n_move(iterator beg, iterator end) {
 void StrVec::_pop_back_n(size_type n) {
   iterator newfirst_free = first_free - n;
   while (first_free != newfirst_free) {
-    Alloc_traits::destroy(alloc, --first_free);
+    destroy_at(--first_free);
   }
 }
 

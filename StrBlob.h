@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "StrVec.h"
+
 class StrBlobPtr;
 class ConstStrBlobPtr;
 
@@ -13,7 +15,7 @@ class StrBlob {
 
  public:
   // define types, see also std::stack
-  using container_type = std::vector<std::string>;
+  using container_type = StrVec;
   using value_type = container_type::value_type;
   using size_type = container_type::size_type;
   using reference = container_type::reference;

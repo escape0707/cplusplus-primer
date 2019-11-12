@@ -1,4 +1,4 @@
-// see TextQuery.h, TextQuery.cpp, QueryResult.h & QueryResult.cpp
+// see also StrBlob.h, StrVec.h & StrVec.cpp
 
 #include <fstream>
 #include <iostream>
