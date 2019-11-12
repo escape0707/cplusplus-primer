@@ -16,7 +16,7 @@ class Date {
  private:
   unsigned month, day, year;
   // The abbreviation of 12 months.
-  const std::array<const std::string, 12> month_abbr{
+  const std::array<std::string, 12> month_abbr{
       "Jan", "Feb", "Mar", "Apr", "May", "Jun",
       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 };
