@@ -52,14 +52,21 @@ iterator StrVec::end() const {
   return first_free;
 }
 
+iterator StrVec::allocate(size_type n) {
+  if (n) {
+    return Alloc_traits::allocate(alloc, n);
+  }
+  return nullptr;
+}
+
 pair<iterator, iterator> StrVec::alloc_n_copy(const_iterator beg,
-                                                 const_iterator end) {
-  iterator newbeg = Alloc_traits::allocate(alloc, end - beg);
+                                              const_iterator end) {
+  iterator newbeg = allocate(end - beg);
   return {newbeg, uninitialized_copy(beg, end, newbeg)};
 }
 
 pair<iterator, iterator> StrVec::alloc_n_move(iterator beg, iterator end) {
-  iterator newbeg = Alloc_traits::allocate(alloc, end - beg);
+  iterator newbeg = allocate(end - beg);
   return {newbeg, uninitialized_move(beg, end, newbeg)};
 }
 
@@ -78,7 +85,7 @@ void StrVec::free() {
 
 void StrVec::reallocate() {
   size_type newcapacity = size() ? 2 * size() : 1;  // todo
-  iterator newelements = Alloc_traits::allocate(alloc, newcapacity);
+  iterator newelements = allocate(newcapacity);
   iterator newfirst_free =
       uninitialized_move(elements, first_free, newelements);
   free();

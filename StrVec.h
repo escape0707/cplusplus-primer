@@ -27,6 +27,7 @@ class StrVec {
  private:
   using Alloc_traits = std::allocator_traits<allocator_type>;
   inline static allocator_type alloc;
+  static iterator allocate(size_type n);
   static std::pair<iterator, iterator> alloc_n_copy(const_iterator beg,
                                                     const_iterator end);
   static std::pair<iterator, iterator> alloc_n_move(iterator beg, iterator end);
