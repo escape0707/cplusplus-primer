@@ -10,6 +10,7 @@ class StrVec {
   using value_type = std::string;
   using allocator_type = std::allocator<value_type>;
   using size_type = std::size_t;
+  using difference_type = std::ptrdiff_t;
   using reference = value_type &;
   using const_reference = const value_type &;
   using iterator = value_type *;
@@ -34,6 +35,7 @@ class StrVec {
   static std::pair<iterator, iterator> alloc_n_copy(const_iterator beg,
                                                     const_iterator end);
   static std::pair<iterator, iterator> alloc_n_move(iterator beg, iterator end);
+  void _pop_back_n(size_type n);
   void _reserve(size_type new_cap);
   void chk_n_alloc();
   void free();

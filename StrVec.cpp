@@ -6,7 +6,10 @@
 
 using std::destroy;
 using std::pair;
-using std::uninitialized_copy, std::uninitialized_move;
+using std::uninitialized_copy;
+using std::uninitialized_fill_n;
+using std::uninitialized_move;
+using std::uninitialized_value_construct_n;
 
 using size_type = StrVec::size_type;
 using iterator = StrVec::iterator;
@@ -36,9 +39,29 @@ void StrVec::push_back(const_reference value) {
   Alloc_traits::construct(alloc, first_free++, value);
 }
 
-void StrVec::resize(size_type count);
+void StrVec::resize(size_type count) {
+  difference_type diff = count - size();
+  if (diff < 0) {
+    _pop_back_n(-diff);
+    return;
+  }
+  if (diff > 0) {
+    reserve(count);
+    uninitialized_value_construct_n(first_free, diff);
+  }
+}
 
-void StrVec::resize(size_type count, const_reference value);
+void StrVec::resize(size_type count, const_reference value) {
+  difference_type diff = count - size();
+  if (diff < 0) {
+    _pop_back_n(-diff);
+    return;
+  }
+  if (diff > 0) {
+    reserve(count);
+    uninitialized_fill_n(first_free, diff, value);
+  }
+}
 
 size_type StrVec::size() const {
   return first_free - elements;
@@ -78,6 +101,13 @@ pair<iterator, iterator> StrVec::alloc_n_copy(const_iterator beg,
 pair<iterator, iterator> StrVec::alloc_n_move(iterator beg, iterator end) {
   iterator newbeg = allocate(end - beg);
   return {newbeg, uninitialized_move(beg, end, newbeg)};
+}
+
+void StrVec::_pop_back_n(size_type n) {
+  iterator newfirst_free = first_free - n;
+  while (first_free != newfirst_free) {
+    Alloc_traits::destroy(alloc, --first_free);
+  }
 }
 
 void StrVec::_reserve(size_type new_cap) {
