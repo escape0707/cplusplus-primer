@@ -1,10 +1,12 @@
 #include <algorithm>
+#include <initializer_list>
 #include <memory>
 #include <utility>
 
 #include "StrVec.h"
 
 using std::destroy;
+using std::initializer_list;
 using std::pair;
 using std::uninitialized_copy;
 using std::uninitialized_fill_n;
@@ -18,6 +20,15 @@ StrVec::StrVec() = default;
 
 StrVec::StrVec(const StrVec &other) {
   pair<iterator, iterator> newdata = alloc_n_copy(other.begin(), other.end());
+  elements = newdata.first;
+  first_free = cap = newdata.second;
+}
+
+// copying a std::initializer_list does not copy the underlying objects
+StrVec::StrVec(initializer_list<value_type> il) {
+  // so sad that initializer_list was too old to support move semantics.
+  // and it provides only const iterator to its underlying data structure.
+  pair<iterator, iterator> newdata = alloc_n_copy(il.begin(), il.end());
   elements = newdata.first;
   first_free = cap = newdata.second;
 }

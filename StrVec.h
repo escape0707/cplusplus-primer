@@ -17,6 +17,7 @@ class StrVec {
   using const_iterator = const value_type *;
   StrVec();
   StrVec(const StrVec &other);
+  StrVec(std::initializer_list<value_type> il);
   StrVec &operator=(const StrVec &rhs);
   ~StrVec();
   void push_back(const_reference value);
