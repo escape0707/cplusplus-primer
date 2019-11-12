@@ -44,7 +44,11 @@ size_type StrVec::size() const {
   return first_free - elements;
 }
 
-void StrVec::reserve(size_type new_cap);
+void StrVec::reserve(size_type new_cap) {
+  if (new_cap > capacity()) {
+    _reserve(new_cap);
+  }
+}
 
 size_type StrVec::capacity() const {
   return cap - elements;
@@ -76,9 +80,19 @@ pair<iterator, iterator> StrVec::alloc_n_move(iterator beg, iterator end) {
   return {newbeg, uninitialized_move(beg, end, newbeg)};
 }
 
+void StrVec::_reserve(size_type new_cap) {
+  iterator newelements = allocate(new_cap);
+  iterator newfirst_free =
+      uninitialized_move(elements, first_free, newelements);
+  free();
+  elements = newelements;
+  first_free = newfirst_free;
+  cap = newelements + new_cap;
+}
+
 void StrVec::chk_n_alloc() {
   if (first_free == cap) {
-    reallocate();
+    _reserve(capacity() ? 2 * capacity() : 1);
   }
 }
 
@@ -87,15 +101,4 @@ void StrVec::free() {
     destroy(elements, first_free);
     Alloc_traits::deallocate(alloc, elements, capacity());
   }
-}
-
-void StrVec::reallocate() {
-  size_type newcapacity = size() ? 2 * size() : 1;  // todo
-  iterator newelements = allocate(newcapacity);
-  iterator newfirst_free =
-      uninitialized_move(elements, first_free, newelements);
-  free();
-  elements = newelements;
-  first_free = newfirst_free;
-  cap = newelements + newcapacity;
 }

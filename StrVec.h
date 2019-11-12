@@ -34,9 +34,9 @@ class StrVec {
   static std::pair<iterator, iterator> alloc_n_copy(const_iterator beg,
                                                     const_iterator end);
   static std::pair<iterator, iterator> alloc_n_move(iterator beg, iterator end);
+  void _reserve(size_type new_cap);
   void chk_n_alloc();
   void free();
-  void reallocate();
   iterator elements = nullptr;
   iterator first_free = nullptr;
   iterator cap = nullptr;
