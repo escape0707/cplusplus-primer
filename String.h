@@ -15,7 +15,15 @@ class String {
   using iterator = value_type *;
   using const_iterator = const value_type *;
   String(const_iterator str = "");
+  String(const String &other);
+  String &operator=(const String &rhs);
   ~String();
+  iterator begin();
+  const_iterator begin() const;
+  const_iterator cbegin() const;
+  iterator end();
+  const_iterator end() const;
+  const_iterator cend() const;
   size_type size() const;
   size_type length() const;
   size_type capacity() const;
