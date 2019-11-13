@@ -27,6 +27,12 @@ StrVec::StrVec(const StrVec &other) {
   first_free = cap = newdata.second;
 }
 
+StrVec::StrVec(StrVec &&other) noexcept
+    : elements(other.elements), first_free(other.first_free), cap(other.cap) {
+  other.elements = nullptr;
+  // other.elements = other.first_free = other.cap = nullptr;
+}
+
 // copying a std::initializer_list does not copy the underlying objects
 StrVec::StrVec(initializer_list<value_type> il) {
   // so sad that initializer_list was too old to support move semantics.
@@ -41,6 +47,18 @@ StrVec &StrVec::operator=(const StrVec &rhs) {
   free();
   elements = newdata.first;
   first_free = cap = newdata.second;
+  return *this;
+}
+
+StrVec &StrVec::operator=(StrVec &&rhs) noexcept {
+  if (this != &rhs) {
+    free();
+    elements = rhs.elements;
+    first_free = rhs.first_free;
+    cap = rhs.cap;
+    rhs.elements = nullptr;
+    // rhs.elements = rhs.first_free = rhs.cap = nullptr;
+  }
   return *this;
 }
 
@@ -159,11 +177,6 @@ pair<iterator, iterator> StrVec::alloc_n_copy(const_iterator beg,
                                               const_iterator end) {
   iterator newbeg = allocate(end - beg);
   return {newbeg, uninitialized_copy(beg, end, newbeg)};
-}
-
-pair<iterator, iterator> StrVec::alloc_n_move(iterator beg, iterator end) {
-  iterator newbeg = allocate(end - beg);
-  return {newbeg, uninitialized_move(beg, end, newbeg)};
 }
 
 void StrVec::_pop_back_n(size_type n) {

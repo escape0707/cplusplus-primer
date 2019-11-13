@@ -17,8 +17,10 @@ class StrVec {
   using const_iterator = const value_type *;
   StrVec();
   StrVec(const StrVec &other);
+  StrVec(StrVec &&other) noexcept;
   StrVec(std::initializer_list<value_type> il);
   StrVec &operator=(const StrVec &rhs);
+  StrVec &operator=(StrVec &&rhs) noexcept;
   ~StrVec();
   void push_back(const_reference value);
   void pop_back();
@@ -47,7 +49,6 @@ class StrVec {
   static iterator allocate(size_type n);
   static std::pair<iterator, iterator> alloc_n_copy(const_iterator beg,
                                                     const_iterator end);
-  static std::pair<iterator, iterator> alloc_n_move(iterator beg, iterator end);
   void _pop_back_n(size_type n);
   void _reserve(size_type new_cap);
   void chk_n_alloc();

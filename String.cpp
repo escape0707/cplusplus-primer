@@ -17,6 +17,8 @@ using size_type = String::size_type;
 using iterator = String::iterator;
 using const_iterator = String::const_iterator;
 
+String::String() = default;
+
 String::String(const_iterator str) {
   pair<iterator, iterator> newdata = alloc_and_copy(str, strchr(str, '\0'));
   elements = newdata.first;
@@ -31,12 +33,28 @@ String::String(const String &other) {
   first_free = newdata.second;
 }
 
+String::String(String &&other) noexcept {
+  elements = other.elements;
+  first_free = other.first_free;
+  elements = first_free = nullptr;
+}
+
 String &String::operator=(const String &rhs) {
   cerr << "Entered: String &String::operator=(const String &rhs)" << endl;
   pair<iterator, iterator> newdata = alloc_and_copy(rhs.cbegin(), rhs.cend());
   free();
   elements = newdata.first;
   first_free = newdata.second;
+  return *this;
+}
+
+String &String::operator=(String &&rhs) noexcept {
+  if (this != &rhs) {
+    free();
+    elements = rhs.elements;
+    first_free = rhs.first_free;
+    elements = first_free = nullptr;
+  }
   return *this;
 }
 
@@ -80,19 +98,28 @@ size_type String::capacity() const {
   return size();
 }
 
-std::pair<iterator, iterator> String::alloc_and_copy(const_iterator beg,
-                                                     const_iterator end) {
-  iterator newelements = Alloc_traits::allocate(alloc, end - beg);
-  return {newelements, uninitialized_copy(beg, end, newelements)};
+iterator String::allocate(size_type n) {
+  if (n) {
+    return Alloc_traits::allocate(alloc, n);
+  }
+  return nullptr;
+}
+
+pair<iterator, iterator> String::alloc_and_copy(const_iterator beg,
+                                                const_iterator end) {
+  iterator newbeg = allocate(end - beg);
+  return {newbeg, uninitialized_copy(beg, end, newbeg)};
 }
 
 // std::pair<iterator, iterator> String::alloc_and_copy_n(const_iterator beg,
 //                                                        size_type n) {
-//   iterator newelements = Alloc_traits::allocate(alloc, n);
-//   return {newelements, uninitialized_copy_n(beg, n, newelements)};
+//   iterator newbeg = allocate(n);
+//   return {newbeg, uninitialized_copy_n(beg, n, newbeg)};
 // }
 
 void String::free() {
-  destroy(elements, first_free);
-  Alloc_traits::deallocate(alloc, elements, capacity());
+  if (elements) {
+    destroy(elements, first_free);
+    Alloc_traits::deallocate(alloc, elements, capacity());
+  }
 }

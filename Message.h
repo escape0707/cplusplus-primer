@@ -13,7 +13,9 @@ class Message {
   Message();
   explicit Message(const std::string &contents);
   Message(const Message &other);
+  Message(Message &&other);
   Message &operator=(const Message &rhs);
+  Message &operator=(Message &&rhs);
   ~Message();
   void save(Folder &folder);
   void remove(Folder &folder);
@@ -25,4 +27,5 @@ class Message {
   void remove_from_Folders();
   void addFolder(Folder *folder);
   void rmFolder(Folder *folder);
+  void redirect_Folders_from(Message *m);
 };

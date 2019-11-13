@@ -14,9 +14,12 @@ class String {
   using const_reference = const value_type &;
   using iterator = value_type *;
   using const_iterator = const value_type *;
-  String(const_iterator str = "");
+  String();
+  String(const_iterator str);
   String(const String &other);
+  String(String &&other) noexcept;
   String &operator=(const String &rhs);
+  String &operator=(String &&rhs) noexcept;
   ~String();
   iterator begin();
   const_iterator begin() const;
@@ -31,11 +34,12 @@ class String {
  private:
   using Alloc_traits = std::allocator_traits<allocator_type>;
   inline static allocator_type alloc;
+  static iterator allocate(size_type n);
   static std::pair<iterator, iterator> alloc_and_copy(const_iterator beg,
                                                       const_iterator end);
   // static std::pair<iterator, iterator> alloc_and_copy_n(const_iterator beg,
   //                                                       size_type n);
   void free();
-  iterator elements;
-  iterator first_free;
+  iterator elements = nullptr;
+  iterator first_free = nullptr;
 };
