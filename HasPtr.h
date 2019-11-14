@@ -17,7 +17,7 @@ class HasPtr {
   HasPtr(const_reference value);
   HasPtr(const HasPtr &other);
   HasPtr(HasPtr &&other) noexcept;
-  HasPtr &operator=(HasPtr rhs);
+  // HasPtr &operator=(HasPtr rhs);
   // HasPtr &operator=(const HasPtr &rhs);
   ~HasPtr();
 

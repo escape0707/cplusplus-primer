@@ -17,10 +17,10 @@ HasPtr::HasPtr(HasPtr &&other) noexcept
   other.use = nullptr;
 }
 
-HasPtr &HasPtr::operator=(HasPtr rhs) {
-  swap(*this, rhs);
-  return *this;
-}
+// HasPtr &HasPtr::operator=(HasPtr rhs) {
+//   swap(*this, rhs);
+//   return *this;
+// }
 
 // HasPtr &HasPtr::operator=(const HasPtr &rhs) {
 //   ++*rhs.use;
