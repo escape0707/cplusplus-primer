@@ -13,8 +13,10 @@ std::ostream &print(std::ostream &, const Sales_data &);
 class Sales_data {
   // friend declarations for nonmember Sales_data operations added
   friend Sales_data add(const Sales_data &, const Sales_data &);
+  friend Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs);
   friend std::istream &read(std::istream &, Sales_data &);
-  friend std::ostream &operator<<(std::ostream &, const Sales_data &);
+  friend std::istream &operator>>(std::istream &is, Sales_data &rhs);
+  friend std::ostream &operator<<(std::ostream &os, const Sales_data &rhs);
 
   // other members and access specifiers as before
 
@@ -30,6 +32,7 @@ class Sales_data {
   // new members: operations on Sales_data objects
   std::string isbn() const { return bookNo; }
   Sales_data &combine(const Sales_data &);
+  Sales_data &operator+=(const Sales_data &rhs);
 
  private:  // access specifier added
   double avg_price() const;
