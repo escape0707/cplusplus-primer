@@ -34,6 +34,7 @@ String::String(const String &other) {
 }
 
 String::String(String &&other) noexcept {
+  cerr << "Entered: String::String(String &&other)" << endl;
   elements = other.elements;
   first_free = other.first_free;
   elements = first_free = nullptr;
@@ -49,6 +50,7 @@ String &String::operator=(const String &rhs) {
 }
 
 String &String::operator=(String &&rhs) noexcept {
+  cerr << "Entered: String &String::operator=(String &&rhs)" << endl;
   if (this != &rhs) {
     free();
     elements = rhs.elements;
