@@ -71,6 +71,11 @@ void StrVec::push_back(const_reference value) {
   Alloc_traits::construct(alloc, first_free++, value);
 }
 
+void StrVec::push_back(value_type &&value) {
+  chk_n_alloc();
+  Alloc_traits::construct(alloc, first_free++, std::move(value));
+}
+
 void StrVec::pop_back() {
   destroy_at(--first_free);
 }

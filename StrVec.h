@@ -23,6 +23,7 @@ class StrVec {
   StrVec &operator=(StrVec &&rhs) noexcept;
   ~StrVec();
   void push_back(const_reference value);
+  void push_back(value_type &&value);
   void pop_back();
   void resize(size_type count);
   void resize(size_type count, const_reference value);
