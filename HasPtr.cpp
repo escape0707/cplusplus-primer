@@ -8,7 +8,9 @@ HasPtr::HasPtr(const_reference value)
     : ps(new element_type(value)), i(0), use(new count_type(1)) {}
 
 HasPtr::HasPtr(const HasPtr &other) : ps(other.ps), i(other.i), use(other.use) {
-  ++*use;
+  if (use) {
+    ++*use;
+  }
 }
 
 HasPtr::HasPtr(HasPtr &&other) noexcept
@@ -23,7 +25,9 @@ HasPtr::HasPtr(HasPtr &&other) noexcept
 // }
 
 HasPtr &HasPtr::operator=(const HasPtr &rhs) {
-  ++*rhs.use;
+  if (rhs.use) {
+    ++*rhs.use;
+  }
   free();
   ps = rhs.ps;
   i = rhs.i;
