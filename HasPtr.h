@@ -23,6 +23,7 @@ class HasPtr {
 
  private:
   using count_type = long;
+  void free();
   pointer ps = nullptr;
   int i;
   count_type *use = nullptr;
