@@ -31,6 +31,16 @@ HasPtr &HasPtr::operator=(const HasPtr &rhs) {
   return *this;
 }
 
+HasPtr &HasPtr::operator=(HasPtr &&rhs) {
+  if (this != &rhs) {
+    free();
+    ps = rhs.ps;
+    i = rhs.i;
+    use = rhs.use;
+  }
+  return *this;
+}
+
 HasPtr::~HasPtr() {
   free();
 }
