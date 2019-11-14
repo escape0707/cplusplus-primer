@@ -22,17 +22,17 @@ HasPtr::HasPtr(HasPtr &&other) noexcept
 //   return *this;
 // }
 
-// HasPtr &HasPtr::operator=(const HasPtr &rhs) {
-//   ++*rhs.use;
-//   if (--*use == 0) {
-//     delete use;
-//     delete ps;
-//   }
-//   ps = rhs.ps;
-//   i = rhs.i;
-//   use = rhs.use;
-//   return *this;
-// }
+HasPtr &HasPtr::operator=(const HasPtr &rhs) {
+  ++*rhs.use;
+  if (--*use == 0) {
+    delete use;
+    delete ps;
+  }
+  ps = rhs.ps;
+  i = rhs.i;
+  use = rhs.use;
+  return *this;
+}
 
 HasPtr::~HasPtr() {
   if (use && --*use == 0) {

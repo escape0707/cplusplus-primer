@@ -18,7 +18,7 @@ class HasPtr {
   HasPtr(const HasPtr &other);
   HasPtr(HasPtr &&other) noexcept;
   // HasPtr &operator=(HasPtr rhs);
-  // HasPtr &operator=(const HasPtr &rhs);
+  HasPtr &operator=(const HasPtr &rhs);
   ~HasPtr();
 
  private:
