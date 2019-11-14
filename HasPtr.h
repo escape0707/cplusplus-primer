@@ -10,9 +10,12 @@ class HasPtr {
   friend std::ostream &operator<<(std::ostream &os, const HasPtr &rhs);
 
  public:
+  using element_type = std::string;
+  using pointer = element_type *;
+  using const_reference = const element_type &;
   HasPtr() = default;
-  HasPtr(const std::string &s)
-      : ps(new std::string(s)), i(0), use(new std::size_t(1)) {}
+  HasPtr(const_reference s)
+      : ps(new element_type(s)), i(0), use(new count_type(1)) {}
   HasPtr(const HasPtr &other) : ps(other.ps), i(other.i), use(other.use) {
     ++*use;
   }
@@ -43,9 +46,10 @@ class HasPtr {
   }
 
  private:
-  std::string *ps = nullptr;
+  using count_type = long;
+  pointer ps = nullptr;
   int i;
-  std::size_t *use = nullptr;
+  count_type *use = nullptr;
 };
 
 void swap(HasPtr &lhs, HasPtr &rhs) {
