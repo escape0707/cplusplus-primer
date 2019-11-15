@@ -13,6 +13,7 @@ class StrBlob {
   friend class StrBlobPtr;
   friend class ConstStrBlobPtr;
   friend bool operator==(const StrBlob &lhs, const StrBlob &rhs);
+  friend bool operator<(const StrBlob &lhs, const StrBlob &rhs);
 
  public:
   // define types, see also std::stack
@@ -46,6 +47,10 @@ class StrBlob {
 };
 
 bool operator!=(const StrBlob &lhs, const StrBlob &rhs);
+bool operator>(const StrBlob &lhs, const StrBlob &rhs);
+bool operator<=(const StrBlob &lhs, const StrBlob &rhs);
+bool operator>=(const StrBlob &lhs, const StrBlob &rhs);
+
 
 #include "ConstStrBlobPtr.h"
 #include "StrBlobPtr.h"

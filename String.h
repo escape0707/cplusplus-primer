@@ -47,4 +47,8 @@ class String {
 
 bool operator==(const String &lhs, const String &rhs);
 bool operator!=(const String &lhs, const String &rhs);
+bool operator<(const String &lhs, const String &rhs);
+bool operator>(const String &lhs, const String &rhs);
+bool operator<=(const String &lhs, const String &rhs);
+bool operator>=(const String &lhs, const String &rhs);
 std::ostream &operator<<(std::ostream &os, const String &rhs);

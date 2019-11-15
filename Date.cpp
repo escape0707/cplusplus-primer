@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ostream>
 #include <stdexcept>
+#include <tuple>
 
 #include "Date.h"
 
@@ -11,6 +12,7 @@ using std::ostream;
 using std::stoi;
 using std::string;
 using std::strtol;
+using std::tie;
 
 Date::Date(const string &date) {
   // deduce month from date
@@ -70,6 +72,22 @@ bool operator==(const Date &lhs, const Date &rhs) {
 
 bool operator!=(const Date &lhs, const Date &rhs) {
   return !(lhs == rhs);
+}
+
+bool operator<(const Date &lhs, const Date &rhs) {
+  return tie(lhs.year, lhs.month, lhs.day) < tie(rhs.year, rhs.month, rhs.day);
+}
+
+bool operator>(const Date &lhs, const Date &rhs) {
+  return rhs < lhs;
+}
+
+bool operator<=(const Date &lhs, const Date &rhs) {
+  return !(lhs > rhs);
+}
+
+bool operator>=(const Date &lhs, const Date &rhs) {
+  return !(lhs < rhs);
 }
 
 ostream &operator<<(ostream &os, const Date &d) {

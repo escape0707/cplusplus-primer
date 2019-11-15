@@ -9,7 +9,8 @@
 
 using std::as_const, std::pair;
 using std::cerr, std::endl, std::ostream;
-using std::copy, std::equal, std::uninitialized_copy;
+using std::copy, std::equal, std::lexicographical_compare,
+    std::uninitialized_copy;
 using std::destroy;
 using std::ostream_iterator;
 using std::strchr;
@@ -109,6 +110,23 @@ bool operator==(const String &lhs, const String &rhs) {
 
 bool operator!=(const String &lhs, const String &rhs) {
   return !(lhs == rhs);
+}
+
+bool operator<(const String &lhs, const String &rhs) {
+  return lexicographical_compare(lhs.cbegin(), lhs.cend(), rhs.cbegin(),
+                                 rhs.cend());
+}
+
+bool operator>(const String &lhs, const String &rhs) {
+  return rhs < lhs;
+}
+
+bool operator<=(const String &lhs, const String &rhs) {
+  return !(lhs > rhs);
+}
+
+bool operator>=(const String &lhs, const String &rhs) {
+  return !(lhs < rhs);
 }
 
 ostream &operator<<(ostream &os, const String &rhs) {

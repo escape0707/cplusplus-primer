@@ -61,3 +61,7 @@ class StrVec {
 
 bool operator==(const StrVec &lhs, const StrVec &rhs);
 bool operator!=(const StrVec &lhs, const StrVec &rhs);
+bool operator<(const StrVec &lhs, const StrVec &rhs);
+bool operator>(const StrVec &lhs, const StrVec &rhs);
+bool operator<=(const StrVec &lhs, const StrVec &rhs);
+bool operator>=(const StrVec &lhs, const StrVec &rhs);

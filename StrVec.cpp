@@ -9,6 +9,7 @@ using std::as_const, std::pair;
 using std::destroy, std::destroy_at;
 using std::equal;
 using std::initializer_list;
+using std::lexicographical_compare;
 using std::uninitialized_copy;
 using std::uninitialized_fill_n;
 using std::uninitialized_move;
@@ -178,6 +179,23 @@ bool operator==(const StrVec &lhs, const StrVec &rhs) {
 
 bool operator!=(const StrVec &lhs, const StrVec &rhs) {
   return !(lhs == rhs);
+}
+
+bool operator<(const StrVec &lhs, const StrVec &rhs) {
+  return lexicographical_compare(lhs.cbegin(), lhs.cend(), rhs.cbegin(),
+                                 rhs.cend());
+}
+
+bool operator>(const StrVec &lhs, const StrVec &rhs) {
+  return rhs < lhs;
+}
+
+bool operator<=(const StrVec &lhs, const StrVec &rhs) {
+  return !(lhs > rhs);
+}
+
+bool operator>=(const StrVec &lhs, const StrVec &rhs) {
+  return !(lhs < rhs);
 }
 
 iterator StrVec::allocate(size_type n) {
