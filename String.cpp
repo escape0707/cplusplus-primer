@@ -1,18 +1,21 @@
 #include <algorithm>
 #include <cstring>
 #include <iostream>
+#include <iterator>
 #include <memory>
 #include <utility>
 
 #include "String.h"
 
 using std::as_const, std::pair;
-using std::cerr, std::endl;
+using std::cerr, std::endl, std::ostream;
+using std::copy, std::uninitialized_copy;
 using std::destroy;
+using std::ostream_iterator;
 using std::strchr;
-using std::uninitialized_copy;
 // using std::uninitialized_copy_n;
 
+using value_type = String::value_type;
 using size_type = String::size_type;
 using iterator = String::iterator;
 using const_iterator = String::const_iterator;
@@ -98,6 +101,11 @@ size_type String::length() const {
 
 size_type String::capacity() const {
   return size();
+}
+
+ostream &operator<<(ostream &os, const String &rhs) {
+  copy(rhs.cbegin(), rhs.cend(), ostream_iterator<value_type>(os));
+  return os;
 }
 
 iterator String::allocate(size_type n) {

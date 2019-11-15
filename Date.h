@@ -6,6 +6,7 @@
 
 // A class that has three unsigned members representing year, month, and day.
 class Date {
+  // Print the date in format of M/D/Y
   friend std::ostream &operator<<(std::ostream &os, const Date &d);
 
  public:
@@ -16,10 +17,7 @@ class Date {
  private:
   unsigned month, day, year;
   // The abbreviation of 12 months.
-  const std::array<std::string, 12> month_abbr{
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+  const std::array<std::string, 12> month_abbr{"Jan", "Feb", "Mar", "Apr",
+                                               "May", "Jun", "Jul", "Aug",
+                                               "Sep", "Oct", "Nov", "Dec"};
 };
-
-// Print the date in format of M/D/Y
-std::ostream &operator<<(std::ostream &os, const Date &d);

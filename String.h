@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <iostream>
 #include <memory>
 #include <utility>
 
@@ -43,3 +44,5 @@ class String {
   iterator elements = nullptr;
   iterator first_free = nullptr;
 };
+
+std::ostream &operator<<(std::ostream &os, const String &rhs);
