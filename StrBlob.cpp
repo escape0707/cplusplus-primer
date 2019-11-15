@@ -92,3 +92,11 @@ StrBlobPtr StrBlob::end() {
 ConstStrBlobPtr StrBlob::cend() const {
   return ConstStrBlobPtr(*this, data->size());
 }
+
+bool operator==(const StrBlob &lhs, const StrBlob &rhs) {
+  return *lhs.data == *rhs.data;
+}
+
+bool operator!=(const StrBlob &lhs, const StrBlob &rhs) {
+  return !(lhs == rhs);
+}

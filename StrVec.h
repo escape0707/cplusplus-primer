@@ -58,3 +58,6 @@ class StrVec {
   iterator first_free = nullptr;
   iterator cap = nullptr;
 };
+
+bool operator==(const StrVec &lhs, const StrVec &rhs);
+bool operator!=(const StrVec &lhs, const StrVec &rhs);

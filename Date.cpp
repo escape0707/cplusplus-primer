@@ -64,6 +64,14 @@ unsigned Date::extract_month(const string &date) {
   throw invalid_argument("Missing valid month data.");
 }
 
+bool operator==(const Date &lhs, const Date &rhs) {
+  return lhs.month == rhs.month && lhs.day == rhs.day && lhs.year == rhs.year;
+}
+
+bool operator!=(const Date &lhs, const Date &rhs) {
+  return !(lhs == rhs);
+}
+
 ostream &operator<<(ostream &os, const Date &d) {
   return os << d.month << '/' << d.day << '/' << d.year;
 }

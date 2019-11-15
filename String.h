@@ -45,4 +45,6 @@ class String {
   iterator first_free = nullptr;
 };
 
+bool operator==(const String &lhs, const String &rhs);
+bool operator!=(const String &lhs, const String &rhs);
 std::ostream &operator<<(std::ostream &os, const String &rhs);

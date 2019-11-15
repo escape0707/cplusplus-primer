@@ -12,6 +12,7 @@ class ConstStrBlobPtr;
 class StrBlob {
   friend class StrBlobPtr;
   friend class ConstStrBlobPtr;
+  friend bool operator==(const StrBlob &lhs, const StrBlob &rhs);
 
  public:
   // define types, see also std::stack
@@ -43,6 +44,8 @@ class StrBlob {
   std::shared_ptr<container_type> data;
   void check(size_type i, const std::string &msg) const;
 };
+
+bool operator!=(const StrBlob &lhs, const StrBlob &rhs);
 
 #include "ConstStrBlobPtr.h"
 #include "StrBlobPtr.h"

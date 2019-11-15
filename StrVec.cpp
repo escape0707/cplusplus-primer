@@ -7,6 +7,7 @@
 
 using std::as_const, std::pair;
 using std::destroy, std::destroy_at;
+using std::equal;
 using std::initializer_list;
 using std::uninitialized_copy;
 using std::uninitialized_fill_n;
@@ -169,6 +170,14 @@ const_iterator StrVec::end() const {
 
 const_iterator StrVec::cend() const {
   return first_free;
+}
+
+bool operator==(const StrVec &lhs, const StrVec &rhs) {
+  return equal(lhs.cbegin(), lhs.cend(), rhs.cbegin(), rhs.cend());
+}
+
+bool operator!=(const StrVec &lhs, const StrVec &rhs) {
+  return !(lhs == rhs);
 }
 
 iterator StrVec::allocate(size_type n) {

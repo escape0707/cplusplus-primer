@@ -6,6 +6,7 @@
 
 // A class that has three unsigned members representing year, month, and day.
 class Date {
+  friend bool operator==(const Date &lhs, const Date &rhs);
   // Print the date in format of M/D/Y
   friend std::ostream &operator<<(std::ostream &os, const Date &d);
 
@@ -22,3 +23,5 @@ class Date {
                                                "May", "Jun", "Jul", "Aug",
                                                "Sep", "Oct", "Nov", "Dec"};
 };
+
+bool operator!=(const Date &lhs, const Date &rhs);
