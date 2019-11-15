@@ -13,32 +13,8 @@ using std::string;
 using std::strtol;
 
 Date::Date(const string &date) {
-  if (date.empty() || date.length() < 3) {
-    throw invalid_argument("Input date is too short.");
-  }
-
   // deduce month from date
-  if (isdigit(date[0])) {  // if date starts with digits
-    month = stoi(date);    // save first digits as month
-  } else {                 // else, check if date starts with months' abbr
-    for (month = 0; month < 12; ++month) {
-      // string::starts_with available since C++20
-      // if (date.start_with(month_abbr[month])) {
-
-      // if date starts with a month
-      if (!date.compare(0, month_abbr[month].length(), month_abbr[month])) {
-        break;
-      }
-    }
-
-    // if date doesn't start with a month
-    if (month == 12) {
-      throw invalid_argument("Missing valid month data.");
-    }
-    // else, calculate which month date means
-    ++month;
-  }
-
+  month = extract_month(date);
   // deduce day from date, starting off the first delimiter
   string::size_type pos = date.find_first_of(" ,/");
   // throw if no proper delimiter found
@@ -65,6 +41,27 @@ Date::Date(const string &date) {
     // if conversion failed, throw
     throw invalid_argument("Unexpected representation for year.");
   }
+}
+
+unsigned Date::extract_month(const string &date) {
+  if (isdigit(date[0])) {  // if date starts with digits
+    return stoi(date);     // return first digits as month
+  }
+  // if date is too short as a string representation of month
+  if (date.length() < 3) {
+    throw invalid_argument("Data is too short for deducing month from it.");
+  }
+  // check if date starts with a month abbreviation
+  for (unsigned i = 0; i < 12; ++i) {
+    // string::starts_with available since C++20
+    /* if (date.start_with(month_abbr[month])) { */
+    // if date starts with a month, return month number
+    if (date.compare(0, month_abbr[i].length(), month_abbr[i])) {
+      return i + 1;
+    }
+  }
+  // if date doesn't start with any month
+  throw invalid_argument("Missing valid month data.");
 }
 
 ostream &operator<<(ostream &os, const Date &d) {

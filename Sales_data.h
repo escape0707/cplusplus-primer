@@ -5,8 +5,8 @@
 
 class Sales_data {
   friend Sales_data operator+(const Sales_data &lhs, const Sales_data &rhs);
-  friend std::istream &operator>>(std::istream &is, Sales_data &rhs);
   friend std::ostream &operator<<(std::ostream &os, const Sales_data &rhs);
+  friend std::istream &operator>>(std::istream &is, Sales_data &rhs);
 
  public:
   Sales_data();

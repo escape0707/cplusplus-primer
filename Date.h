@@ -15,6 +15,7 @@ class Date {
   explicit Date(const std::string &date);
 
  private:
+  unsigned extract_month(const std::string &date);
   unsigned month, day, year;
   // The abbreviation of 12 months.
   const std::array<std::string, 12> month_abbr{"Jan", "Feb", "Mar", "Apr",
