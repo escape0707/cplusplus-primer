@@ -1,13 +1,21 @@
 #include "Sales_data.h"
 
-  Sales_data() = default;
-  Sales_data(const std::string &s, unsigned n, double p)
-      : bookNo(s), units_sold(n), revenue(p * n) {}
-  explicit Sales_data(const std::string &s) : bookNo(s) {}
-  explicit Sales_data(std::istream &is) { is >> *this; }
-  std::string isbn() const { return bookNo; }
-  Sales_data &operator+=(const Sales_data &rhs);
+Sales_data() = default;
 
+Sales_data(const std::string &s, unsigned n, double p)
+    : bookNo(s), units_sold(n), revenue(p * n) {}
+
+explicit Sales_data(const std::string &s) : bookNo(s) {}
+
+explicit Sales_data(std::istream &is) {
+  is >> *this;
+}
+
+std::string isbn() const {
+  return bookNo;
+}
+
+Sales_data &operator+=(const Sales_data &rhs);
 
 inline double Sales_data::avg_price() const {
   if (units_sold) {
