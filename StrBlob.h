@@ -20,6 +20,7 @@ class StrBlob {
   using container_type = StrVec;
   using value_type = container_type::value_type;
   using size_type = container_type::size_type;
+  using difference_type = container_type::difference_type;
   using reference = container_type::reference;
   using const_reference = container_type::const_reference;
   StrBlob();

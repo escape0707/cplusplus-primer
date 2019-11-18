@@ -10,6 +10,7 @@ using std::shared_ptr;
 using std::string;
 
 using container_type = StrBlobPtr::container_type;
+using difference_type = StrBlobPtr::difference_type;
 using reference = StrBlobPtr::reference;
 
 StrBlobPtr::StrBlobPtr() : curr(0) {}
@@ -39,8 +40,58 @@ reference StrBlobPtr::operator[](size_type pos) const {
   return (*p)[pos];
 }
 
-StrBlobPtr &StrBlobPtr::incr() {
+StrBlobPtr &StrBlobPtr::operator++() {
   check(curr, "increment past end of StrBlobPtr");
   ++curr;
   return *this;
+}
+
+StrBlobPtr &StrBlobPtr::operator--() {
+  --curr;
+  check(curr, "decrement past begin of StrBlobPtr");
+  return *this;
+}
+
+StrBlobPtr StrBlobPtr::operator++(int) {
+  StrBlobPtr ret = *this;
+  ++*this;
+  return ret;
+}
+
+StrBlobPtr StrBlobPtr::operator--(int) {
+  StrBlobPtr ret = *this;
+  --*this;
+  return ret;
+}
+
+StrBlobPtr &StrBlobPtr::operator+=(difference_type n) {
+  curr += n;
+  check(curr - 1, "increment past end of StrBlobPtr");
+  return *this;
+}
+
+StrBlobPtr &StrBlobPtr::operator-=(difference_type n) {
+  curr -= n;
+  check(curr, "increment past end of StrBlobPtr");
+  return *this;
+}
+
+StrBlobPtr StrBlobPtr::operator+(difference_type n) const {
+  StrBlobPtr ret = *this;
+  ret += n;
+  return ret;
+}
+
+StrBlobPtr StrBlobPtr::operator-(difference_type n) const {
+  StrBlobPtr ret = *this;
+  ret -= n;
+  return ret;
+}
+
+StrBlobPtr operator+(difference_type n, const StrBlobPtr &it) {
+  return it + n;
+}
+
+StrBlobPtr operator-(difference_type n, const StrBlobPtr &it) {
+  return it - n;
 }
