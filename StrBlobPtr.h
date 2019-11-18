@@ -12,9 +12,11 @@ class StrBlobPtr {
   using size_type = StrBlob::size_type;
   using difference_type = StrBlob::difference_type;
   using reference = StrBlob::reference;
+  using pointer = StrBlob::pointer;
   StrBlobPtr();
-  StrBlobPtr(StrBlob &b, size_type sz = 0);
-  reference deref() const;
+  explicit StrBlobPtr(StrBlob &b, size_type sz = 0);
+  reference operator*() const;
+  pointer operator->() const;
   reference operator[](size_type pos) const;
   StrBlobPtr &operator++();
   StrBlobPtr operator++(int);

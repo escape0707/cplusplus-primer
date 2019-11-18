@@ -12,6 +12,7 @@ using std::string;
 using container_type = StrBlobPtr::container_type;
 using difference_type = StrBlobPtr::difference_type;
 using reference = StrBlobPtr::reference;
+using pointer = StrBlobPtr::pointer;
 
 StrBlobPtr::StrBlobPtr() : curr(0) {}
 
@@ -29,9 +30,13 @@ shared_ptr<container_type> StrBlobPtr::check(size_type i,
   return ret;
 }
 
-reference StrBlobPtr::deref() const {
+reference StrBlobPtr::operator*() const {
   shared_ptr<container_type> p = check(curr, "dereference past end");
   return (*p)[curr];
+}
+
+pointer StrBlobPtr::operator->() const {
+  return &**this;
 }
 
 reference StrBlobPtr::operator[](size_type pos) const {

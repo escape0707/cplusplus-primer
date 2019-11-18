@@ -23,6 +23,8 @@ class StrBlob {
   using difference_type = container_type::difference_type;
   using reference = container_type::reference;
   using const_reference = container_type::const_reference;
+  using pointer = container_type::pointer;
+  using const_pointer = container_type::const_pointer;
   StrBlob();
   StrBlob(std::initializer_list<value_type> il);
   StrBlob(const StrBlob &other);

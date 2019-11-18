@@ -12,9 +12,11 @@ class ConstStrBlobPtr {
   using size_type = StrBlob::size_type;
   using difference_type = StrBlob::difference_type;
   using const_reference = StrBlob::const_reference;
+  using const_pointer = StrBlob::const_pointer;
   ConstStrBlobPtr();
-  ConstStrBlobPtr(const StrBlob &b, size_type sz = 0);
-  const_reference deref() const;
+  explicit ConstStrBlobPtr(const StrBlob &b, size_type sz = 0);
+  const_reference operator*() const;
+  const_pointer operator->() const;
   const_reference operator[](size_type pos) const;
   ConstStrBlobPtr &operator++();
   ConstStrBlobPtr operator++(int);

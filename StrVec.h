@@ -9,12 +9,19 @@ class StrVec {
  public:
   using value_type = std::string;
   using allocator_type = std::allocator<value_type>;
+
+ private:
+  using Alloc_traits = std::allocator_traits<allocator_type>;
+
+ public:
   using size_type = std::size_t;
   using difference_type = std::ptrdiff_t;
   using reference = value_type &;
   using const_reference = const value_type &;
   using iterator = value_type *;
   using const_iterator = const value_type *;
+  using pointer = Alloc_traits::pointer;
+  using const_pointer = Alloc_traits::const_pointer;
   StrVec();
   StrVec(const StrVec &other);
   StrVec(StrVec &&other) noexcept;
@@ -46,7 +53,6 @@ class StrVec {
   const_iterator cend() const;
 
  private:
-  using Alloc_traits = std::allocator_traits<allocator_type>;
   inline static allocator_type alloc;
   static iterator allocate(size_type n);
   static std::pair<iterator, iterator> alloc_n_copy(const_iterator beg,
