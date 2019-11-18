@@ -33,6 +33,12 @@ reference StrBlobPtr::deref() const {
   return (*p)[curr];
 }
 
+reference StrBlobPtr::operator[](size_type pos) const {
+  pos += curr;
+  shared_ptr<container_type> p = check(pos, "dereference past end");
+  return (*p)[pos];
+}
+
 StrBlobPtr &StrBlobPtr::incr() {
   check(curr, "increment past end of StrBlobPtr");
   ++curr;

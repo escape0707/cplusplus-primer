@@ -14,6 +14,7 @@ class ConstStrBlobPtr {
   ConstStrBlobPtr();
   ConstStrBlobPtr(const StrBlob &b, size_type sz = 0);
   const_reference deref() const;
+  const_reference operator[](size_type pos) const;
   ConstStrBlobPtr &incr();
 
  private:

@@ -18,6 +18,8 @@ using std::strchr;
 
 using value_type = String::value_type;
 using size_type = String::size_type;
+using reference = String::reference;
+using const_reference = String::const_reference;
 using iterator = String::iterator;
 using const_iterator = String::const_iterator;
 
@@ -66,6 +68,30 @@ String &String::operator=(String &&rhs) noexcept {
 
 String::~String() {
   free();
+}
+
+reference String::operator[](size_type pos) {
+  return const_cast<reference>(as_const(*this)[pos]);
+}
+
+const_reference String::operator[](size_type pos) const {
+  return elements[pos];
+}
+
+reference String::front() {
+  return const_cast<reference>(as_const(*this).front());
+}
+
+const_reference String::front() const {
+  return *elements;
+}
+
+reference String::back() {
+  return const_cast<reference>(as_const(*this).back());
+}
+
+const_reference String::back() const {
+  return first_free[-1];
 }
 
 iterator String::begin() {

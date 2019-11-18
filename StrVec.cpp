@@ -137,7 +137,7 @@ reference StrVec::operator[](size_type pos) {
 }
 
 const_reference StrVec::operator[](size_type pos) const {
-  return *(elements + pos);
+  return elements[pos];
 }
 
 reference StrVec::front() {
@@ -153,8 +153,7 @@ reference StrVec::back() {
 }
 
 const_reference StrVec::back() const {
-  const_iterator tmp = first_free;
-  return *--tmp;
+  return first_free[-1];
 }
 
 iterator StrVec::begin() {

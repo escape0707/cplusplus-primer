@@ -46,6 +46,14 @@ void StrBlob::check(size_type i, const string &msg) const {
   }
 }
 
+reference StrBlob::operator[](size_type pos) {
+  return const_cast<reference>(as_const(*this)[pos]);
+}
+
+const_reference StrBlob::operator[](size_type pos) const {
+  return (*data)[pos];
+}
+
 const_reference StrBlob::front() const {
   check(0, "front on empty StrBlob");
   return data->front();

@@ -22,6 +22,12 @@ class String {
   String &operator=(const String &rhs);
   String &operator=(String &&rhs) noexcept;
   ~String();
+  reference operator[](size_type pos);
+  const_reference operator[](size_type pos) const;
+  reference front();
+  const_reference front() const;
+  reference back();
+  const_reference back() const;
   iterator begin();
   const_iterator begin() const;
   const_iterator cbegin() const;
