@@ -19,6 +19,11 @@ Sales_data::Sales_data(std::istream &is) {
   is >> *this;
 }
 
+Sales_data &Sales_data::operator=(const std::string &s) {
+  bookNo = s;
+  return *this;
+}
+
 std::string Sales_data::isbn() const {
   return bookNo;
 }

@@ -13,6 +13,7 @@ class Sales_data {
   Sales_data(const std::string &s, unsigned n, double p);
   explicit Sales_data(const std::string &s);
   explicit Sales_data(std::istream &is);
+  Sales_data &operator=(const std::string &s);
   std::string isbn() const;
   Sales_data &operator+=(const Sales_data &rhs);
 

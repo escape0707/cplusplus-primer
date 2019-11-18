@@ -64,6 +64,14 @@ StrVec &StrVec::operator=(StrVec &&rhs) noexcept {
   return *this;
 }
 
+StrVec &StrVec::operator=(std::initializer_list<value_type> il) {
+  pair<iterator, iterator> newdata = alloc_n_copy(il.begin(), il.end());
+  free();
+  elements = newdata.first;
+  first_free = cap = newdata.second;
+  return *this;
+}
+
 StrVec::~StrVec() {
   free();
 }

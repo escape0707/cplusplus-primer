@@ -21,6 +21,7 @@ class StrVec {
   StrVec(std::initializer_list<value_type> il);
   StrVec &operator=(const StrVec &rhs);
   StrVec &operator=(StrVec &&rhs) noexcept;
+  StrVec &operator=(std::initializer_list<value_type> il);
   ~StrVec();
   void push_back(const_reference value);
   void push_back(value_type &&value);
