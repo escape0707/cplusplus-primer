@@ -1,6 +1,9 @@
 {
     "code-runner.executorMap": {
-        "cpp": "\b\b\b\b\b\b\b\b\b\bg++ -std=c++17 $fileName -o a.out && ./a.out"
+        "cpp": "\b\b\b\b\b\b\b\b\b\bmake $fileNameWithoutExt.out && ./$fileNameWithoutExt.out"
     },
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "files.exclude": {
+        "*.out": true,
+    }
 }
