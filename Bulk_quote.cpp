@@ -1,8 +1,10 @@
 #include <cstddef>
+#include <iostream>
 #include <string>
 
 #include "Bulk_quote.h"
 
+using std::cout;
 using std::size_t;
 using std::string;
 
@@ -16,4 +18,9 @@ double Bulk_quote::net_price(size_t cnt) const {
     return cnt * (1 - discount) * price;
   }
   return cnt * price;
+}
+
+void Bulk_quote::debug() const {
+  Quote::debug();
+  cout << ", min_qty: " << min_qty << ", discount: " << discount;
 }
