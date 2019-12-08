@@ -11,10 +11,10 @@ using std::string;
 Bulk_quote::Bulk_quote() = default;
 
 Bulk_quote::Bulk_quote(const string &book, double p, size_t qty, double disc)
-    : Quote(book, p), min_qty(qty), discount(disc) {}
+    : Disc_quote(book, p, qty, disc) {}
 
 double Bulk_quote::net_price(size_t cnt) const {
-  if (cnt >= min_qty) {
+  if (cnt >= quantity) {
     return cnt * (1 - discount) * price;
   }
   return cnt * price;
@@ -22,5 +22,5 @@ double Bulk_quote::net_price(size_t cnt) const {
 
 void Bulk_quote::debug() const {
   Quote::debug();
-  cout << ", min_qty: " << min_qty << ", discount: " << discount;
+  cout << ", min_qty: " << quantity << ", discount: " << discount;
 }

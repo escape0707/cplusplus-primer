@@ -12,11 +12,11 @@ Limit_quote::Limit_quote(const std::string &book,
                          double p,
                          std::size_t qty,
                          double disc)
-    : Quote(book, p), max_qty(qty), discount(disc) {}
+    : Disc_quote(book, p, qty, disc) {}
 
 double Limit_quote::net_price(std::size_t cnt) const {
-  if (cnt <= max_qty) {
+  if (cnt <= quantity) {
     return cnt * (1 - discount) * price;
   }
-  return max_qty * (1 - discount) * price + (cnt - max_qty) * price;
+  return quantity * (1 - discount) * price + (cnt - quantity) * price;
 }
