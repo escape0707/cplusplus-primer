@@ -1,10 +1,10 @@
-// it's okay for every class (say D) directly derived from a base class
+// it's okay for every class (say D1) directly derived from a base class
 // (say B), as the base class B is always accesible from within the directly
-// derived class D
+// derived class D1
 //
-// for the secondarily derived classes (say DD), if its base class D is derived
-// privately from D's base class B, then it's an error as the B part is a
-// private part of D
+// for the secondarily derived classes (say D2), if D2's base class D1 is
+// derived privately from D1's base class B, then it's an error as the B part is
+// a private part of D1
 
 class Base {
   void memfcn(Base &b) { b = *this; }
