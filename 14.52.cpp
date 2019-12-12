@@ -1,5 +1,5 @@
 class SmallInt {
-  inline friend SmallInt operator+(const SmallInt &, const SmallInt &);
+  friend SmallInt operator+(const SmallInt &, const SmallInt &);
 
  public:
   SmallInt(int = 0);
