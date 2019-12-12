@@ -4,6 +4,7 @@
     },
     "editor.tabSize": 2,
     "files.exclude": {
-        "*.out": true,
+        "*.o": true,
+        "*.out": true
     }
 }

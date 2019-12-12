@@ -5,4 +5,4 @@ CXXFLAGS = -std=c++17 -Weverything -Wno-c++98-compat
 	$(LINK.cpp) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 clean:
-	rm *.out
+	rm *.o *.out
