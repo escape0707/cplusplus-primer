@@ -25,7 +25,7 @@ ostream &QueryResult::print(ostream &os) {
   os << sought << " occurs " << lines->size() << " time(s)\n";
   // ...and each containing line with line number
   for (const line_no ln : *lines) {
-    os << "\t(line " << ln << ") " << file.index(ln - 1) << '\n';
+    os << "\t(line " << ln << ") " << file[ln - 1] << '\n';
   }
   return os << endl;
 }

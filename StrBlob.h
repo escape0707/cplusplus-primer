@@ -37,8 +37,6 @@ class StrBlob {
   reference front();
   const_reference back() const;
   reference back();
-  const_reference index(size_type i) const;
-  reference index(size_type i);
   reference operator[](size_type pos);
   const_reference operator[](size_type pos) const;
   StrBlobPtr begin();
