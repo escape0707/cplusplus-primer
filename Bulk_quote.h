@@ -10,4 +10,6 @@ class Bulk_quote : public Disc_quote {
  public:
   double net_price(std::size_t) const override;
   void debug() const override;
+  Bulk_quote *clone() const & override;
+  Bulk_quote *clone() && override;
 };

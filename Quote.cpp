@@ -2,8 +2,9 @@
 
 #include <iostream>
 #include <string>
+#include <utility>
 
-using std::cout;
+using std::cout, std::ostream;
 using std::string;
 
 Quote::Quote() = default;
@@ -31,4 +32,22 @@ double Quote::net_price(std::size_t n) const {
 
 void Quote::debug() const {
   cout << "bookNo: " << bookNo << ", price: " << price;
+}
+
+double Quote::print_total(size_t n, ostream &os) const {
+  double ret = net_price(n);
+  os << "ISBN: " << bookNo << " # sold: " << n << " total due: " << ret;
+  return ret;
+}
+
+Quote *Quote::clone() const & {
+  return new Quote(*this);
+}
+
+Quote *Quote::clone() && {
+  return new Quote(std::move(*this));
+}
+
+bool isbn_less(const Quote &lhs, const Quote &rhs) {
+  return lhs.bookNo < rhs.bookNo;
 }
