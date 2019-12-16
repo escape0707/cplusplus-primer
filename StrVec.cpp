@@ -1,9 +1,9 @@
+#include "StrVec.h"
+
 #include <algorithm>
 #include <initializer_list>
 #include <memory>
 #include <utility>
-
-#include "StrVec.h"
 
 using std::as_const, std::pair;
 using std::destroy, std::destroy_at;
@@ -90,27 +90,21 @@ void StrVec::pop_back() {
   destroy_at(--first_free);
 }
 
-void StrVec::resize(size_type count) {
-  difference_type diff = count - size();
-  if (diff < 0) {
-    _pop_back_n(-diff);
-    return;
-  }
-  if (diff > 0) {
-    reserve(count);
-    uninitialized_value_construct_n(first_free, diff);
+void StrVec::resize(size_type new_size) {
+  if (new_size < size()) {
+    destroy_starting_from(elements + new_size);
+  } else if (size_type diff = new_size - size()) {
+    reserve(new_size);
+    first_free = uninitialized_value_construct_n(first_free, diff);
   }
 }
 
-void StrVec::resize(size_type count, const_reference value) {
-  difference_type diff = count - size();
-  if (diff < 0) {
-    _pop_back_n(-diff);
-    return;
-  }
-  if (diff > 0) {
-    reserve(count);
-    uninitialized_fill_n(first_free, diff, value);
+void StrVec::resize(size_type new_size, const_reference value) {
+  if (new_size < size()) {
+    destroy_starting_from(elements + new_size);
+  } else if (size_type diff = new_size - size()) {
+    reserve(new_size);
+    first_free = uninitialized_fill_n(first_free, diff, value);
   }
 }
 
@@ -119,7 +113,7 @@ bool StrVec::empty() const {
 }
 
 size_type StrVec::size() const {
-  return first_free - elements;
+  return static_cast<size_type>(first_free - elements);
 }
 
 void StrVec::reserve(size_type new_cap) {
@@ -129,7 +123,7 @@ void StrVec::reserve(size_type new_cap) {
 }
 
 size_type StrVec::capacity() const {
-  return cap - elements;
+  return static_cast<size_type>(cap - elements);
 }
 
 reference StrVec::operator[](size_type pos) {
@@ -214,15 +208,13 @@ iterator StrVec::allocate(size_type n) {
 
 pair<iterator, iterator> StrVec::alloc_n_copy(const_iterator beg,
                                               const_iterator end) {
-  iterator newbeg = allocate(end - beg);
+  iterator newbeg = allocate(static_cast<size_type>(end - beg));
   return {newbeg, uninitialized_copy(beg, end, newbeg)};
 }
 
-void StrVec::_pop_back_n(size_type n) {
-  iterator newfirst_free = first_free - n;
-  while (first_free != newfirst_free) {
-    destroy_at(--first_free);
-  }
+void StrVec::destroy_starting_from(iterator pos) {
+  destroy(pos, first_free);
+  first_free = pos;
 }
 
 void StrVec::_reserve(size_type new_cap) {

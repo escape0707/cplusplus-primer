@@ -33,8 +33,8 @@ class StrVec {
   void push_back(const_reference value);
   void push_back(value_type &&value);
   void pop_back();
-  void resize(size_type count);
-  void resize(size_type count, const_reference value);
+  void resize(size_type new_size);
+  void resize(size_type new_size, const_reference value);
   bool empty() const;
   size_type size() const;
   void reserve(size_type new_cap);
@@ -57,7 +57,7 @@ class StrVec {
   static iterator allocate(size_type n);
   static std::pair<iterator, iterator> alloc_n_copy(const_iterator beg,
                                                     const_iterator end);
-  void _pop_back_n(size_type n);
+  void destroy_starting_from(iterator pos);
   void _reserve(size_type new_cap);
   void chk_n_alloc();
   void free();

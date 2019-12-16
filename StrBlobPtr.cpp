@@ -70,13 +70,13 @@ StrBlobPtr StrBlobPtr::operator--(int) {
 }
 
 StrBlobPtr &StrBlobPtr::operator+=(difference_type n) {
-  curr += n;
+  curr = static_cast<size_type>(static_cast<difference_type>(curr) + n);
   check(curr - 1, "increment past end of StrBlobPtr");
   return *this;
 }
 
 StrBlobPtr &StrBlobPtr::operator-=(difference_type n) {
-  curr -= n;
+  curr = static_cast<size_type>(static_cast<difference_type>(curr) - n);
   check(curr, "increment past end of StrBlobPtr");
   return *this;
 }

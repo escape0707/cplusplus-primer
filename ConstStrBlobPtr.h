@@ -35,6 +35,6 @@ class ConstStrBlobPtr {
 };
 
 ConstStrBlobPtr operator+(ConstStrBlobPtr::difference_type n,
-                          ConstStrBlobPtr it);
+                          const ConstStrBlobPtr &it);
 ConstStrBlobPtr operator-(ConstStrBlobPtr::difference_type n,
-                          ConstStrBlobPtr it);
+                          const ConstStrBlobPtr &it);

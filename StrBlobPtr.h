@@ -34,5 +34,5 @@ class StrBlobPtr {
   size_type curr;
 };
 
-StrBlobPtr operator+(StrBlobPtr::difference_type n, StrBlobPtr it);
-StrBlobPtr operator-(StrBlobPtr::difference_type n, StrBlobPtr it);
+StrBlobPtr operator+(StrBlobPtr::difference_type n, const StrBlobPtr &it);
+StrBlobPtr operator-(StrBlobPtr::difference_type n, const StrBlobPtr &it);
