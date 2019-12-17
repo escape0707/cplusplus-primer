@@ -1,43 +1,27 @@
-#include <ostream>
-
 #include "QueryResult.h"
-#include "StrBlobPtr.h"
+
+#include <ostream>
 
 using std::endl, std::ostream;
 
-using iterator = QueryResult::iterator;
+QueryResult::QueryResult(const key_type &key) : key_(key) {}
+// default construct p_line_numbers_ and input_ to be empty
 
-// generate a result with "nullptr" if k is not found
-QueryResult::QueryResult(key_type k) : sought(k) {}
-
-// generate a concrete result if k is found
-QueryResult::QueryResult(key_type k,
-                         shared_lns_ptr lns_p,
-                         shared_container_type text_p)
-    : sought(k), lines(lns_p), file(text_p) {}
+QueryResult::QueryResult(const key_type &key,
+                         const shared_lns_ptr &p_line_numbers,
+                         const shared_container_type &input)
+    : key_(key), p_line_numbers_(p_line_numbers), input_(input) {}
 
 ostream &QueryResult::print(ostream &os) {
-  // if keyword not found
-  if (!lines) {
-    return os << sought << " not found" << endl;
+  // if key not found
+  if (!p_line_numbers_) {
+    return os << key_ << " not found" << endl;
   }
-  // if found, print the number of occurrences...
-  os << sought << " occurs " << lines->size() << " time(s)\n";
-  // ...and each containing line with line number
-  for (const line_no ln : *lines) {
-    os << "\t(line " << ln << ") " << file[ln - 1] << '\n';
+  // if found, print the number of lines the key occurred...
+  os << key_ << " occurs in " << p_line_numbers_->size() << " line(s)" << endl;
+  // ...and each line containing the key with line number
+  for (const line_number_type ln : *p_line_numbers_) {
+    os << "\t(line " << ln << ") " << input_[ln - 1] << endl;
   }
   return os << endl;
-}
-
-iterator QueryResult::begin() {
-  return lines->begin();
-}
-
-iterator QueryResult::end() {
-  return lines->end();
-}
-
-StrBlobPtr QueryResult::get_file() {
-  return StrBlobPtr(file);
 }
