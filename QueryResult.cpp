@@ -1,18 +1,11 @@
 #include "QueryResult.h"
 
-#include <ostream>
+// #include <ostream>  // PCH warning: header stop not at file scope.  An
+// IntelliSense PCH file was not generated.
 
 using std::endl, std::ostream;
 
 using QueryResult = TextQuery::QueryResult;
-
-QueryResult::QueryResult(const key_type &key) : key_(key) {}
-// default construct line_numbers_ and input_ to be empty
-
-QueryResult::QueryResult(const key_type &key,
-                         const record_type &line_numbers,
-                         const shared_container_type &input)
-    : key_(key), line_numbers_(line_numbers), input_(input) {}
 
 ostream &QueryResult::print(ostream &os) {
   // if key not found

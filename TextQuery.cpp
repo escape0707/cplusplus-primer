@@ -43,8 +43,8 @@ QueryResult TextQuery::query(const key_type &key) const {
   const map_type::const_iterator &result = word_to_line_numbers_.find(key);
   if (result ==
       word_to_line_numbers_.cend()) {  // not found, use simple constructor
-    return QueryResult(key);
+    return QueryResult(key_type(key), input_);
   } else {  // found, use detailed constructor
-    return QueryResult(key, result->second, input_);
+    return QueryResult(key_type(key), input_, result->second);
   }
 }

@@ -9,16 +9,16 @@
 // destroyed
 class TextQuery::QueryResult {
  public:
-  // Construct an empty QueryResult when the key is not found
-  QueryResult(const key_type &key);
-  // Construct a concrete QueryResult when key is found
-  QueryResult(const key_type &key,
-              const record_type &line_numbers,
-              const shared_container_type &input);
+  template <typename... Args>
+  QueryResult(key_type &&key,
+              const shared_container_type &input,
+              Args &&... args);
   std::ostream &print(std::ostream &os = std::cout);
 
  private:
   key_type key_;
-  record_type line_numbers_;
   shared_container_type input_;
+  record_type line_numbers_;
 };
+
+#include "QueryResult.tpp"
