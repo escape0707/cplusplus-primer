@@ -4,6 +4,8 @@
 
 using std::endl, std::ostream;
 
+using QueryResult = TextQuery::QueryResult;
+
 QueryResult::QueryResult(const key_type &key) : key_(key) {}
 // default construct p_line_numbers_ and input_ to be empty
 

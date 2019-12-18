@@ -13,6 +13,8 @@ using std::istream;
 using std::istream_iterator;
 using std::istringstream;
 
+using QueryResult = TextQuery::QueryResult;
+
 TextQuery::TextQuery(istream &is) {
   // default constructed input_ and word_to_p_line_numbers_
   istringstream iss;

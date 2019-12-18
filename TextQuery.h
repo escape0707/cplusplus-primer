@@ -7,10 +7,9 @@
 
 #include "StrBlob.h"
 
-class QueryResult;  // Declaration for the return type of TextQuery::query.
-
 class TextQuery {
  public:
+  class QueryResult;
   using shared_container_type = StrBlob;
   using key_type = shared_container_type::value_type;
   using line_number_type = shared_container_type::size_type;
