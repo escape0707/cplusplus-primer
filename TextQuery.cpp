@@ -43,8 +43,8 @@ TextQuery::TextQuery(istream &is) {
   }
 }
 
-QueryResult TextQuery::query(const key_type &key) const {
-  return Query(key).eval(*this);
+QueryResult TextQuery::query(const string &pattern) const {
+  return Query::parse(pattern).eval(*this);
 }
 
 pair<record_const_iterator, record_const_iterator> TextQuery::find_key(
