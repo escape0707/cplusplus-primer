@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include "ByKeyRange.h"
 #include "TextQuery.h"
 
 class TextQuery::Query {
@@ -11,5 +12,5 @@ class TextQuery::Query {
 
  private:
   Query(key_type &&key);
-  const key_type key_;
+  ByKeyRange range_;
 };
