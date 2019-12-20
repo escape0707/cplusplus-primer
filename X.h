@@ -12,7 +12,8 @@ class X {
   using name_type = std::string;
   using count_type = std::size_t;
   X(const name_type &name)
-      : pname(new const name_type(name)), pcount(new count_type(1)) {
+      : pname(std::make_shared<name_type>(name)),
+        pcount(std::make_shared<count_type>(1)) {
     print_member("X(const name_type &)");
   }
   // the order of member initialization is the same as the order in which they
