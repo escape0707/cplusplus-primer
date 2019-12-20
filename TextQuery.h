@@ -11,6 +11,7 @@
 class TextQuery {
  public:
   class QueryResult;
+  class Query;
   using shared_container_type = StrBlob;
   using key_type = shared_container_type::value_type;
   using line_number_type = shared_container_type::size_type;
@@ -18,7 +19,7 @@ class TextQuery {
   using map_type = std::map<key_type, record_type>;
   using record_const_iterator = record_type::const_iterator;
   TextQuery(std::istream &is);
-  QueryResult query(const key_type &key) const;
+  QueryResult query(const std::string &pattern) const;
   // Get a pair of iterator denoting the line-number-record of the key
   std::pair<record_const_iterator, record_const_iterator> find_key(
       const key_type &key) const;

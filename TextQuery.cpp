@@ -6,6 +6,7 @@
 #include <string>
 #include <utility>
 
+#include "Query.h"
 #include "QueryResult.h"
 
 using std::getline, std::initializer_list, std::string;
@@ -43,13 +44,7 @@ TextQuery::TextQuery(istream &is) {
 }
 
 QueryResult TextQuery::query(const key_type &key) const {
-  const map_type::const_iterator &result = word_to_line_numbers_.find(key);
-  if (result ==
-      word_to_line_numbers_.cend()) {  // not found, use simple constructor
-    return QueryResult(key_type(key), input_);
-  } else {  // found, use detailed constructor
-    return QueryResult(key_type(key), input_, result->second);
-  }
+  return Query(key).eval(*this);
 }
 
 pair<record_const_iterator, record_const_iterator> TextQuery::find_key(
