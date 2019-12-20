@@ -12,8 +12,11 @@ using std::getline, std::initializer_list, std::string;
 using std::istream;
 using std::istream_iterator;
 using std::istringstream;
+using std::pair;
 
 using QueryResult = TextQuery::QueryResult;
+using record_const_iterator = TextQuery::record_const_iterator;
+using shared_container_type = TextQuery::shared_container_type;
 
 TextQuery::TextQuery(istream &is) {
   // default constructed input_ and word_to_line_numbers_
@@ -47,4 +50,19 @@ QueryResult TextQuery::query(const key_type &key) const {
   } else {  // found, use detailed constructor
     return QueryResult(key_type(key), input_, result->second);
   }
+}
+
+pair<record_const_iterator, record_const_iterator> TextQuery::find_key(
+    const key_type &key) const {
+  const map_type::const_iterator &result = word_to_line_numbers_.find(key);
+  if (result != word_to_line_numbers_.cend()) {  // if found
+    const record_type &record = result->second;
+    return {record.cbegin(), record.cend()};
+  }
+  // if not found, return two equal value-initialized iterators (C++14)
+  return {};
+}
+
+const shared_container_type &TextQuery::get_file() const {
+  return input_;
 }
