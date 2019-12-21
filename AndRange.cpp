@@ -13,11 +13,7 @@ using record_type = AndRange::record_type;
 
 AndRange::AndRange(const shared_ptr<LineNumberRange> &p_lhs,
                    const shared_ptr<LineNumberRange> &p_rhs)
-    : p_lhs_(p_lhs), p_rhs_(p_rhs) {}
-
-string AndRange::rep() const {
-  return "(" + p_lhs_->rep() + " & " + p_rhs_->rep() + ")";
-}
+    : BinaryRange(p_lhs, p_rhs, "&") {}
 
 record_type AndRange::eval(const TextQuery &text_query) const {
   record_type ret;
