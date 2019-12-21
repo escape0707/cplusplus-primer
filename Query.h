@@ -7,11 +7,15 @@
 #include "TextQuery.h"
 
 class TextQuery::Query {
+  friend Query operator~(const Query &rhs);
+
  public:
   static Query parse(const std::string &pattern);
   QueryResult eval(const TextQuery &text_query) const;
 
  private:
   Query(key_type &&key);
-  std::unique_ptr<LineNumberRange> p_range_;
+  // Only used by operators to create a new Query with a new LineNumberRange.
+  Query(std::shared_ptr<LineNumberRange> &&p_range);
+  std::shared_ptr<LineNumberRange> p_range_;
 };

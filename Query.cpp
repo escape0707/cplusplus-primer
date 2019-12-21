@@ -5,12 +5,13 @@
 #include <utility>
 
 #include "ByKeyRange.h"
+#include "NotRange.h"
 #include "QueryResult.h"
 // #include "TextQuery.h"
 // PCH warning: header stop not at file scope.  An IntelliSense PCH file was not
 // generated.
 
-using std::make_unique;
+using std::make_shared;
 using std::string;
 
 using Query = TextQuery::Query;
@@ -26,4 +27,10 @@ QueryResult Query::eval(const TextQuery &text_query) const {
 }
 
 Query::Query(key_type &&key)
-    : p_range_(make_unique<ByKeyRange>(std::move(key))) {}
+    : p_range_(make_shared<ByKeyRange>(std::move(key))) {}
+
+Query::Query(std::shared_ptr<LineNumberRange> &&p_range) : p_range_(p_range) {}
+
+Query operator~(const Query &rhs) {
+  return Query(make_shared<NotRange>(rhs.p_range_));
+}
