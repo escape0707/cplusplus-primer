@@ -9,6 +9,7 @@
 class TextQuery::Query {
   friend Query operator~(const Query &rhs);
   friend Query operator&(const Query &lhs, const Query &rhs);
+  friend Query operator|(const Query &lhs, const Query &rhs);
 
  public:
   static Query parse(const std::string &pattern);

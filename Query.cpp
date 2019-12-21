@@ -7,6 +7,7 @@
 #include "AndRange.h"
 #include "ByKeyRange.h"
 #include "NotRange.h"
+#include "OrRange.h"
 #include "QueryResult.h"
 // #include "TextQuery.h"
 // PCH warning: header stop not at file scope.  An IntelliSense PCH file was not
@@ -38,4 +39,8 @@ Query operator~(const Query &rhs) {
 
 Query operator&(const Query &lhs, const Query &rhs) {
   return Query(make_shared<AndRange>(lhs.p_range_, rhs.p_range_));
+}
+
+Query operator|(const Query &lhs, const Query &rhs) {
+  return Query(make_shared<OrRange>(lhs.p_range_, rhs.p_range_));
 }
