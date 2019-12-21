@@ -4,6 +4,7 @@
 #include <string>
 #include <utility>
 
+#include "AndRange.h"
 #include "ByKeyRange.h"
 #include "NotRange.h"
 #include "QueryResult.h"
@@ -33,4 +34,8 @@ Query::Query(std::shared_ptr<LineNumberRange> &&p_range) : p_range_(p_range) {}
 
 Query operator~(const Query &rhs) {
   return Query(make_shared<NotRange>(rhs.p_range_));
+}
+
+Query operator&(const Query &lhs, const Query &rhs) {
+  return Query(make_shared<AndRange>(lhs.p_range_, rhs.p_range_));
 }
