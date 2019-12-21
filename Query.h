@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 
 #include "ByKeyRange.h"
@@ -12,5 +13,5 @@ class TextQuery::Query {
 
  private:
   Query(key_type &&key);
-  ByKeyRange range_;
+  std::unique_ptr<LineNumberRange> p_range_;
 };

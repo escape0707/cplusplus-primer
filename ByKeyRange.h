@@ -2,13 +2,15 @@
 
 #include <string>
 
+#include "LineNumberRange.h"
 #include "TextQuery.h"
 
-class TextQuery::ByKeyRange {
+class ByKeyRange : public LineNumberRange {
  public:
+  using key_type = TextQuery::key_type;
   ByKeyRange(key_type &&key);
-  std::string rep() const;
-  record_type eval(const TextQuery &text_query) const;
+  std::string rep() const override;
+  record_type eval(const TextQuery &text_query) const override;
 
  private:
   key_type key_;

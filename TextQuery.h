@@ -12,7 +12,6 @@ class TextQuery {
  public:
   class QueryResult;
   class Query;
-  class ByKeyRange;
   using shared_container_type = StrBlob;
   using key_type = shared_container_type::value_type;
   using line_number_type = shared_container_type::size_type;

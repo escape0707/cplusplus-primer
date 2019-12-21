@@ -8,7 +8,6 @@
 using std::pair;
 using std::string;
 
-using ByKeyRange = TextQuery::ByKeyRange;
 using record_type = TextQuery::record_type;
 
 ByKeyRange::ByKeyRange(key_type &&key) : key_(std::move(key)) {}
