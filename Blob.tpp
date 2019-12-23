@@ -1,121 +1,121 @@
-#include "StrBlob.h"
+#include "Blob.h"
 
 #include <memory>
 #include <stdexcept>
 #include <string>
 #include <utility>
 
-#include "ConstStrBlobPtr.h"
-#include "StrBlobPtr.h"
+#include "BlobPtr.h"
+#include "ConstBlobPtr.h"
 
 using std::as_const;
 using std::initializer_list, std::string;
 using std::make_shared;
 using std::out_of_range;
 
-using value_type = StrBlob::value_type;
-using size_type = StrBlob::size_type;
-using reference = StrBlob::reference;
-using const_reference = StrBlob::const_reference;
+using value_type = Blob::value_type;
+using size_type = Blob::size_type;
+using reference = Blob::reference;
+using const_reference = Blob::const_reference;
 
-StrBlob::StrBlob() : data(make_shared<container_type>()) {}
+Blob::Blob() : data(make_shared<container_type>()) {}
 
-StrBlob::StrBlob(initializer_list<value_type> il)
+Blob::Blob(initializer_list<value_type> il)
     : data(make_shared<container_type>(il)) {}
 
-StrBlob::StrBlob(const StrBlob &other)
+Blob::Blob(const Blob &other)
     : data(make_shared<container_type>(*other.data)) {}
 
-StrBlob &StrBlob::operator=(const StrBlob &rhs) {
+Blob &Blob::operator=(const Blob &rhs) {
   data = make_shared<container_type>(*rhs.data);
   return *this;
 }
 
-size_type StrBlob::size() const {
+size_type Blob::size() const {
   return data->size();
 }
 
-bool StrBlob::empty() const {
+bool Blob::empty() const {
   return data->empty();
 }
 
-void StrBlob::push_back(const_reference value) {
+void Blob::push_back(const_reference value) {
   data->push_back(value);
 }
 
-void StrBlob::check(size_type i, const string &msg) const {
+void Blob::check(size_type i, const string &msg) const {
   if (i >= data->size()) {
     throw out_of_range(msg);
   }
 }
 
-reference StrBlob::operator[](size_type pos) {
+reference Blob::operator[](size_type pos) {
   return const_cast<reference>(as_const(*this)[pos]);
 }
 
-const_reference StrBlob::operator[](size_type pos) const {
+const_reference Blob::operator[](size_type pos) const {
   return (*data)[pos];
 }
 
-const_reference StrBlob::front() const {
-  check(0, "front on empty StrBlob");
+const_reference Blob::front() const {
+  check(0, "front on empty Blob");
   return data->front();
 }
 
-reference StrBlob::front() {
+reference Blob::front() {
   return const_cast<reference>(as_const(*this).front());
 }
 
-const_reference StrBlob::back() const {
-  check(0, "back on empty StrBlob");
+const_reference Blob::back() const {
+  check(0, "back on empty Blob");
   return data->back();
 }
 
-reference StrBlob::back() {
+reference Blob::back() {
   return const_cast<reference>(as_const(*this).back());
 }
 
-void StrBlob::pop_back() {
-  check(0, "pop_back on empty StrBlob");
+void Blob::pop_back() {
+  check(0, "pop_back on empty Blob");
   data->pop_back();
 }
 
-StrBlobPtr StrBlob::begin() {
-  return StrBlobPtr(*this);
+BlobPtr Blob::begin() {
+  return BlobPtr(*this);
 }
 
-ConstStrBlobPtr StrBlob::cbegin() const {
-  return ConstStrBlobPtr(*this);
+ConstBlobPtr Blob::cbegin() const {
+  return ConstBlobPtr(*this);
 }
 
-StrBlobPtr StrBlob::end() {
-  return StrBlobPtr(*this, data->size());
+BlobPtr Blob::end() {
+  return BlobPtr(*this, data->size());
 }
 
-ConstStrBlobPtr StrBlob::cend() const {
-  return ConstStrBlobPtr(*this, data->size());
+ConstBlobPtr Blob::cend() const {
+  return ConstBlobPtr(*this, data->size());
 }
 
-bool operator==(const StrBlob &lhs, const StrBlob &rhs) {
+bool operator==(const Blob &lhs, const Blob &rhs) {
   return *lhs.data == *rhs.data;
 }
 
-bool operator!=(const StrBlob &lhs, const StrBlob &rhs) {
+bool operator!=(const Blob &lhs, const Blob &rhs) {
   return !(lhs == rhs);
 }
 
-bool operator<(const StrBlob &lhs, const StrBlob &rhs) {
+bool operator<(const Blob &lhs, const Blob &rhs) {
   return *lhs.data < *rhs.data;
 }
 
-bool operator>(const StrBlob &lhs, const StrBlob &rhs) {
+bool operator>(const Blob &lhs, const Blob &rhs) {
   return rhs < lhs;
 }
 
-bool operator<=(const StrBlob &lhs, const StrBlob &rhs) {
+bool operator<=(const Blob &lhs, const Blob &rhs) {
   return !(lhs > rhs);
 }
 
-bool operator>=(const StrBlob &lhs, const StrBlob &rhs) {
+bool operator>=(const Blob &lhs, const Blob &rhs) {
   return !(lhs < rhs);
 }

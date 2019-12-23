@@ -4,28 +4,28 @@
 #include <string>
 #include <vector>
 
-#include "StrBlob.h"
+#include "Blob.h"
 
-class ConstStrBlobPtr {
+class ConstBlobPtr {
  public:
-  using container_type = StrBlob::container_type;
-  using size_type = StrBlob::size_type;
-  using difference_type = StrBlob::difference_type;
-  using const_reference = StrBlob::const_reference;
-  using const_pointer = StrBlob::const_pointer;
-  ConstStrBlobPtr();
-  explicit ConstStrBlobPtr(const StrBlob &b, size_type sz = 0);
+  using container_type = Blob::container_type;
+  using size_type = Blob::size_type;
+  using difference_type = Blob::difference_type;
+  using const_reference = Blob::const_reference;
+  using const_pointer = Blob::const_pointer;
+  ConstBlobPtr();
+  explicit ConstBlobPtr(const Blob &b, size_type sz = 0);
   const_reference operator*() const;
   const_pointer operator->() const;
   const_reference operator[](size_type pos) const;
-  ConstStrBlobPtr &operator++();
-  ConstStrBlobPtr operator++(int);
-  ConstStrBlobPtr &operator+=(difference_type n);
-  ConstStrBlobPtr operator+(difference_type n) const;
-  ConstStrBlobPtr &operator--();
-  ConstStrBlobPtr operator--(int);
-  ConstStrBlobPtr &operator-=(difference_type n);
-  ConstStrBlobPtr operator-(difference_type n) const;
+  ConstBlobPtr &operator++();
+  ConstBlobPtr operator++(int);
+  ConstBlobPtr &operator+=(difference_type n);
+  ConstBlobPtr operator+(difference_type n) const;
+  ConstBlobPtr &operator--();
+  ConstBlobPtr operator--(int);
+  ConstBlobPtr &operator-=(difference_type n);
+  ConstBlobPtr operator-(difference_type n) const;
 
  private:
   std::shared_ptr<container_type> check(size_type i,
@@ -34,7 +34,7 @@ class ConstStrBlobPtr {
   size_type curr;
 };
 
-ConstStrBlobPtr operator+(ConstStrBlobPtr::difference_type n,
-                          const ConstStrBlobPtr &it);
-ConstStrBlobPtr operator-(ConstStrBlobPtr::difference_type n,
-                          const ConstStrBlobPtr &it);
+ConstBlobPtr operator+(ConstBlobPtr::difference_type n,
+                          const ConstBlobPtr &it);
+ConstBlobPtr operator-(ConstBlobPtr::difference_type n,
+                          const ConstBlobPtr &it);

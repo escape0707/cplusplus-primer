@@ -5,7 +5,7 @@
 #include <string>
 #include <utility>
 
-class StrVec {
+class Vec {
  public:
   using value_type = std::string;
   using allocator_type = std::allocator<value_type>;
@@ -22,14 +22,14 @@ class StrVec {
   using const_iterator = const value_type *;
   using pointer = Alloc_traits::pointer;
   using const_pointer = Alloc_traits::const_pointer;
-  StrVec();
-  StrVec(const StrVec &other);
-  StrVec(StrVec &&other) noexcept;
-  StrVec(std::initializer_list<value_type> il);
-  StrVec &operator=(const StrVec &rhs);
-  StrVec &operator=(StrVec &&rhs) noexcept;
-  StrVec &operator=(std::initializer_list<value_type> il);
-  ~StrVec();
+  Vec();
+  Vec(const Vec &other);
+  Vec(Vec &&other) noexcept;
+  Vec(std::initializer_list<value_type> il);
+  Vec &operator=(const Vec &rhs);
+  Vec &operator=(Vec &&rhs) noexcept;
+  Vec &operator=(std::initializer_list<value_type> il);
+  ~Vec();
   void push_back(const_reference value);
   void push_back(value_type &&value);
   void pop_back();
@@ -66,9 +66,9 @@ class StrVec {
   iterator cap = nullptr;
 };
 
-bool operator==(const StrVec &lhs, const StrVec &rhs);
-bool operator!=(const StrVec &lhs, const StrVec &rhs);
-bool operator<(const StrVec &lhs, const StrVec &rhs);
-bool operator>(const StrVec &lhs, const StrVec &rhs);
-bool operator<=(const StrVec &lhs, const StrVec &rhs);
-bool operator>=(const StrVec &lhs, const StrVec &rhs);
+bool operator==(const Vec &lhs, const Vec &rhs);
+bool operator!=(const Vec &lhs, const Vec &rhs);
+bool operator<(const Vec &lhs, const Vec &rhs);
+bool operator>(const Vec &lhs, const Vec &rhs);
+bool operator<=(const Vec &lhs, const Vec &rhs);
+bool operator>=(const Vec &lhs, const Vec &rhs);

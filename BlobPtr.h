@@ -4,28 +4,28 @@
 #include <string>
 #include <vector>
 
-#include "StrBlob.h"
+#include "Blob.h"
 
-class StrBlobPtr {
+class BlobPtr {
  public:
-  using container_type = StrBlob::container_type;
-  using size_type = StrBlob::size_type;
-  using difference_type = StrBlob::difference_type;
-  using reference = StrBlob::reference;
-  using pointer = StrBlob::pointer;
-  StrBlobPtr();
-  explicit StrBlobPtr(StrBlob &b, size_type sz = 0);
+  using container_type = Blob::container_type;
+  using size_type = Blob::size_type;
+  using difference_type = Blob::difference_type;
+  using reference = Blob::reference;
+  using pointer = Blob::pointer;
+  BlobPtr();
+  explicit BlobPtr(Blob &b, size_type sz = 0);
   reference operator*() const;
   pointer operator->() const;
   reference operator[](size_type pos) const;
-  StrBlobPtr &operator++();
-  StrBlobPtr operator++(int);
-  StrBlobPtr &operator+=(difference_type n);
-  StrBlobPtr operator+(difference_type n) const;
-  StrBlobPtr &operator--();
-  StrBlobPtr operator--(int);
-  StrBlobPtr &operator-=(difference_type n);
-  StrBlobPtr operator-(difference_type n) const;
+  BlobPtr &operator++();
+  BlobPtr operator++(int);
+  BlobPtr &operator+=(difference_type n);
+  BlobPtr operator+(difference_type n) const;
+  BlobPtr &operator--();
+  BlobPtr operator--(int);
+  BlobPtr &operator-=(difference_type n);
+  BlobPtr operator-(difference_type n) const;
 
  private:
   std::shared_ptr<container_type> check(size_type i,
@@ -34,5 +34,5 @@ class StrBlobPtr {
   size_type curr;
 };
 
-StrBlobPtr operator+(StrBlobPtr::difference_type n, const StrBlobPtr &it);
-StrBlobPtr operator-(StrBlobPtr::difference_type n, const StrBlobPtr &it);
+BlobPtr operator+(BlobPtr::difference_type n, const BlobPtr &it);
+BlobPtr operator-(BlobPtr::difference_type n, const BlobPtr &it);
