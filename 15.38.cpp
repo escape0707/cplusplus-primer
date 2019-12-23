@@ -1,0 +1,1 @@
+// No Query class is not the base class of {Binary|And|Or}Query
