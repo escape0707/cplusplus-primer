@@ -53,7 +53,3 @@ bool operator!=(const StrBlob &lhs, const StrBlob &rhs);
 bool operator>(const StrBlob &lhs, const StrBlob &rhs);
 bool operator<=(const StrBlob &lhs, const StrBlob &rhs);
 bool operator>=(const StrBlob &lhs, const StrBlob &rhs);
-
-
-#include "ConstStrBlobPtr.h"
-#include "StrBlobPtr.h"
