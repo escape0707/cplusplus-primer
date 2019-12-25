@@ -6,16 +6,13 @@
 
 #include "Vec.h"
 
-class BlobPtr;
-class ConstBlobPtr;
-
 class Blob {
-  friend class BlobPtr;
-  friend class ConstBlobPtr;
   friend bool operator==(const Blob &lhs, const Blob &rhs);
   friend bool operator<(const Blob &lhs, const Blob &rhs);
 
  public:
+  class BlobPtr;
+  class ConstBlobPtr;
   // define types, see also std::stack
   using container_type = Vec;
   using value_type = container_type::value_type;

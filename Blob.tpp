@@ -80,19 +80,19 @@ void Blob::pop_back() {
   data->pop_back();
 }
 
-BlobPtr Blob::begin() {
+Blob::BlobPtr Blob::begin() {
   return BlobPtr(*this);
 }
 
-ConstBlobPtr Blob::cbegin() const {
+Blob::ConstBlobPtr Blob::cbegin() const {
   return ConstBlobPtr(*this);
 }
 
-BlobPtr Blob::end() {
+Blob::BlobPtr Blob::end() {
   return BlobPtr(*this, data->size());
 }
 
-ConstBlobPtr Blob::cend() const {
+Blob::ConstBlobPtr Blob::cend() const {
   return ConstBlobPtr(*this, data->size());
 }
 

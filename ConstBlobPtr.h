@@ -6,13 +6,8 @@
 
 #include "Blob.h"
 
-class ConstBlobPtr {
+class Blob::ConstBlobPtr {
  public:
-  using container_type = Blob::container_type;
-  using size_type = Blob::size_type;
-  using difference_type = Blob::difference_type;
-  using const_reference = Blob::const_reference;
-  using const_pointer = Blob::const_pointer;
   ConstBlobPtr();
   explicit ConstBlobPtr(const Blob &b, size_type sz = 0);
   const_reference operator*() const;
@@ -34,7 +29,7 @@ class ConstBlobPtr {
   size_type curr;
 };
 
-ConstBlobPtr operator+(ConstBlobPtr::difference_type n,
-                          const ConstBlobPtr &it);
-ConstBlobPtr operator-(ConstBlobPtr::difference_type n,
-                          const ConstBlobPtr &it);
+Blob::ConstBlobPtr operator+(Blob::difference_type n,
+                             const Blob::ConstBlobPtr &it);
+Blob::ConstBlobPtr operator-(Blob::difference_type n,
+                             const Blob::ConstBlobPtr &it);

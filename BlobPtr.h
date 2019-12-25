@@ -6,13 +6,8 @@
 
 #include "Blob.h"
 
-class BlobPtr {
+class Blob::BlobPtr {
  public:
-  using container_type = Blob::container_type;
-  using size_type = Blob::size_type;
-  using difference_type = Blob::difference_type;
-  using reference = Blob::reference;
-  using pointer = Blob::pointer;
   BlobPtr();
   explicit BlobPtr(Blob &b, size_type sz = 0);
   reference operator*() const;
@@ -34,5 +29,5 @@ class BlobPtr {
   size_type curr;
 };
 
-BlobPtr operator+(BlobPtr::difference_type n, const BlobPtr &it);
-BlobPtr operator-(BlobPtr::difference_type n, const BlobPtr &it);
+Blob::BlobPtr operator+(Blob::difference_type n, const Blob::BlobPtr &it);
+Blob::BlobPtr operator-(Blob::difference_type n, const Blob::BlobPtr &it);
