@@ -5,9 +5,10 @@
 #include <string>
 #include <utility>
 
+template <typename T>
 class Vec {
  public:
-  using value_type = std::string;
+  using value_type = T;
   using allocator_type = std::allocator<value_type>;
 
  private:
@@ -20,8 +21,8 @@ class Vec {
   using const_reference = const value_type &;
   using iterator = value_type *;
   using const_iterator = const value_type *;
-  using pointer = Alloc_traits::pointer;
-  using const_pointer = Alloc_traits::const_pointer;
+  using pointer = typename Alloc_traits::pointer;
+  using const_pointer = typename Alloc_traits::const_pointer;
   Vec();
   Vec(const Vec &other);
   Vec(Vec &&other) noexcept;
@@ -66,9 +67,17 @@ class Vec {
   iterator cap = nullptr;
 };
 
-bool operator==(const Vec &lhs, const Vec &rhs);
-bool operator!=(const Vec &lhs, const Vec &rhs);
-bool operator<(const Vec &lhs, const Vec &rhs);
-bool operator>(const Vec &lhs, const Vec &rhs);
-bool operator<=(const Vec &lhs, const Vec &rhs);
-bool operator>=(const Vec &lhs, const Vec &rhs);
+template <typename T>
+bool operator==(const Vec<T> &lhs, const Vec<T> &rhs);
+template <typename T>
+bool operator!=(const Vec<T> &lhs, const Vec<T> &rhs);
+template <typename T>
+bool operator<(const Vec<T> &lhs, const Vec<T> &rhs);
+template <typename T>
+bool operator>(const Vec<T> &lhs, const Vec<T> &rhs);
+template <typename T>
+bool operator<=(const Vec<T> &lhs, const Vec<T> &rhs);
+template <typename T>
+bool operator>=(const Vec<T> &lhs, const Vec<T> &rhs);
+
+#include "Vec.tpp"

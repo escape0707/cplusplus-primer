@@ -1,27 +1,33 @@
-#include "Vec.h"
+#pragma once
 
 #include <algorithm>
 #include <initializer_list>
 #include <memory>
 #include <utility>
 
-Vec::Vec() = default;
+#include "Vec.h"
 
-Vec::Vec(const Vec &other) {
+template <typename T>
+Vec<T>::Vec() = default;
+
+template <typename T>
+Vec<T>::Vec(const Vec &other) {
   std::pair<iterator, iterator> newdata =
       alloc_n_copy(other.begin(), other.end());
   elements = newdata.first;
   first_free = cap = newdata.second;
 }
 
-Vec::Vec(Vec &&other) noexcept
+template <typename T>
+Vec<T>::Vec(Vec &&other) noexcept
     : elements(other.elements), first_free(other.first_free), cap(other.cap) {
   other.elements = nullptr;
   // other.elements = other.first_free = other.cap = nullptr;
 }
 
 // copying a initializer_list does not copy the underlying objects
-Vec::Vec(std::initializer_list<value_type> il) {
+template <typename T>
+Vec<T>::Vec(std::initializer_list<value_type> il) {
   // so sad that initializer_list was too old to support move semantics.
   // and it provides only const iterator to its underlying data structure.
   std::pair<iterator, iterator> newdata = alloc_n_copy(il.begin(), il.end());
@@ -29,7 +35,8 @@ Vec::Vec(std::initializer_list<value_type> il) {
   first_free = cap = newdata.second;
 }
 
-Vec &Vec::operator=(const Vec &rhs) {
+template <typename T>
+Vec<T> &Vec<T>::operator=(const Vec &rhs) {
   std::pair<iterator, iterator> newdata = alloc_n_copy(rhs.begin(), rhs.end());
   free();
   elements = newdata.first;
@@ -37,7 +44,8 @@ Vec &Vec::operator=(const Vec &rhs) {
   return *this;
 }
 
-Vec &Vec::operator=(Vec &&rhs) noexcept {
+template <typename T>
+Vec<T> &Vec<T>::operator=(Vec &&rhs) noexcept {
   if (this != &rhs) {
     free();
     elements = rhs.elements;
@@ -49,7 +57,8 @@ Vec &Vec::operator=(Vec &&rhs) noexcept {
   return *this;
 }
 
-Vec &Vec::operator=(std::initializer_list<value_type> il) {
+template <typename T>
+Vec<T> &Vec<T>::operator=(std::initializer_list<value_type> il) {
   std::pair<iterator, iterator> newdata = alloc_n_copy(il.begin(), il.end());
   free();
   elements = newdata.first;
@@ -57,25 +66,30 @@ Vec &Vec::operator=(std::initializer_list<value_type> il) {
   return *this;
 }
 
-Vec::~Vec() {
+template <typename T>
+Vec<T>::~Vec() {
   free();
 }
 
-void Vec::push_back(const_reference value) {
+template <typename T>
+void Vec<T>::push_back(const_reference value) {
   chk_n_alloc();
   Alloc_traits::construct(alloc, first_free++, value);
 }
 
-void Vec::push_back(value_type &&value) {
+template <typename T>
+void Vec<T>::push_back(value_type &&value) {
   chk_n_alloc();
   Alloc_traits::construct(alloc, first_free++, std::move(value));
 }
 
-void Vec::pop_back() {
+template <typename T>
+void Vec<T>::pop_back() {
   std::destroy_at(--first_free);
 }
 
-void Vec::resize(size_type new_size) {
+template <typename T>
+void Vec<T>::resize(size_type new_size) {
   if (new_size < size()) {
     destroy_starting_from(elements + new_size);
   } else if (size_type diff = new_size - size()) {
@@ -84,7 +98,8 @@ void Vec::resize(size_type new_size) {
   }
 }
 
-void Vec::resize(size_type new_size, const_reference value) {
+template <typename T>
+void Vec<T>::resize(size_type new_size, const_reference value) {
   if (new_size < size()) {
     destroy_starting_from(elements + new_size);
   } else if (size_type diff = new_size - size()) {
@@ -93,116 +108,142 @@ void Vec::resize(size_type new_size, const_reference value) {
   }
 }
 
-bool Vec::empty() const {
+template <typename T>
+bool Vec<T>::empty() const {
   return elements == first_free;
 }
 
-Vec::size_type Vec::size() const {
+template <typename T>
+typename Vec<T>::size_type Vec<T>::size() const {
   return static_cast<size_type>(first_free - elements);
 }
 
-void Vec::reserve(size_type new_cap) {
+template <typename T>
+void Vec<T>::reserve(size_type new_cap) {
   if (new_cap > capacity()) {
     _reserve(new_cap);
   }
 }
 
-Vec::size_type Vec::capacity() const {
+template <typename T>
+typename Vec<T>::size_type Vec<T>::capacity() const {
   return static_cast<size_type>(cap - elements);
 }
 
-Vec::reference Vec::operator[](size_type pos) {
+template <typename T>
+typename Vec<T>::reference Vec<T>::operator[](size_type pos) {
   return const_cast<reference>(std::as_const(*this)[pos]);
 }
 
-Vec::const_reference Vec::operator[](size_type pos) const {
+template <typename T>
+typename Vec<T>::const_reference Vec<T>::operator[](size_type pos) const {
   return elements[pos];
 }
 
-Vec::reference Vec::front() {
+template <typename T>
+typename Vec<T>::reference Vec<T>::front() {
   return const_cast<reference>(std::as_const(*this).front());
 }
 
-Vec::const_reference Vec::front() const {
+template <typename T>
+typename Vec<T>::const_reference Vec<T>::front() const {
   return *elements;
 }
 
-Vec::reference Vec::back() {
+template <typename T>
+typename Vec<T>::reference Vec<T>::back() {
   return const_cast<reference>(std::as_const(*this).back());
 }
 
-Vec::const_reference Vec::back() const {
+template <typename T>
+typename Vec<T>::const_reference Vec<T>::back() const {
   return first_free[-1];
 }
 
-Vec::iterator Vec::begin() {
+template <typename T>
+typename Vec<T>::iterator Vec<T>::begin() {
   return const_cast<iterator>(std::as_const(*this).begin());
 }
 
-Vec::const_iterator Vec::begin() const {
+template <typename T>
+typename Vec<T>::const_iterator Vec<T>::begin() const {
   return cbegin();
 }
 
-Vec::const_iterator Vec::cbegin() const {
+template <typename T>
+typename Vec<T>::const_iterator Vec<T>::cbegin() const {
   return elements;
 }
 
-Vec::iterator Vec::end() {
+template <typename T>
+typename Vec<T>::iterator Vec<T>::end() {
   return const_cast<iterator>(std::as_const(*this).end());
 }
 
-Vec::const_iterator Vec::end() const {
+template <typename T>
+typename Vec<T>::const_iterator Vec<T>::end() const {
   return cend();
 }
 
-Vec::const_iterator Vec::cend() const {
+template <typename T>
+typename Vec<T>::const_iterator Vec<T>::cend() const {
   return first_free;
 }
 
-bool operator==(const Vec &lhs, const Vec &rhs) {
+template <typename T>
+bool operator==(const Vec<T> &lhs, const Vec<T> &rhs) {
   return std::equal(lhs.cbegin(), lhs.cend(), rhs.cbegin(), rhs.cend());
 }
 
-bool operator!=(const Vec &lhs, const Vec &rhs) {
+template <typename T>
+bool operator!=(const Vec<T> &lhs, const Vec<T> &rhs) {
   return !(lhs == rhs);
 }
 
-bool operator<(const Vec &lhs, const Vec &rhs) {
+template <typename T>
+bool operator<(const Vec<T> &lhs, const Vec<T> &rhs) {
   return std::lexicographical_compare(lhs.cbegin(), lhs.cend(), rhs.cbegin(),
                                       rhs.cend());
 }
 
-bool operator>(const Vec &lhs, const Vec &rhs) {
+template <typename T>
+bool operator>(const Vec<T> &lhs, const Vec<T> &rhs) {
   return rhs < lhs;
 }
 
-bool operator<=(const Vec &lhs, const Vec &rhs) {
+template <typename T>
+bool operator<=(const Vec<T> &lhs, const Vec<T> &rhs) {
   return !(lhs > rhs);
 }
 
-bool operator>=(const Vec &lhs, const Vec &rhs) {
+template <typename T>
+bool operator>=(const Vec<T> &lhs, const Vec<T> &rhs) {
   return !(lhs < rhs);
 }
 
-Vec::iterator Vec::allocate(size_type n) {
+template <typename T>
+typename Vec<T>::iterator Vec<T>::allocate(size_type n) {
   if (n) {
     return Alloc_traits::allocate(alloc, n);
   }
   return nullptr;
 }
 
-std::pair<Vec::iterator, Vec::iterator> Vec::alloc_n_copy(const_iterator beg,
-                                                          const_iterator end) {
+template <typename T>
+std::pair<typename Vec<T>::iterator, typename Vec<T>::iterator>
+Vec<T>::alloc_n_copy(const_iterator beg, const_iterator end) {
   iterator newbeg = allocate(static_cast<size_type>(end - beg));
   return {newbeg, std::uninitialized_copy(beg, end, newbeg)};
 }
 
-void Vec::destroy_starting_from(iterator pos) {
+template <typename T>
+void Vec<T>::destroy_starting_from(iterator pos) {
   std::destroy(pos, first_free);
   first_free = pos;
 }
 
-void Vec::_reserve(size_type new_cap) {
+template <typename T>
+void Vec<T>::_reserve(size_type new_cap) {
   iterator newelements = allocate(new_cap);
   iterator newfirst_free =
       std::uninitialized_move(elements, first_free, newelements);
@@ -212,13 +253,15 @@ void Vec::_reserve(size_type new_cap) {
   cap = newelements + new_cap;
 }
 
-void Vec::chk_n_alloc() {
+template <typename T>
+void Vec<T>::chk_n_alloc() {
   if (first_free == cap) {
     _reserve(capacity() ? 2 * capacity() : 1);
   }
 }
 
-void Vec::free() {
+template <typename T>
+void Vec<T>::free() {
   if (elements) {
     std::destroy(elements, first_free);
     Alloc_traits::deallocate(alloc, elements, capacity());
