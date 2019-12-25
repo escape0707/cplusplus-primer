@@ -5,30 +5,26 @@
 #include "Blob.h"
 #include "ConstBlobPtr.h"
 
-using std::out_of_range, std::runtime_error;
-using std::shared_ptr;
-using std::string;
-
 Blob::ConstBlobPtr::ConstBlobPtr() : curr(0) {}
 
 Blob::ConstBlobPtr::ConstBlobPtr(const Blob &b, size_type sz)
     : wptr(b.data), curr(sz) {}
 
-shared_ptr<Blob::container_type> Blob::ConstBlobPtr::check(
+std::shared_ptr<Blob::container_type> Blob::ConstBlobPtr::check(
     size_type i,
-    const string &msg) const {
-  shared_ptr<container_type> ret = wptr.lock();
+    const std::string &msg) const {
+  std::shared_ptr<container_type> ret = wptr.lock();
   if (!ret) {
-    throw runtime_error("unbound ConstBlobPtr");
+    throw std::runtime_error("unbound ConstBlobPtr");
   }
   if (i >= ret->size()) {
-    throw out_of_range(msg);
+    throw std::out_of_range(msg);
   }
   return ret;
 }
 
 Blob::const_reference Blob::ConstBlobPtr::operator*() const {
-  shared_ptr<container_type> p = check(curr, "dereference past end");
+  std::shared_ptr<container_type> p = check(curr, "dereference past end");
   return (*p)[curr];
 }
 
@@ -38,7 +34,7 @@ Blob::const_pointer Blob::ConstBlobPtr::operator->() const {
 
 Blob::const_reference Blob::ConstBlobPtr::operator[](size_type pos) const {
   pos += curr;
-  shared_ptr<container_type> p = check(pos, "dereference past end");
+  std::shared_ptr<container_type> p = check(pos, "dereference past end");
   return (*p)[pos];
 }
 
