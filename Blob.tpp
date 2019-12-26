@@ -1,111 +1,137 @@
-#include "Blob.h"
+#pragma once
 
 #include <memory>
 #include <stdexcept>
 #include <string>
 #include <utility>
 
+#include "Blob.h"
 #include "BlobPtr.h"
 #include "ConstBlobPtr.h"
 
-Blob::Blob() : data(std::make_shared<container_type>()) {}
+template <typename T>
+Blob<T>::Blob() : data(std::make_shared<container_type>()) {}
 
-Blob::Blob(std::initializer_list<value_type> il)
+template <typename T>
+Blob<T>::Blob(std::initializer_list<value_type> il)
     : data(std::make_shared<container_type>(il)) {}
 
-Blob::Blob(const Blob &other)
+template <typename T>
+Blob<T>::Blob(const Blob &other)
     : data(std::make_shared<container_type>(*other.data)) {}
 
-Blob &Blob::operator=(const Blob &rhs) {
+template <typename T>
+Blob<T> &Blob<T>::operator=(const Blob &rhs) {
   data = std::make_shared<container_type>(*rhs.data);
   return *this;
 }
 
-Blob::size_type Blob::size() const {
+template <typename T>
+typename Blob<T>::size_type Blob<T>::size() const {
   return data->size();
 }
 
-bool Blob::empty() const {
+template <typename T>
+bool Blob<T>::empty() const {
   return data->empty();
 }
 
-void Blob::push_back(const_reference value) {
+template <typename T>
+void Blob<T>::push_back(const_reference value) {
   data->push_back(value);
 }
 
-void Blob::check(size_type i, const std::string &msg) const {
+template <typename T>
+void Blob<T>::check(size_type i, const std::string &msg) const {
   if (i >= data->size()) {
     throw std::out_of_range(msg);
   }
 }
 
-Blob::reference Blob::operator[](size_type pos) {
+template <typename T>
+typename Blob<T>::reference Blob<T>::operator[](size_type pos) {
   return const_cast<reference>(std::as_const(*this)[pos]);
 }
 
-Blob::const_reference Blob::operator[](size_type pos) const {
+template <typename T>
+typename Blob<T>::const_reference Blob<T>::operator[](size_type pos) const {
   return (*data)[pos];
 }
 
-Blob::const_reference Blob::front() const {
+template <typename T>
+typename Blob<T>::const_reference Blob<T>::front() const {
   check(0, "front on empty Blob");
   return data->front();
 }
 
-Blob::reference Blob::front() {
+template <typename T>
+typename Blob<T>::reference Blob<T>::front() {
   return const_cast<reference>(std::as_const(*this).front());
 }
 
-Blob::const_reference Blob::back() const {
+template <typename T>
+typename Blob<T>::const_reference Blob<T>::back() const {
   check(0, "back on empty Blob");
   return data->back();
 }
 
-Blob::reference Blob::back() {
+template <typename T>
+typename Blob<T>::reference Blob<T>::back() {
   return const_cast<reference>(std::as_const(*this).back());
 }
 
-void Blob::pop_back() {
+template <typename T>
+void Blob<T>::pop_back() {
   check(0, "pop_back on empty Blob");
   data->pop_back();
 }
 
-Blob::BlobPtr Blob::begin() {
+template <typename T>
+typename Blob<T>::BlobPtr Blob<T>::begin() {
   return BlobPtr(*this);
 }
 
-Blob::ConstBlobPtr Blob::cbegin() const {
+template <typename T>
+typename Blob<T>::ConstBlobPtr Blob<T>::cbegin() const {
   return ConstBlobPtr(*this);
 }
 
-Blob::BlobPtr Blob::end() {
+template <typename T>
+typename Blob<T>::BlobPtr Blob<T>::end() {
   return BlobPtr(*this, data->size());
 }
 
-Blob::ConstBlobPtr Blob::cend() const {
+template <typename T>
+typename Blob<T>::ConstBlobPtr Blob<T>::cend() const {
   return ConstBlobPtr(*this, data->size());
 }
 
-bool operator==(const Blob &lhs, const Blob &rhs) {
+template <typename T>
+bool operator==(const Blob<T> &lhs, const Blob<T> &rhs) {
   return *lhs.data == *rhs.data;
 }
 
-bool operator!=(const Blob &lhs, const Blob &rhs) {
+template <typename T>
+bool operator!=(const Blob<T> &lhs, const Blob<T> &rhs) {
   return !(lhs == rhs);
 }
 
-bool operator<(const Blob &lhs, const Blob &rhs) {
+template <typename T>
+bool operator<(const Blob<T> &lhs, const Blob<T> &rhs) {
   return *lhs.data < *rhs.data;
 }
 
-bool operator>(const Blob &lhs, const Blob &rhs) {
+template <typename T>
+bool operator>(const Blob<T> &lhs, const Blob<T> &rhs) {
   return rhs < lhs;
 }
 
-bool operator<=(const Blob &lhs, const Blob &rhs) {
+template <typename T>
+bool operator<=(const Blob<T> &lhs, const Blob<T> &rhs) {
   return !(lhs > rhs);
 }
 
-bool operator>=(const Blob &lhs, const Blob &rhs) {
+template <typename T>
+bool operator>=(const Blob<T> &lhs, const Blob<T> &rhs) {
   return !(lhs < rhs);
 }

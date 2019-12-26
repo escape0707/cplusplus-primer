@@ -6,7 +6,8 @@
 
 #include "Blob.h"
 
-class Blob::ConstBlobPtr {
+template <typename T>
+class Blob<T>::ConstBlobPtr {
  public:
   ConstBlobPtr();
   explicit ConstBlobPtr(const Blob &b, size_type sz = 0);
@@ -27,9 +28,32 @@ class Blob::ConstBlobPtr {
                                         const std::string &msg) const;
   std::weak_ptr<container_type> wptr;
   size_type curr;
+
+ public:
+  friend bool operator==(const ConstBlobPtr &lhs, const ConstBlobPtr &rhs) {
+    return lhs.curr == rhs.curr;
+  }
+  friend bool operator!=(const ConstBlobPtr &lhs, const ConstBlobPtr &rhs) {
+    return !(lhs == rhs);
+  }
+  friend bool operator<(const ConstBlobPtr &lhs, const ConstBlobPtr &rhs) {
+    return lhs.curr < rhs.curr;
+  }
+  friend bool operator>(const ConstBlobPtr &lhs, const ConstBlobPtr &rhs) {
+    return rhs < lhs;
+  }
+  friend bool operator<=(const ConstBlobPtr &lhs, const ConstBlobPtr &rhs) {
+    return !(lhs > rhs);
+  }
+  friend bool operator>=(const ConstBlobPtr &lhs, const ConstBlobPtr &rhs) {
+    return !(lhs < rhs);
+  }
+  friend ConstBlobPtr operator+(difference_type n, const ConstBlobPtr &it) {
+    return it + n;
+  }
+  friend ConstBlobPtr operator-(difference_type n, const ConstBlobPtr &it) {
+    return it - n;
+  }
 };
 
-Blob::ConstBlobPtr operator+(Blob::difference_type n,
-                             const Blob::ConstBlobPtr &it);
-Blob::ConstBlobPtr operator-(Blob::difference_type n,
-                             const Blob::ConstBlobPtr &it);
+#include "ConstBlobPtr.tpp"
