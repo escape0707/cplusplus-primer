@@ -11,6 +11,14 @@ template <typename T>
 Vec<T>::Vec() = default;
 
 template <typename T>
+template <typename InputIt>
+Vec<T>::Vec(const InputIt &first, const InputIt &last) {
+  std::pair<iterator, iterator> newdata = alloc_n_copy(first, last);
+  elements = newdata.first;
+  first_free = cap = newdata.second;
+}
+
+template <typename T>
 Vec<T>::Vec(const Vec &other) {
   std::pair<iterator, iterator> newdata =
       alloc_n_copy(other.begin(), other.end());

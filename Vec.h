@@ -24,6 +24,8 @@ class Vec {
   using pointer = typename Alloc_traits::pointer;
   using const_pointer = typename Alloc_traits::const_pointer;
   Vec();
+  template <typename InputIt>
+  Vec(const InputIt &first, const InputIt &last);
   Vec(const Vec &other);
   Vec(Vec &&other) noexcept;
   Vec(std::initializer_list<value_type> il);
