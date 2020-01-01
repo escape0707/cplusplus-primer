@@ -24,6 +24,8 @@ class Vec {
   using pointer = typename Alloc_traits::pointer;
   using const_pointer = typename Alloc_traits::const_pointer;
   Vec();
+  template <typename InputIt>
+  Vec(const InputIt &first, const InputIt &last);
   Vec(const Vec &other);
   Vec(Vec &&other) noexcept;
   Vec(std::initializer_list<value_type> il);
@@ -56,8 +58,8 @@ class Vec {
  private:
   inline static allocator_type alloc;
   static iterator allocate(size_type n);
-  static std::pair<iterator, iterator> alloc_n_copy(const_iterator beg,
-                                                    const_iterator end);
+  template <typename InputIt>
+  static std::pair<iterator, iterator> alloc_n_copy(InputIt beg, InputIt end);
   void destroy_starting_from(iterator pos);
   void _reserve(size_type new_cap);
   void chk_n_alloc();

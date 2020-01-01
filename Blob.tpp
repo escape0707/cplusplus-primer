@@ -13,6 +13,11 @@ template <typename T>
 Blob<T>::Blob() : data(std::make_shared<container_type>()) {}
 
 template <typename T>
+template <typename InputIt>
+Blob<T>::Blob(const InputIt &first, const InputIt &last)
+    : data(std::make_shared<container_type>(first, last)) {}
+
+template <typename T>
 Blob<T>::Blob(std::initializer_list<value_type> il)
     : data(std::make_shared<container_type>(il)) {}
 

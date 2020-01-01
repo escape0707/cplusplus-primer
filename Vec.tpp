@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <initializer_list>
+#include <iterator>
 #include <memory>
 #include <utility>
 
@@ -9,6 +10,14 @@
 
 template <typename T>
 Vec<T>::Vec() = default;
+
+template <typename T>
+template <typename InputIt>
+Vec<T>::Vec(const InputIt &first, const InputIt &last) {
+  std::pair<iterator, iterator> newdata = alloc_n_copy(first, last);
+  elements = newdata.first;
+  first_free = cap = newdata.second;
+}
 
 template <typename T>
 Vec<T>::Vec(const Vec &other) {
@@ -230,9 +239,10 @@ typename Vec<T>::iterator Vec<T>::allocate(size_type n) {
 }
 
 template <typename T>
+template <typename InputIt>
 std::pair<typename Vec<T>::iterator, typename Vec<T>::iterator>
-Vec<T>::alloc_n_copy(const_iterator beg, const_iterator end) {
-  iterator newbeg = allocate(static_cast<size_type>(end - beg));
+Vec<T>::alloc_n_copy(InputIt beg, InputIt end) {
+  iterator newbeg = allocate(static_cast<size_type>(std::distance(beg, end)));
   return {newbeg, std::uninitialized_copy(beg, end, newbeg)};
 }
 

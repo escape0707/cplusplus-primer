@@ -15,8 +15,10 @@ bool operator<(const Blob<T> &lhs, const Blob<T> &rhs);
 
 template <typename T>
 class Blob {
+  // clang-format off
   friend bool operator== <>(const Blob &lhs, const Blob &rhs);
   friend bool operator< <>(const Blob &lhs, const Blob &rhs);
+  // clang-format on
 
  public:
   class BlobPtr;
@@ -31,6 +33,8 @@ class Blob {
   using pointer = typename container_type::pointer;
   using const_pointer = typename container_type::const_pointer;
   Blob();
+  template <typename InputIt>
+  Blob(const InputIt &first, const InputIt &last);
   Blob(std::initializer_list<value_type> il);
   Blob(const Blob &other);
   Blob &operator=(const Blob &rhs);
