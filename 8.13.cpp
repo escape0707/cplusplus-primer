@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+
 #include "PersonInfo.h"
 
 using std::cin, std::cout, std::cerr, std::endl;
@@ -17,37 +18,41 @@ using std::string;
 using std::vector;
 
 int main() {
-  string line;
-  vector<PersonInfo> people;
-
   ifstream fin("a.in");
-  while (getline(fin, line)) {
-    istringstream record(line);
-    PersonInfo info;
-    record >> info.name;
-    copy(istream_iterator<PersonInfo::number_type>(record),
-         istream_iterator<PersonInfo::number_type>(),
-         back_inserter(info.phones));
-    people.push_back(info);
+  vector<PersonInfo> people;
+  {
+    istringstream record_stream;
+    for (string line; getline(fin, line);) {
+      record_stream.str(line);
+      record_stream.clear();
+      people.emplace_back();
+      PersonInfo &last_people = people.back();
+      copy(istream_iterator<PersonInfo::number_type>(record_stream),
+           istream_iterator<PersonInfo::number_type>(),
+           back_inserter(last_people.phones));
+    }
   }
   for (const PersonInfo &info : people) {
     cout << info << endl;
   }
 
-  for (const PersonInfo &entry : people) {
+  {
     ostringstream formatted, badNums;
-    for (const string &number : entry.phones) {
-      if (!valid(number)) {
-        badNums << ' ' << number;
-      } else {
-        formatted << ' ' << format(number);
+    for (const PersonInfo &entry : people) {
+      for (const string &number : entry.phones) {
+        if (!valid(number)) {
+          badNums << ' ' << number;
+        } else {
+          formatted << ' ' << format(number);
+        }
       }
-    }
-    if (badNums.str().empty()) {
-      cout << entry.name << ' ' << formatted.str() << endl;
-    } else {
-      cerr << "input error: " << entry.name << " invalid number(s) "
-           << badNums.str() << endl;
+      string badNums_str = badNums.str();
+      if (badNums_str.empty()) {
+        cout << entry.name << ' ' << formatted.str() << endl;
+      } else {
+        cerr << "input error: " << entry.name << " invalid number(s) "
+             << badNums_str << endl;
+      }
     }
   }
 }
