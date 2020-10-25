@@ -1,10 +1,5 @@
 {
-    "code-runner.executorMap": {
-        "cpp": "\b\b\b\b\b\b\b\b\b\bmake $fileNameWithoutExt.out && ./$fileNameWithoutExt.out"
-    },
-    "editor.tabSize": 2,
-    "files.exclude": {
-        "*.o": true,
-        "*.out": true
-    }
+  "code-runner.executorMap": {
+    "cpp": "\b\b\b\b\b\b\b\b\b\bmake $fileNameWithoutExt.out && ./$fileNameWithoutExt.out"
+  }
 }

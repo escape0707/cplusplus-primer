@@ -1,4 +1,4 @@
-// Todo: maybe do some constexpr opimization?
+// Todo: maybe do some constexpr optimization?
 
 #pragma once
 
