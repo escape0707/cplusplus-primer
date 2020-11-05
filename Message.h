@@ -23,9 +23,8 @@ class Message {
  private:
   std::string contents;
   std::set<Folder *> folders;
-  void add_to_Folders_of(const Message &other);
-  void remove_from_Folders();
-  void addFolder(Folder *folder);
+  void add_to_folders();
+  void remove_from_folders();
   void rmFolder(Folder *folder);
-  void redirect_Folders_from(Message *m);
+  void move_folders(Message *m);
 };
